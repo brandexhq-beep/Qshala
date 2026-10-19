@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "convert:webp": "node scripts/convert-webp.mjs",
+    "prebuild": "node scripts/convert-webp.mjs",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
