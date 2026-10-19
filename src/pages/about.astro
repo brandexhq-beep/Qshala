@@ -15,7 +15,11 @@ import { getImageUrl } from '../lib/sanity/image';
 const aboutData = await getAboutPage();
 const coFounders = await getCoFounders();
 const advisors = await getAdvisors();
-const crew = await getCuriosityCrew();
+const rawCrew = await getCuriosityCrew();
+const crew = rawCrew.map(c => ({
+  ...c,
+  imageUrl: c.imageUrl || (c.image ? getImageUrl(c.image, 300, 300) : '/assets/team/gauri-kashyap.webp')
+}));
 
 const pageTitle = aboutData.seo?.metaTitle || "About Us — Our Story & Mission | QShala India";
 const pageDesc = aboutData.seo?.metaDescription || "Learn about QShala's mission to replace rote learning with curiosity and wonder. Founded in 2014 by Sachin Ravi & Raghav Chakravarthy, backed by top leaders.";
@@ -94,7 +98,7 @@ const aboutSchema = {
             const isFirst = idx === 0;
             const borderColor = isFirst ? 'border-amber-300' : 'border-sky-300';
             const badgeBg = isFirst ? 'bg-[#FDB913] text-slate-950' : 'bg-[#30B2E7] text-white';
-            const imgPath = founder.imageUrl || getImageUrl(founder.image, isFirst ? '/assets/team/sachin-ravi.jpg' : '/assets/team/raghav-chakravarthy.jpg');
+            const imgPath = founder.imageUrl || getImageUrl(founder.image, isFirst ? '/assets/team/sachin-ravi.webp' : '/assets/team/raghav-chakravarthy.webp');
 
             return (
               <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start gap-6 lg:gap-8 group">

@@ -8,16 +8,16 @@ import { getImageUrl } from '../lib/sanity/image';
 const caseStudies = await getAllCaseStudies();
 
 const CASE_STUDY_IMAGES: Record<string, string> = {
-  'dps-bangalore-quriosity-league': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
-  'flipkart-corporate-trivia-league': 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop',
-  'wipro-onboarding-gamification': 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop',
-  'nps-socratic-science-storytelling': 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop',
-  'inventure-academy-critical-thinking': 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop',
-  'tcs-cross-hub-workplace-engagement': 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop',
-  'iit-bombay-techfest-championship': 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop',
-  'iim-bangalore-business-simulations': 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop',
-  'sobha-city-family-game-nights': 'https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800&auto=format&fit=crop',
-  'wework-community-networking-nights': 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop',
+  'dps-bangalore-quriosity-league': '/assets/media/schools/qe1.webp',
+  'flipkart-corporate-trivia-league': '/assets/media/corporate/qe3.webp',
+  'wipro-onboarding-gamification': '/assets/media/corporate/corp_hertie.webp',
+  'nps-socratic-science-storytelling': '/assets/media/schools/2.webp',
+  'inventure-academy-critical-thinking': '/assets/media/schools/3.webp',
+  'tcs-cross-hub-workplace-engagement': '/assets/media/corporate/photo-2026-10-09-16-30-40.webp',
+  'iit-bombay-techfest-championship': '/assets/media/colleges/c1.webp',
+  'iim-bangalore-business-simulations': '/assets/media/colleges/c2.webp',
+  'sobha-city-family-game-nights': '/assets/media/crowd/dsc07829.webp',
+  'wework-community-networking-nights': '/assets/media/corporate/qe5.webp',
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -129,7 +129,7 @@ const caseStudiesSchema = {
           >
             
             {/* Top Image Banner */}
-            <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
+            <div class="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-slate-100">
               <img 
                 src={image} 
                 alt={cs.clientName} 

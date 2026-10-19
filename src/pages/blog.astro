@@ -10,7 +10,7 @@ import { getImageUrl } from '../lib/sanity/image';
 
 const cmsPosts = await getPosts();
 
-const DEFAULT_POST_IMAGE = 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop';
+const DEFAULT_POST_IMAGE = '/assets/media/banners/nlq_final.webp';
 
 function resolvePostImage(p: any): string {
   if (p.mainImage) return getImageUrl(p.mainImage, 800, 500);

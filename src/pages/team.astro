@@ -27,7 +27,7 @@ const formattedCrew = crew.map(c => {
     role: c.role,
     category: cat,
     bio: c.bio || '',
-    image: c.image ? getImageUrl(c.image, 300, 300) : fallbackAvatar,
+    image: c.imageUrl || (c.image ? getImageUrl(c.image, 300, 300) : fallbackAvatar),
     variant: (c.mascotVariant || 'curious') as any,
     color: theme.color,
     bg: theme.bg,
