@@ -249,7 +249,7 @@ const learnSchema = {
                     loading="lazy"
                   />
                   <span 
-                    class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full text-white font-black text-[10px] uppercase font-heading shadow-sm"
+                    class={`absolute top-2 left-2 px-2.5 py-0.5 rounded-full font-black text-[10px] uppercase font-heading shadow-sm ${card.color === '#FDB913' ? 'text-slate-950' : 'text-white'}`}
                     style={`background-color: ${card.color};`}
                   >
                     {card.badge}
@@ -324,7 +324,7 @@ const learnSchema = {
                     loading="lazy"
                   />
                   <span 
-                    class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full text-white font-black text-[10px] uppercase font-heading shadow-sm"
+                    class={`absolute top-2 left-2 px-2.5 py-0.5 rounded-full font-black text-[10px] uppercase font-heading shadow-sm ${card.color === '#FDB913' ? 'text-slate-950' : 'text-white'}`}
                     style={`background-color: ${card.color};`}
                   >
                     {card.badge}
@@ -402,7 +402,7 @@ const learnSchema = {
                     loading="lazy"
                   />
                   <span 
-                    class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full text-white font-black text-[10px] uppercase font-heading shadow-sm"
+                    class={`absolute top-2 left-2 px-2.5 py-0.5 rounded-full font-black text-[10px] uppercase font-heading shadow-sm ${card.color === '#FDB913' ? 'text-slate-950' : 'text-white'}`}
                     style={`background-color: ${card.color};`}
                   >
                     {card.date}

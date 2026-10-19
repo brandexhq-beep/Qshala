@@ -164,11 +164,13 @@ export default function TheQshalaEffect() {
 
                 <div className="relative z-10 p-6 md:p-8 flex items-center justify-between">
                   <span 
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-xs sm:text-sm font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105"
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105 ${
+                      AUDIENCE_PHOTOS[0].tagColor === '#FDB913' ? 'text-slate-950' : 'text-white'
+                    }`}
                     style={{ backgroundColor: AUDIENCE_PHOTOS[0].tagColor }}
                   >
                     <span>{AUDIENCE_PHOTOS[0].tag}</span>
-                    <span className="text-white/90 font-bold">&rarr;</span>
+                    <span className={AUDIENCE_PHOTOS[0].tagColor === '#FDB913' ? 'text-slate-950/80 font-black' : 'text-white/90 font-bold'}>&rarr;</span>
                   </span>
                 </div>
               </motion.a>
@@ -201,11 +203,13 @@ export default function TheQshalaEffect() {
 
                     <div className="relative z-10 p-5">
                       <span 
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-white text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105"
+                        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105 ${
+                          photo.tagColor === '#FDB913' ? 'text-slate-950' : 'text-white'
+                        }`}
                         style={{ backgroundColor: photo.tagColor }}
                       >
                         <span>{photo.tag}</span>
-                        <span className="text-white/90 font-bold">&rarr;</span>
+                        <span className={photo.tagColor === '#FDB913' ? 'text-slate-950/80 font-black' : 'text-white/90 font-bold'}>&rarr;</span>
                       </span>
                     </div>
                   </motion.a>
@@ -241,11 +245,13 @@ export default function TheQshalaEffect() {
 
                   <div className="relative z-10 p-5 md:p-6">
                     <span 
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-white text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105"
+                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105 ${
+                        photo.tagColor === '#FDB913' ? 'text-slate-950' : 'text-white'
+                      }`}
                       style={{ backgroundColor: photo.tagColor }}
                     >
                       <span>{photo.tag}</span>
-                      <span className="text-white/90 font-bold">&rarr;</span>
+                      <span className={photo.tagColor === '#FDB913' ? 'text-slate-950/80 font-black' : 'text-white/90 font-bold'}>&rarr;</span>
                     </span>
                   </div>
                 </motion.a>
@@ -280,11 +286,13 @@ export default function TheQshalaEffect() {
 
                 <div className="relative z-10 p-5 md:p-6">
                   <span 
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-white text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105"
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105 ${
+                      photo.tagColor === '#FDB913' ? 'text-slate-950' : 'text-white'
+                    }`}
                     style={{ backgroundColor: photo.tagColor }}
                   >
                     <span>{photo.tag}</span>
-                    <span className="text-white/90 font-bold">&rarr;</span>
+                    <span className={photo.tagColor === '#FDB913' ? 'text-slate-950/80 font-black' : 'text-white/90 font-bold'}>&rarr;</span>
                   </span>
                 </div>
               </motion.a>

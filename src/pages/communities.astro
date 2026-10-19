@@ -106,7 +106,7 @@ const communityServiceSchema = {
               <div class="space-y-3">
                 <div class="flex items-center justify-between gap-2 flex-wrap">
                   <span 
-                    class="px-3 py-1 rounded-full text-white text-[11px] font-black uppercase font-heading shadow-xs"
+                    class={`px-3 py-1 rounded-full text-[11px] font-black uppercase font-heading shadow-xs ${item.accent === '#FDB913' ? 'text-slate-950' : 'text-white'}`}
                     style={`background-color: ${item.accent};`}
                   >
                     Community

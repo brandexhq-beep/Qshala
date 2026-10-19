@@ -150,7 +150,7 @@ const schoolServiceSchema = {
             <div class={`rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-all ${prog.bg} flex flex-col justify-between space-y-4`}>
               <div class="space-y-2">
                 <span 
-                  class="inline-block px-3 py-1 rounded-full text-white text-[11px] font-black uppercase font-heading shadow-xs"
+                  class={`inline-block px-3 py-1 rounded-full text-[11px] font-black uppercase font-heading shadow-xs ${prog.accent === '#FDB913' ? 'text-slate-950' : 'text-white'}`}
                   style={`background-color: ${prog.accent};`}
                 >
                   Classroom

@@ -1,6 +1,19 @@
 import { useState } from 'react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 
+const MASCOT_ROTATION = [
+  '/assets/qt/QT Idea.svg',
+  '/assets/qt/QT quizzing.svg',
+  '/assets/qt/QT reading.svg',
+  '/assets/qt/QT professional.svg',
+  '/assets/qt/Qt curious.svg',
+  '/assets/qt/QT sherlock.svg',
+  '/assets/qt/QT with trophy.svg',
+  '/assets/qt/QT holding money.svg',
+  '/assets/qt/QT jumping.svg',
+  '/assets/qt/QT happy.svg',
+];
+
 const FAQS = [
   {
     question: 'What makes QShala different from traditional quiz competitions?',
@@ -58,6 +71,8 @@ export default function FAQSection({ items }: Props = {}) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
         {data.map((faq, idx) => {
           const isOpen = openIdx === idx;
+          const mascotPath = faq.mascot || MASCOT_ROTATION[idx % MASCOT_ROTATION.length];
+          const mascotSrc = encodeURI(mascotPath);
 
           return (
             <div
@@ -94,11 +109,14 @@ export default function FAQSection({ items }: Props = {}) {
                 <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-0 text-slate-700 text-sm sm:text-base font-semibold leading-relaxed flex items-start gap-3 sm:gap-4">
                   <p className="flex-1 min-w-0">{faq.answer}</p>
                   <img
-                    src={faq.mascot}
+                    src={mascotSrc}
                     alt="QT Mascot"
                     width={48}
                     height={48}
                     className="shrink-0 object-contain w-9 h-9 sm:w-12 sm:h-12 pointer-events-none self-end"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = '/assets/qt/QT%20Idea.svg';
+                    }}
                   />
                 </div>
               )}
