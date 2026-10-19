@@ -65,7 +65,7 @@ const AUDIENCE_PHOTOS: GalleryPhoto[] = [
     category: 'Corporate',
     tagColor: '#FDB913',
     image: '/assets/media/corporate/photo-2026-10-09-16-30-40.webp',
-    objectPosition: 'center 75%'
+    objectPosition: 'center 50%'
   },
   {
     id: 'college-2',
