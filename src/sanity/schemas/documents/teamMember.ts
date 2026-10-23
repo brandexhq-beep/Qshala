@@ -103,6 +103,11 @@ export default defineType({
       type: 'url',
     }),
     defineField({
+      name: 'instagramUrl',
+      title: 'Instagram Profile URL',
+      type: 'url',
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',

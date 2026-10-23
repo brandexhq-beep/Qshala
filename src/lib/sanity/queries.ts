@@ -225,7 +225,8 @@ export const coFoundersQuery = `*[_type == "teamMember" && isCoFounder == true] 
   coFounderBadge,
   mascotVariant,
   accentColor,
-  linkedInUrl
+  linkedInUrl,
+  instagramUrl
 }`;
 
 export const curiosityCrewQuery = `*[_type == "teamMember" && isCoFounder != true] | order(name asc){
@@ -241,7 +242,8 @@ export const curiosityCrewQuery = `*[_type == "teamMember" && isCoFounder != tru
   isCoFounder,
   mascotVariant,
   accentColor,
-  linkedInUrl
+  linkedInUrl,
+  instagramUrl
 }`;
 
 export const allAdvisorsQuery = `*[_type == "advisor"] | order(order asc){

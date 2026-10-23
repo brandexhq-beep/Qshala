@@ -59,12 +59,12 @@ const blogSchema = {
     <!-- Page Header -->
     <div class="text-center max-w-3xl mx-auto space-y-4 pt-4">
       <span class="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-        QShala Blog
+        Quriosity Literature
       </span>
       
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 font-heading leading-tight">
-          Exploring Quriosity.
+          Learning Out Loud.
         </h1>
         <div class="shrink-0 hidden sm:block">
           <QTMascot client:visible variant="reading" size="md" />
@@ -72,7 +72,7 @@ const blogSchema = {
       </div>
       
       <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-        Perspectives on Socratic education, cognitive growth, quizmastering in Bangalore and across India, plus event reports and photo access for participants.
+        Stories, ideas and photos from the quizzes, classrooms and events we love running.
       </p>
     </div>
 
@@ -86,18 +86,18 @@ const blogSchema = {
       <div class="bg-[#F2FCE8] rounded-3xl p-8 md:p-12 border border-[#75B543]/25 shadow-sm text-center max-w-3xl mx-auto space-y-6 relative overflow-hidden">
         <div class="space-y-2">
           <span class="inline-block px-3.5 py-1 rounded-full bg-[#75B543] text-white font-black text-xs uppercase font-heading shadow-xs">
-            Weekly Free Edition
+            QQL Club
           </span>
           <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 pt-1">
-            Get the Weekly &apos;Quriosity Digest&apos;
+            Subscribe to QQL Club
           </h2>
-          <p class="text-slate-700 font-semibold max-w-xl mx-auto text-sm sm:text-base">
-            Join 12,000+ educators, parents, and quizzers who receive 5 fascinating real-world facts and 1 weekly brain-teaser every Sunday.
+          <p class="text-slate-700 font-semibold max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+            Five questions in your inbox every day, and a Monthly Mega Quiz every month. ₹499 for six months.
           </p>
         </div>
         
         <div class="max-w-md mx-auto">
-          <NewsletterSubscription client:visible variant="digest" placeholder="Enter your email address" buttonLabel="Subscribe →" />
+          <NewsletterSubscription client:visible variant="qql" isDirectLink={true} buttonLabel="Subscribe" />
         </div>
       </div>
     </section>

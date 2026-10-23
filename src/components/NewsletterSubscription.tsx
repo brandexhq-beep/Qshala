@@ -2,21 +2,45 @@ import React, { useState } from 'react';
 import { saveLead } from '../lib/leadsStore';
 
 interface Props {
-  variant?: 'qshots' | 'digest';
+  variant?: 'qshots' | 'digest' | 'qql';
   className?: string;
   placeholder?: string;
   buttonLabel?: string;
+  paymentUrl?: string;
+  isDirectLink?: boolean;
 }
 
+export const RAZORPAY_QQL_PAYMENT_URL = 'https://pages.razorpay.com/qshala-qql-club';
+
 export default function NewsletterSubscription({
-  variant = 'qshots',
+  variant = 'qql',
   className = '',
   placeholder = 'Enter your email address',
-  buttonLabel = 'Subscribe →'
+  buttonLabel = 'Subscribe',
+  paymentUrl = RAZORPAY_QQL_PAYMENT_URL,
+  isDirectLink = true,
 }: Props) {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Direct Button to Razorpay Payment Link (per Dev Notes 2 & Website Copy specs)
+  if (isDirectLink) {
+    return (
+      <div className={`flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3 w-full ${className}`}>
+        <a
+          href={paymentUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Subscribe to QQL Club via Razorpay"
+          className="w-full sm:w-auto px-10 py-4 rounded-full bg-slate-900 text-white font-black text-xs sm:text-sm uppercase font-heading hover:bg-[#75B543] hover:text-white transition-all whitespace-nowrap shadow-md hover:shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center justify-center shrink-0 min-h-[48px]"
+        >
+          <span>{buttonLabel}</span>
+          <span className="ml-2 font-bold">&rarr;</span>
+        </a>
+      </div>
+    );
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,9 +53,9 @@ export default function NewsletterSubscription({
         name: 'Subscriber',
         email,
         phone: 'N/A',
-        organization: variant === 'qshots' ? 'QShots Daily Trivia' : 'Quriosity Digest',
+        organization: variant === 'digest' ? 'Quriosity Digest' : 'QQL Club',
         audienceType: 'Newsletter Reader',
-        message: `Subscribed to ${variant === 'qshots' ? 'QShots Daily' : 'Weekly Quriosity Digest'}`
+        message: `Subscribed to ${variant === 'digest' ? 'Weekly Quriosity Digest' : 'QQL Club'}`,
       });
       setIsSubscribed(true);
     } catch (err) {
@@ -48,7 +72,7 @@ export default function NewsletterSubscription({
           ✓
         </span>
         <span className="text-xs sm:text-sm font-black text-slate-900 font-heading">
-          You&apos;re subscribed! Welcome to {variant === 'qshots' ? 'QShots' : 'Quriosity Digest'}.
+          You&apos;re subscribed! Welcome to {variant === 'digest' ? 'Quriosity Digest' : 'QQL Club'}.
         </span>
       </div>
     );

@@ -802,17 +802,18 @@ const articleSchema = {
             <h3 class="text-xl font-black font-heading text-slate-900">
               {post.category === 'Careers' ? 'Want to join our mission?' : 'Enjoyed this story?'}
             </h3>
-            <p class="text-slate-700 text-xs font-semibold">
+            <p class="text-slate-700 text-xs sm:text-sm font-semibold leading-relaxed">
               {post.category === 'Careers' 
                 ? 'Send your resume to work@walnuts.co.in or explore other opportunities.' 
-                : 'Book a live socratic quiz session or workshop for your school or organization.'}
+                : "Tell us about your school, team or community and we'll plan something together."}
             </p>
           </div>
           <a 
             href={post.category === 'Careers' ? 'mailto:work@walnuts.co.in' : '/contact'} 
             class="w-full sm:w-auto text-center justify-center inline-flex items-center px-6 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all whitespace-nowrap min-h-[44px]"
           >
-            {post.category === 'Careers' ? 'Contact Talent Team &rarr;' : 'Schedule an Experience &rarr;'}
+            <span>{post.category === 'Careers' ? 'Contact Talent Team' : 'Connect With Us'}</span>
+            <span class="ml-1.5">&rarr;</span>
           </a>
         </div>
       </div>
@@ -824,23 +825,27 @@ const articleSchema = {
         </div>
         
         <!-- Mini Newsletter Widget -->
-        <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm text-center w-full max-w-sm">
-          <h4 class="font-black text-slate-900 font-heading text-lg mb-2">Quriosity Newsletter</h4>
-          <p class="text-xs text-slate-600 font-semibold mb-6">Get 1 puzzle and fun facts every Sunday.</p>
-          <form action="mailto:qshala@walnuts.co.in" method="post" class="space-y-3">
-            <input 
-              type="email" 
-              id="article-newsletter-email"
-              name="email"
-              aria-label="Email address for weekly Sunday puzzle newsletter"
-              placeholder="Your Email Address" 
-              required 
-              class="w-full px-4 py-3 rounded-full border border-slate-200 bg-[#FFFDF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30B2E7] text-sm font-semibold transition-colors" 
-            />
-            <button type="submit" class="w-full py-3 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase font-heading shadow-sm hover:shadow-md transition-all cursor-pointer">
-              Subscribe
-            </button>
-          </form>
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm text-center w-full max-w-sm space-y-3">
+          <span class="inline-block px-3 py-1 rounded-full bg-[#75B543]/15 text-[#75B543] font-black text-[10px] uppercase font-heading">
+            QQL Club
+          </span>
+          <h4 class="font-black text-slate-900 font-heading text-xl">
+            Subscribe to QQL Club
+          </h4>
+          <p class="text-xs text-slate-600 font-semibold leading-relaxed">
+            Five questions in your inbox every day, and a Monthly Mega Quiz every month. ₹499 for six months.
+          </p>
+          <div class="pt-2">
+            <a
+              href="https://pages.razorpay.com/qshala-qql-club"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full py-3.5 px-6 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer inline-flex items-center justify-center gap-1.5 min-h-[44px]"
+            >
+              <span>Subscribe</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
         </div>
       </div>
 

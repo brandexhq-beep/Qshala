@@ -151,6 +151,7 @@ export interface SanityTeamMember {
   mascotVariant?: string;
   accentColor?: string;
   linkedInUrl?: string;
+  instagramUrl?: string;
 }
 
 export interface SanityAdvisor {

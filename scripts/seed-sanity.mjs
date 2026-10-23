@@ -162,13 +162,13 @@ const SEED_DOCUMENTS = [
   {
     _id: 'aboutPage',
     _type: 'aboutPage',
-    heroBadge: 'Our Story & Philosophy',
-    heroHeadline: 'Turning Rote Learning on its Head Since 2014.',
-    heroSubheadline: 'Founded by national quiz champions Sachin Ravi and Raghav Chakravarthy, QShala began with a simple question: What if school didn\'t just teach kids what to think, but how to ask?',
-    foundersHeadline: 'Meet the Co-Founders & Quizmasters',
-    foundersIntro: 'Law school graduates turned full-time educators and quizmasters, Sachin and Raghav have curated 3,500+ quizzes and reached over 250,000 learners across India.',
-    originStoryHeadline: 'The Socratic Spark',
-    originStoryText: 'In 2014, while hosting inter-collegiate quizzes across India, we noticed a recurring trend: students knew facts, but lacked the curiosity to question them. We created Walnut Knowledge Solutions and QShala to replace rote memory with socratic dialogue, deduction, and genuine wonder.'
+    heroBadge: 'Our Story',
+    heroHeadline: 'It Started With a Love of Questions.',
+    heroSubheadline: 'QShala began in 2014 with two law school friends and a love of quizzing.',
+    foundersHeadline: 'Meet the Co-Founders',
+    foundersIntro: 'Lawyers by training. Quizzers at heart.',
+    originStoryHeadline: 'It Started With a Love of Questions.',
+    originStoryText: 'QShala began in 2014 with two law school friends and a love of quizzing.'
   },
 
   // 6. SERVICE PAGES
@@ -225,22 +225,26 @@ const SEED_DOCUMENTS = [
     _id: 'teamMember-sachin',
     _type: 'teamMember',
     name: 'Sachin Ravi',
-    role: 'Co-Founder & National Quizmaster',
+    role: 'Co-Founder',
     isCoFounder: true,
-    bio: 'National quiz champion, keynote speaker, and socratic educator. Sachin has hosted over 1,500 live quiz events across India and co-founded Walnut Knowledge Solutions in 2014.',
+    coFounderBadge: 'Culture · Film · Sports · Tech · Music',
+    bio: 'Sachin won a surprise school quiz at ten and never looked back, collecting national and international quiz titles along the way. Today he brings that first thrill of a good question to students, teams and communities across India.',
     category: 'Leadership',
     mascotVariant: 'quizzing',
+    instagramUrl: 'https://www.instagram.com/thesachinravi/',
     order: 1
   },
   {
     _id: 'teamMember-raghav',
     _type: 'teamMember',
     name: 'Raghav Chakravarthy',
-    role: 'Co-Founder & Chief Quizmaster',
+    role: 'Co-Founder',
     isCoFounder: true,
-    bio: 'Law school graduate, master quiz curator, and storyteller. Raghav specializes in turning complex current affairs, science, and history into engaging puzzles for students and executives.',
+    coFounderBadge: 'History · Law · Policy · Society',
+    bio: "Raghav's love of learning began at the dinner table, in conversations with his father on everything from current affairs to technology. It led him to quizzing, and to writing Ready for the Law Challenge.",
     category: 'Leadership',
     mascotVariant: 'sherlock',
+    instagramUrl: 'https://www.instagram.com/raghavnc/',
     order: 2
   },
 

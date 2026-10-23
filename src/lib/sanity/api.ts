@@ -130,18 +130,18 @@ const DEFAULT_HOME_PAGE: SanityHomePage = {
 
 const DEFAULT_ABOUT_PAGE: SanityAboutPage = {
   heroBadge: 'Our Story',
-  heroHeading: 'We Believe Curiosity is the Greatest Superpower.',
+  heroHeading: 'It Started With a Love of Questions.',
   heroIntro:
-    'Founded in 2014 by national quizmasters Sachin Ravi & Raghav Chakravarthy, QShala is on a mission to spark questioning minds, build lateral thinking, and bring back the joy of discovery for students, teachers, and professionals across India.',
+    'QShala began in 2014 with two law school friends and a love of quizzing.',
   stats: [
     { value: '250+', label: 'Partner Schools', color: '#30B2E7' },
     { value: '80+', label: 'Top Corporates', color: '#75B543' },
     { value: '1,000+', label: 'Live Quests Hosted', color: '#FDB913' },
     { value: '2.5L+', label: 'Curious Learners', color: '#9333EA' },
   ],
-  foundersHeading: 'Meet The Co-Founders',
+  foundersHeading: 'Meet the Co-Founders',
   foundersSubtitle:
-    'National quiz champions turned educational innovators, dedicated to making inquiry an everyday habit.',
+    'Lawyers by training. Quizzers at heart.',
   storyHeadline: 'From Law School Quizzers to a National Socratic Movement.',
 };
 
@@ -149,24 +149,26 @@ const DEFAULT_CO_FOUNDERS: SanityTeamMember[] = [
   {
     id: 'sachin-ravi',
     name: 'Sachin Ravi',
-    role: 'Co-Founder & CEO, QShala',
+    role: 'Co-Founder',
     category: 'Leadership',
-    bio: 'NLSIU Bangalore graduate, former national quiz champion, and TEDx speaker. Sachin has authored financial literacy curricula and hosted over 600 live auditoriums nationwide.',
+    bio: 'Sachin won a surprise school quiz at ten and never looked back, collecting national and international quiz titles along the way. Today he brings that first thrill of a good question to students, teams and communities across India.',
     imageUrl: '/assets/team/sachin-ravi.webp',
     isCoFounder: true,
-    coFounderBadge: 'NLSIU Alum • National Quiz Champion • 600+ Stage Quizzes',
+    coFounderBadge: 'Culture · Film · Sports · Tech · Music',
     linkedInUrl: 'https://www.linkedin.com/in/sachin-ravi-qshala/',
+    instagramUrl: 'https://www.instagram.com/thesachinravi/',
   },
   {
     id: 'raghav-chakravarthy',
     name: 'Raghav Chakravarthy',
-    role: 'Co-Founder & Chief Quizmaster',
+    role: 'Co-Founder',
     category: 'Leadership',
-    bio: 'NLSIU Bangalore alumnus, quiz architect, and master storyteller. Raghav designs socratic discovery modules that turn complex current affairs and science into unforgettable adventures.',
+    bio: "Raghav's love of learning began at the dinner table, in conversations with his father on everything from current affairs to technology. It led him to quizzing, and to writing Ready for the Law Challenge.",
     imageUrl: '/assets/team/raghav-chakravarthy.webp',
     isCoFounder: true,
-    coFounderBadge: 'NLSIU Alum • Master Storyteller • Socratic Pedagogy Lead',
+    coFounderBadge: 'History · Law · Policy · Society',
     linkedInUrl: 'https://www.linkedin.com/in/raghav-chakravarthy-qshala/',
+    instagramUrl: 'https://www.instagram.com/raghavnc/',
   },
 ];
 
@@ -486,67 +488,102 @@ const DEFAULT_ADVISORS: SanityAdvisor[] = [
 
 const DEFAULT_FAQS: SanityFAQ[] = [
   {
-    question: 'What makes QShala different from traditional quiz competitions?',
+    question: 'How much does a quiz cost, and are there any fees?',
     answer:
-      'Traditional quizzes test rote memorization of static facts. QShala focuses on Socratic storytelling, critical thinking, and "Why?" questions to turn learning into an active discovery quest.',
+      "The Zerodha Varsity quizzes are free for participants. So are the other quizzes we host on behalf of organisations, including Safety Quest with the Arundhati Foundation. Check our Events section to see what's coming up. And if you'd like to host a quiz of your own, let's talk and see if we can build something unique for you.",
     category: 'General',
     showOnHome: true,
   },
   {
-    question: 'Are QShala sessions conducted online or in-person?',
+    question: 'How many people can take part, and how long does a session run?',
     answer:
-      'Both! We host live in-person workshops, auditoriums, and stage championships, as well as hybrid and fully remote sessions with digital buzzers and real-time leaderboards.',
+      "There's no minimum or maximum group size, so we plan around the people you have. Sessions typically run 30 minutes or more, and that's the format we'd suggest. We can be flexible, but 30 minutes is the least we need to connect with your group and get everyone enjoying the questions. Tell us how many people you expect and how much time you have, and we'll suggest a format that fits.",
     category: 'General',
     showOnHome: true,
+  },
+  {
+    question: 'How far ahead should we book?',
+    answer:
+      "The earlier you tell us, the more we can tailor the quiz to your group, and custom events need a little more time than standard ones. Write to us with your date and we'll tell you honestly whether it works.",
+    category: 'General',
+    showOnHome: true,
+  },
+  {
+    question: 'Can you build the quiz around our company, school, campus or community?',
+    answer:
+      "Yes, and we'd love to. We can shape the questions around your people, your products or your theme, so the quiz feels like yours. We also offer quizzes in Hindi and Kannada, as well as English. Tell us who's playing and what you'd like to bring in, and we'll suggest rounds.",
+    category: 'General',
+    showOnHome: true,
+  },
+  {
+    question: 'Is the quiz online or in person, and what do you bring?',
+    answer:
+      "Both. We run quizzes in person and online, and we'll recommend whichever suits your group and space. For in-person quizzes, we bring the buzzers and sound. You'd arrange the screen and the venue. Tell us where you're hosting and we'll work out the rest together.",
+    category: 'General',
+    showOnHome: true,
+  },
+  {
+    question: "Will our team enjoy it if they aren't quiz people?",
+    answer:
+      "Absolutely. That's the group we plan for. All our activities are made so that people have fun naturally. It's never forced, nobody has to work at it, and the learning slips in without anyone noticing. The games are light, and they're a lovely way for colleagues to bond. Teams play together, so quieter colleagues can join in at their own pace. Tell us about your group and we'll set the right mix.",
+    category: 'Corporate',
+    showOnHome: true,
+  },
+  {
+    question: 'How do you work with schools, and what is asked of teachers?',
+    answer:
+      "We plan quizzes and Quriosity programs around your timetable, so tell us what works for you. We'll agree in advance what we take care of and what we'd need from your staff. We're happy to offer a demo so you can see how it feels first.",
+    category: 'Schools',
+    showOnHome: true,
+  },
+  {
+    question: 'What can you run for college fests and student clubs?',
+    answer:
+      "We can run a standalone quiz or add themed rounds to your fest, in person or online. Do have a look at our Colleges services page, where you'll find custom quizzes we've built for specific departments, including finance and law. Tell us the size and format of your event and we'll suggest what fits.",
+    category: 'Colleges',
+    showOnHome: true,
+  },
+  {
+    question: 'Can we book a quiz for a family gathering, housing society or friends?',
+    answer:
+      "Yes. We run quizzes for communities and can build one around your occasion, with questions that work for different ages playing together. Tell us who's coming and when, and we'll send you a quote.",
+    category: 'Families',
+    showOnHome: true,
+  },
+  {
+    question: 'What is QQL Club?',
+    answer:
+      'QQL Club is a quiz membership for ₹499 for six months from the day you join, open to all ages. Each month you get a Monthly Mega Quiz by email to take at your own pace.',
+    category: 'General',
+    showOnHome: true,
+  },
+  {
+    question: 'What makes QShala different from traditional quiz competitions?',
+    answer:
+      'Traditional quizzes test rote memorization of static facts. QShala focuses on Socratic storytelling, critical thinking, and "Why?" questions to turn learning into an active discovery quest.',
+    category: 'General',
+    showOnHome: false,
   },
   {
     question: 'How do QShala Quriosity Clubs fit into a school timetable?',
     answer:
       'QShala Quriosity Clubs are 40 to 60-minute weekly modules that easily complement standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12.',
     category: 'Schools',
-    showOnHome: true,
-  },
-  {
-    question: 'How do corporate trivia sessions improve team bonding?',
-    answer:
-      'Shared play creates psychological safety. Our low-pressure, high-fun trivia tournaments bond cross-functional teams and boost workplace connection across hybrid offices.',
-    category: 'Corporate',
-    showOnHome: true,
-  },
-  {
-    question: 'Can QShala customize trivia around our company history and products?',
-    answer:
-      'Yes! We frequently design custom brand trivia, company milestone quizzes, and onboarding challenges tailored specifically to your corporate culture.',
-    category: 'Corporate',
-    showOnHome: true,
-  },
-  {
-    question: 'What formats are offered for college campus fests and hackathons?',
-    answer:
-      "We bring professional quizmasters, domain researchers, and multimedia buzzer setups for law moot court festivals, B-school strategy leagues, and STEM hackathons across India's top colleges.",
-    category: 'Colleges',
-    showOnHome: true,
-  },
-  {
-    question: 'Can families or community groups host a private quiz or game night?',
-    answer:
-      'Absolutely! We conduct screen-free weekend family game nights and apartment society tournaments where kids, parents, and grandparents collaborate on mixed teams.',
-    category: 'Families',
-    showOnHome: true,
+    showOnHome: false,
   },
   {
     question: 'How is QShala aligned with NEP 2020 guidelines for critical thinking?',
     answer:
       "QShala's Socratic inquiry pedagogy directly supports NEP 2020's mandate to replace rote memorization with experiential questioning, multidisciplinary curiosity, and practical financial literacy.",
     category: 'Schools',
-    showOnHome: true,
+    showOnHome: false,
   },
   {
     question: 'What lead time is required to design and host a custom event?',
     answer:
       'For standard school modules and company trivia offsites, we can mobilize within 3-5 business days. For customized multi-day corporate leagues or nationwide inter-school championships, we recommend a 2 to 3-week planning horizon.',
     category: 'General',
-    showOnHome: true,
+    showOnHome: false,
   },
 ];
 

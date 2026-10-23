@@ -16,44 +16,64 @@ const MASCOT_ROTATION = [
 
 const FAQS = [
   {
-    question: 'What makes QShala different from traditional quiz competitions?',
-    answer: 'Traditional quizzes test rote memorization of static facts. QShala focuses on Socratic storytelling, critical thinking, and "Why?" questions to turn learning into an active discovery quest.',
+    question: 'How much does a quiz cost, and are there any fees?',
+    answer:
+      "The Zerodha Varsity quizzes are free for participants. So are the other quizzes we host on behalf of organisations, including Safety Quest with the Arundhati Foundation. Check our Events section to see what's coming up. And if you'd like to host a quiz of your own, let's talk and see if we can build something unique for you.",
     mascot: '/assets/qt/QT Idea.svg',
   },
   {
-    question: 'Are QShala sessions conducted online or in-person?',
-    answer: 'Both! We host live in-person workshops, auditoriums, and stage championships, as well as hybrid and fully remote sessions with digital buzzers and real-time leaderboards.',
+    question: 'How many people can take part, and how long does a session run?',
+    answer:
+      "There's no minimum or maximum group size, so we plan around the people you have. Sessions typically run 30 minutes or more, and that's the format we'd suggest. We can be flexible, but 30 minutes is the least we need to connect with your group and get everyone enjoying the questions. Tell us how many people you expect and how much time you have, and we'll suggest a format that fits.",
     mascot: '/assets/qt/QT quizzing.svg',
   },
   {
-    question: 'How do QShala Quriosity Clubs fit into a school timetable?',
-    answer: 'QShala Quriosity Clubs are 40 to 60-minute weekly modules that easily complement standard General Knowledge, Library, or Life Skills periods for Grades 1 through 12.',
+    question: 'How far ahead should we book?',
+    answer:
+      "The earlier you tell us, the more we can tailor the quiz to your group, and custom events need a little more time than standard ones. Write to us with your date and we'll tell you honestly whether it works.",
     mascot: '/assets/qt/QT reading.svg',
   },
   {
-    question: 'How do corporate trivia sessions improve team bonding?',
-    answer: 'Shared play creates psychological safety. Our low-pressure, high-fun trivia tournaments bond cross-functional teams and boost workplace connection across hybrid offices.',
+    question: 'Can you build the quiz around our company, school, campus or community?',
+    answer:
+      "Yes, and we'd love to. We can shape the questions around your people, your products or your theme, so the quiz feels like yours. We also offer quizzes in Hindi and Kannada, as well as English. Tell us who's playing and what you'd like to bring in, and we'll suggest rounds.",
     mascot: '/assets/qt/QT professional.svg',
   },
   {
-    question: 'What age groups are QShala programs designed for?',
-    answer: 'We have age-tailored programs for Primary (Grades 1-4: Quriosity Builders), Middle School (Grades 5-8: Quriosity Explorers), and High School (Grades 9-12: Quriosity Thinkers).',
+    question: 'Is the quiz online or in person, and what do you bring?',
+    answer:
+      "Both. We run quizzes in person and online, and we'll recommend whichever suits your group and space. For in-person quizzes, we bring the buzzers and sound. You'd arrange the screen and the venue. Tell us where you're hosting and we'll work out the rest together.",
     mascot: '/assets/qt/Qt curious.svg',
   },
   {
-    question: 'Can QShala customize trivia around our company history and products?',
-    answer: 'Yes! We frequently design custom brand trivia, company milestone quizzes, and onboarding challenges tailored specifically to your corporate culture.',
+    question: "Will our team enjoy it if they aren't quiz people?",
+    answer:
+      "Absolutely. That's the group we plan for. All our activities are made so that people have fun naturally. It's never forced, nobody has to work at it, and the learning slips in without anyone noticing. The games are light, and they're a lovely way for colleagues to bond. Teams play together, so quieter colleagues can join in at their own pace. Tell us about your group and we'll set the right mix.",
     mascot: '/assets/qt/QT sherlock.svg',
   },
   {
-    question: 'What formats are offered for college campus fests and hackathons?',
-    answer: 'We bring professional quizmasters, domain researchers, and multimedia buzzer setups for law moot court festivals, B-school strategy leagues, and STEM hackathons across India\'s top colleges.',
+    question: 'How do you work with schools, and what is asked of teachers?',
+    answer:
+      "We plan quizzes and Quriosity programs around your timetable, so tell us what works for you. We'll agree in advance what we take care of and what we'd need from your staff. We're happy to offer a demo so you can see how it feels first.",
+    mascot: '/assets/qt/QT reading.svg',
+  },
+  {
+    question: 'What can you run for college fests and student clubs?',
+    answer:
+      "We can run a standalone quiz or add themed rounds to your fest, in person or online. Do have a look at our Colleges services page, where you'll find custom quizzes we've built for specific departments, including finance and law. Tell us the size and format of your event and we'll suggest what fits.",
     mascot: '/assets/qt/QT with trophy.svg',
   },
   {
-    question: 'Can families or community groups host a private quiz or game night?',
-    answer: 'Absolutely! We conduct screen-free weekend family game nights and apartment society tournaments where kids, parents, and grandparents collaborate on mixed teams.',
+    question: 'Can we book a quiz for a family gathering, housing society or friends?',
+    answer:
+      "Yes. We run quizzes for communities and can build one around your occasion, with questions that work for different ages playing together. Tell us who's coming and when, and we'll send you a quote.",
     mascot: '/assets/qt/QT holding money.svg',
+  },
+  {
+    question: 'What is QQL Club?',
+    answer:
+      'QQL Club is a quiz membership for ₹499 for six months from the day you join, open to all ages. Each month you get a Monthly Mega Quiz by email to take at your own pace.',
+    mascot: '/assets/qt/QT jumping.svg',
   },
 ];
 

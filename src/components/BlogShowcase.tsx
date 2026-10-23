@@ -120,9 +120,9 @@ const ALL_BLOG_POSTS: BlogPost[] = [
 ];
 
 const FILTERS = [
-  { id: 'All', label: 'All Updates' },
-  { id: 'Blog', label: 'Blog Articles' },
-  { id: 'Events', label: 'Event Photos' },
+  { id: 'All', label: 'All' },
+  { id: 'Blog', label: 'Blog' },
+  { id: 'Events', label: 'Events' },
 ] as const;
 
 interface BlogShowcaseProps {

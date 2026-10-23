@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import QTMascot from './QTMascot';
 
 interface TeamMember {
@@ -281,41 +280,15 @@ const DEFAULT_MEMBERS: TeamMember[] = [
   },
 ];
 
-const DEPARTMENTS = [
-  'All Crew',
-  'Schools & Partnerships',
-  'Engagement & Quizzing',
-  'Content & Quality',
-  'Operations, People & Finance'
-] as const;
-
-function mapDeptCategory(cat?: string): string {
-  if (!cat) return 'Engagement & Quizzing';
-  if (['Schools', 'Partnerships'].includes(cat)) return 'Schools & Partnerships';
-  if (['Quizmaster', 'Engagement'].includes(cat)) return 'Engagement & Quizzing';
-  if (['Content', 'Quality', 'Design', 'Marketing'].includes(cat)) return 'Content & Quality';
-  if (['Operations', 'People', 'Finance', 'Programs'].includes(cat)) return 'Operations, People & Finance';
-  return 'Engagement & Quizzing';
-}
-
 interface Props {
   members?: TeamMember[] | any[];
 }
 
 export default function InteractiveTeamShowcase({ members }: Props = {}) {
-  const [selectedDept, setSelectedDept] = useState<string>('All Crew');
-
   const sourceCrew = (members && members.length > 0 ? members : DEFAULT_MEMBERS)
     .filter((m) => m.name !== 'Sachin Ravi' && m.name !== 'Raghav Chakravarthy');
 
   const sortedCrew = [...sourceCrew].sort((a, b) => a.name.localeCompare(b.name));
-
-  const filteredCrew = selectedDept === 'All Crew'
-    ? sortedCrew
-    : sortedCrew.filter((m) => {
-        const mapped = mapDeptCategory(m.category || m.tag);
-        return mapped === selectedDept || m.category === selectedDept || m.tag === selectedDept;
-      });
 
   return (
     <div className="space-y-8 sm:space-y-10 w-full">
@@ -326,61 +299,32 @@ export default function InteractiveTeamShowcase({ members }: Props = {}) {
           Meet Our Team
         </span>
         <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-          The Curiosity Crew.
+          The Quriosity Crew.
         </h2>
-        <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-          The educators, quizmasters, researchers &amp; experience designers making curiosity an active sport every single day.
+        <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          Archaeologists, architects, lawyers, educators and more, sparking Quriosity across India.
         </p>
       </div>
 
-      {/* Department Filter Pills */}
-      <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none pb-2 px-1">
-        {DEPARTMENTS.map((dept) => {
-          const isActive = selectedDept === dept;
-          return (
-            <button
-              key={dept}
-              type="button"
-              onClick={() => setSelectedDept(dept)}
-              className={`px-4 py-1.5 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[36px] ${
-                isActive
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              {dept}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Spacious Team Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full">
-        {filteredCrew.map((member) => {
+      {/* Single Alphabetical Grid (Department groupings removed per client feedback) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full pt-2">
+        {sortedCrew.map((member) => {
           const imgSrc = member.imageUrl || (typeof member.image === 'string' ? member.image : member.image?.asset?.url) || '/assets/team/gauri-kashyap.webp';
-          const tag = member.tag || member.category || 'Curiosity Crew';
-          const color = member.color || member.accentColor || '#75B543';
           const mascot = (member.variant || member.mascotVariant || 'curious') as any;
 
           return (
             <div 
-              key={member.id}
+              key={member.id || member.name}
               className="p-6 sm:p-7 rounded-3xl shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group border border-slate-200/90 bg-white"
             >
-              <div className="space-y-5 flex-grow flex flex-col">
-                <div className="flex items-center justify-between">
-                  <span 
-                    className="px-3.5 py-1 rounded-full text-[11px] font-black uppercase text-white font-heading shadow-xs"
-                    style={{ backgroundColor: color }}
-                  >
-                    {tag}
-                  </span>
+              <div className="space-y-4 flex-grow flex flex-col">
+                <div className="flex items-center justify-end">
                   <div className="group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
                     <QTMascot variant={mascot} size="sm" />
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-center pt-2">
+                <div className="flex flex-col items-center justify-center pt-1">
                   <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl md:rounded-3xl overflow-hidden aspect-square border-2 border-slate-100 shadow-md mb-4 bg-slate-50 group-hover:scale-105 transition-transform duration-300">
                     <img 
                       src={imgSrc} 

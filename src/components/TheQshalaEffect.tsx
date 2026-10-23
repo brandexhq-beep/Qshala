@@ -99,17 +99,28 @@ export default function TheQshalaEffect() {
       <div className="w-full max-w-[1536px] mx-auto space-y-8 sm:space-y-10 px-2 sm:px-4 md:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
+        <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
             Live Moments
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
-            The QShala Effect.
+            The QShala Effect
           </h2>
           <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            Moments of electric energy, high-fives, and unbridled curiosity captured across schools, colleges, and corporate stages across India.
+            Bringing Joy to Every Room.
           </p>
+          <div className="pt-1">
+            <a
+              href="#effect-gallery"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs sm:text-sm uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+            >
+              <span>See It Yourself</span>
+              <span>&darr;</span>
+            </a>
+          </div>
         </div>
+
+        <div id="effect-gallery" className="scroll-mt-24"></div>
 
         {/* Category Filter Pills */}
         <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none pb-2 px-1">
