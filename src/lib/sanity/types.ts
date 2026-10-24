@@ -50,6 +50,7 @@ export interface SanitySiteSettings {
   officeAddress: string;
   address?: string;
   googleMapsUrl?: string;
+  qqlPaymentUrl?: string;
   socialLinks?: Array<{ platform: string; url: string }>;
   defaultSeo?: SanitySeo;
 }

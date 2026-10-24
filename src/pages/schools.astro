@@ -222,8 +222,13 @@ const schoolServiceSchema = {
               </div>
               <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
                 <span class="text-xs font-black uppercase text-amber-700 font-heading">{quiz.price}</span>
-                <a href="/contact" class="px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-black text-xs font-heading">
-                  Enroll &rarr;
+                <a 
+                  href={quiz.title === 'QQL Club' ? 'https://pages.razorpay.com/QQLClub' : '/contact'} 
+                  target={quiz.title === 'QQL Club' ? '_blank' : undefined}
+                  rel={quiz.title === 'QQL Club' ? 'noopener noreferrer' : undefined}
+                  class="px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-black text-xs font-heading"
+                >
+                  {quiz.title === 'QQL Club' ? 'Subscribe →' : 'Enroll →'}
                 </a>
               </div>
             </div>

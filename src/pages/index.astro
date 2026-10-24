@@ -312,7 +312,13 @@ const faqSchema = {
         <!-- Right Form & Mascot -->
         <div class="w-full lg:w-1/2 flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-6">
           <div class="w-full max-w-md">
-            <NewsletterSubscription client:visible variant="qql" isDirectLink={true} buttonLabel="Subscribe" />
+            <NewsletterSubscription 
+              client:visible 
+              variant="qql" 
+              isDirectLink={true} 
+              buttonLabel="Subscribe" 
+              paymentUrl={siteSettings.qqlPaymentUrl} 
+            />
           </div>
 
           <!-- Mascot -->

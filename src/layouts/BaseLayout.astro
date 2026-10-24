@@ -46,7 +46,12 @@ const siteUrl = 'https://qshala.vercel.app';
 // Strip query/UTM parameters and clean trailing slash
 const cleanPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const canonicalURL = canonical || (cleanPath === '/' ? siteUrl : `${siteUrl}${cleanPath}`);
-const ogImageUrl = ogImage || `${siteUrl}/og-image.webp`;
+const ogImageUrl = ogImage || `${siteUrl}/og-image.jpg`;
+const ogImageType = ogImageUrl.endsWith('.png')
+  ? 'image/png'
+  : ogImageUrl.endsWith('.webp')
+  ? 'image/webp'
+  : 'image/jpeg';
 
 // Master Organization & LocalBusiness Entity
 const orgEntity: Record<string, any> = {
@@ -61,7 +66,7 @@ const orgEntity: Record<string, any> = {
     "url": `${siteUrl}/assets/logos/QShala%20Logo%201.svg`,
     "caption": "QShala Logo"
   },
-  "image": `${siteUrl}/og-image.webp`,
+  "image": `${siteUrl}/og-image.jpg`,
   "description": "India's premier curiosity platform fostering socratic questioning, critical thinking, school curiosity clubs, and corporate trivia engagement.",
   "telephone": "+91-89716-76100",
   "email": "qshala@walnuts.co.in",
@@ -251,7 +256,7 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:secure_url" content={ogImageUrl} />
-    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:type" content={ogImageType} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={title} />

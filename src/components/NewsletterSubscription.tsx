@@ -10,7 +10,7 @@ interface Props {
   isDirectLink?: boolean;
 }
 
-export const RAZORPAY_QQL_PAYMENT_URL = 'https://pages.razorpay.com/qshala-qql-club';
+export const RAZORPAY_QQL_PAYMENT_URL = 'https://pages.razorpay.com/QQLClub';
 
 export default function NewsletterSubscription({
   variant = 'qql',

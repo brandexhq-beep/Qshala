@@ -5,10 +5,11 @@ import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
 import BlogShowcase, { type BlogPost } from '../components/BlogShowcase';
 import NewsletterSubscription from '../components/NewsletterSubscription';
-import { getPosts } from '../lib/sanity/api';
+import { getPosts, getSiteSettings } from '../lib/sanity/api';
 import { getImageUrl } from '../lib/sanity/image';
 
 const cmsPosts = await getPosts();
+const siteSettings = await getSiteSettings();
 
 const DEFAULT_POST_IMAGE = '/assets/media/banners/nlq_final.webp';
 
@@ -97,7 +98,13 @@ const blogSchema = {
         </div>
         
         <div class="max-w-md mx-auto">
-          <NewsletterSubscription client:visible variant="qql" isDirectLink={true} buttonLabel="Subscribe" />
+          <NewsletterSubscription 
+            client:visible 
+            variant="qql" 
+            isDirectLink={true} 
+            buttonLabel="Subscribe" 
+            paymentUrl={siteSettings.qqlPaymentUrl} 
+          />
         </div>
       </div>
     </section>

@@ -33,6 +33,7 @@ const DEFAULT_SITE_SETTINGS: SanitySiteSettings = {
     '1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078',
   googleMapsUrl:
     'https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru',
+  qqlPaymentUrl: 'https://pages.razorpay.com/QQLClub',
   socialLinks: [
     { platform: 'LinkedIn', url: 'https://www.linkedin.com/company/qshala/' },
     { platform: 'Instagram', url: 'https://www.instagram.com/qshala_curiosity/' },

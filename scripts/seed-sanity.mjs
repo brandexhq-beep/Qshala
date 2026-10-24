@@ -47,6 +47,7 @@ const SEED_DOCUMENTS = [
     contactPhone: '+91-89716-76100',
     address: '1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078',
     googleMapsUrl: 'https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru',
+    qqlPaymentUrl: 'https://pages.razorpay.com/QQLClub',
     socials: {
       instagram: 'https://instagram.com/qshala',
       linkedin: 'https://linkedin.com/company/qshala',

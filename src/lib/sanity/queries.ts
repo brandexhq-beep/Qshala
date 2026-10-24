@@ -9,6 +9,7 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   contactEmail,
   officeAddress,
   googleMapsUrl,
+  qqlPaymentUrl,
   socialLinks,
   defaultSeo {
     metaTitle,

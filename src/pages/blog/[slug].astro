@@ -7,6 +7,7 @@ import EventPhotoGallery from '../../components/EventPhotoGallery';
 import SanityPortableText from '../../components/SanityPortableText.astro';
 import { getPosts } from '../../lib/sanity/api';
 import { getImageUrl } from '../../lib/sanity/image';
+import { RAZORPAY_QQL_PAYMENT_URL } from '../../components/NewsletterSubscription';
 
 export async function getStaticPaths() {
   const cmsPosts = await getPosts();
@@ -719,7 +720,7 @@ const articleSchema = {
   "isPartOf": {
     "@id": "https://qshala.vercel.app/#website"
   },
-  "image": post.gallery && post.gallery[0] ? post.gallery[0].url : "https://qshala.vercel.app/og-image.webp"
+  "image": post.gallery && post.gallery[0] ? post.gallery[0].url : "https://qshala.vercel.app/og-image.jpg"
 };
 ---
 
@@ -727,7 +728,7 @@ const articleSchema = {
   title={`${post.title} | QShala`}
   description={post.summary}
   ogType="article"
-  ogImage={post.gallery && post.gallery[0] ? post.gallery[0].url : 'https://qshala.vercel.app/og-image.webp'}
+  ogImage={post.gallery && post.gallery[0] ? post.gallery[0].url : 'https://qshala.vercel.app/og-image.jpg'}
   articleMeta={{
     publishedTime: post.isoDate,
     modifiedTime: "2026-10-14T18:00:00+05:30",
@@ -837,7 +838,7 @@ const articleSchema = {
           </p>
           <div class="pt-2">
             <a
-              href="https://pages.razorpay.com/qshala-qql-club"
+              href={RAZORPAY_QQL_PAYMENT_URL}
               target="_blank"
               rel="noopener noreferrer"
               class="w-full py-3.5 px-6 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-xs uppercase font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer inline-flex items-center justify-center gap-1.5 min-h-[44px]"

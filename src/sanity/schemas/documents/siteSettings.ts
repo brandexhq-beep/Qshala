@@ -69,6 +69,14 @@ export default defineType({
       group: 'general',
     }),
     defineField({
+      name: 'qqlPaymentUrl',
+      title: 'QQL Club Payment URL (Razorpay)',
+      type: 'url',
+      description: 'The direct Razorpay payment link for QQL Club membership subscriptions.',
+      initialValue: 'https://pages.razorpay.com/QQLClub',
+      group: 'general',
+    }),
+    defineField({
       name: 'socialLinks',
       title: 'Social Media Profiles',
       type: 'array',
