@@ -282,9 +282,17 @@ const DEFAULT_MEMBERS: TeamMember[] = [
 
 interface Props {
   members?: TeamMember[] | any[];
+  label?: string;
+  heading?: string;
+  subheading?: string;
 }
 
-export default function InteractiveTeamShowcase({ members }: Props = {}) {
+export default function InteractiveTeamShowcase({ 
+  members,
+  label = 'Meet Our Team',
+  heading = 'The Quriosity Crew.',
+  subheading = 'Archaeologists, architects, lawyers, educators and more, sparking Quriosity across India.'
+}: Props = {}) {
   const sourceCrew = (members && members.length > 0 ? members : DEFAULT_MEMBERS)
     .filter((m) => m.name !== 'Sachin Ravi' && m.name !== 'Raghav Chakravarthy');
 
@@ -296,13 +304,13 @@ export default function InteractiveTeamShowcase({ members }: Props = {}) {
       {/* Main Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
         <span className="inline-block px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-          Meet Our Team
+          {label}
         </span>
         <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading leading-tight">
-          The Quriosity Crew.
+          {heading}
         </h2>
         <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-          Archaeologists, architects, lawyers, educators and more, sparking Quriosity across India.
+          {subheading}
         </p>
       </div>
 

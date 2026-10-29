@@ -1,4 +1,5 @@
 import { defineConfig } from 'sanity';
+import { structureTool } from 'sanity/structure';
 import { schemaTypes } from './src/sanity/schemas';
 
 const projectId = process.env.PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_PROJECT_ID || 'your-project-id';
@@ -10,6 +11,8 @@ export default defineConfig({
 
   projectId,
   dataset,
+
+  plugins: [structureTool()],
 
   schema: {
     types: schemaTypes,

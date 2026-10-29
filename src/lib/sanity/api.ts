@@ -24,7 +24,7 @@ import { DEFAULT_EVENTS } from '../eventsStore';
 // AUDITED STATIC FALLBACK DATA
 // ==========================================
 
-const DEFAULT_SITE_SETTINGS: SanitySiteSettings = {
+export const DEFAULT_SITE_SETTINGS: SanitySiteSettings = {
   brandName: 'QShala',
   tagline: "Questions • Quriosity • Quests — India's Quriosity Company",
   contactPhone: '+91 89716 76100',
@@ -34,6 +34,14 @@ const DEFAULT_SITE_SETTINGS: SanitySiteSettings = {
   googleMapsUrl:
     'https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru',
   qqlPaymentUrl: 'https://pages.razorpay.com/QQLClub',
+  blogBannerLabel: 'Quriosity Literature',
+  blogHeading: 'Learning Out Loud.',
+  blogSubheading: 'Stories, ideas and photos from the quizzes, classrooms and events we love running.',
+  contactHeading: "We'd Love to Hear From You.",
+  contactSubheading: "Tell us about your school, company, college or community, or ask us anything about our quizzes. We'll write back and plan something together.",
+  servicesBannerLabel: 'Our Offerings',
+  servicesHeading: 'Quriosity for Every Audience.',
+  servicesSubheading: "Quizzes are what we're best known for, but we also run games, workshops and team activities. Start here, explore as you go!",
   socialLinks: [
     { platform: 'LinkedIn', url: 'https://www.linkedin.com/company/qshala/' },
     { platform: 'Instagram', url: 'https://www.instagram.com/qshala_curiosity/' },
@@ -47,7 +55,7 @@ const DEFAULT_SITE_SETTINGS: SanitySiteSettings = {
   },
 };
 
-const DEFAULT_NAVIGATION: SanityNavigation = {
+export const DEFAULT_NAVIGATION: SanityNavigation = {
   title: 'Main Navigation',
   links: [
     { name: 'Home', href: '/' },
@@ -65,7 +73,7 @@ const DEFAULT_NAVIGATION: SanityNavigation = {
   },
 };
 
-const DEFAULT_FOOTER: SanityFooter = {
+export const DEFAULT_FOOTER: SanityFooter = {
   bannerBadge: 'Joy of Quest',
   bannerHeading: 'Ready to replace rote learning with quriosity?',
   bannerDescription:
@@ -101,7 +109,7 @@ const DEFAULT_FOOTER: SanityFooter = {
   ],
 };
 
-const DEFAULT_HOME_PAGE: SanityHomePage = {
+export const DEFAULT_HOME_PAGE: SanityHomePage = {
   heroBadge: "India's Quriosity Platform",
   heroTypewriterPrefix: 'Igniting',
   heroTypewriterWords: [
@@ -127,9 +135,24 @@ const DEFAULT_HOME_PAGE: SanityHomePage = {
   storeHeading: 'Books, Games & Thinking Kits.',
   storeSubtitle:
     'Curated conversation decks, financial literacy storybooks, and STEM lab kits designed for homes and classrooms.',
+  effectBadge: 'Live Moments',
+  effectHeading: 'The QShala Effect',
+  effectLine: 'Bringing Joy to Every Room.',
+  effectButtonText: 'See It Yourself',
+  newsletterHeading: 'Subscribe to QQL Club',
+  newsletterLine: 'Five questions in your inbox every day, and a Monthly Mega Quiz every month. ₹499 for six months.',
+  newsletterButtonLabel: 'Subscribe',
+  impactBadge: 'Real Impact Stories',
+  impactHeading: 'Quriosity in Action.',
+  impactButtonLabel: 'See Our Work',
+  impactButtonUrl: '/case-studies',
+  faqBadge: 'How can we help?',
+  faqHeading: 'Frequently Asked Questions',
+  faqButtonLabel: 'View All FAQs & Help Center',
+  faqButtonUrl: '/faq',
 };
 
-const DEFAULT_ABOUT_PAGE: SanityAboutPage = {
+export const DEFAULT_ABOUT_PAGE: SanityAboutPage = {
   heroBadge: 'Our Story',
   heroHeading: 'It Started With a Love of Questions.',
   heroIntro:
@@ -143,10 +166,13 @@ const DEFAULT_ABOUT_PAGE: SanityAboutPage = {
   foundersHeading: 'Meet the Co-Founders',
   foundersSubtitle:
     'Lawyers by training. Quizzers at heart.',
+  teamSectionLabel: 'Meet Our Team',
+  teamSectionHeading: 'The Quriosity Crew.',
+  teamSectionSubheading: 'Archaeologists, architects, lawyers, educators and more, sparking Quriosity across India.',
   storyHeadline: 'From Law School Quizzers to a National Socratic Movement.',
 };
 
-const DEFAULT_CO_FOUNDERS: SanityTeamMember[] = [
+export const DEFAULT_CO_FOUNDERS: SanityTeamMember[] = [
   {
     id: 'sachin-ravi',
     name: 'Sachin Ravi',
@@ -173,7 +199,7 @@ const DEFAULT_CO_FOUNDERS: SanityTeamMember[] = [
   },
 ];
 
-const DEFAULT_CURIOSITY_CREW: SanityTeamMember[] = [
+export const DEFAULT_CURIOSITY_CREW: SanityTeamMember[] = [
   {
     id: 'ahil-abraham-thachil',
     name: 'Ahil Abraham Thachil',
@@ -487,7 +513,7 @@ const DEFAULT_ADVISORS: SanityAdvisor[] = [
   },
 ];
 
-const DEFAULT_FAQS: SanityFAQ[] = [
+export const DEFAULT_FAQS: SanityFAQ[] = [
   {
     question: 'How much does a quiz cost, and are there any fees?',
     answer:
@@ -588,7 +614,7 @@ const DEFAULT_FAQS: SanityFAQ[] = [
   },
 ];
 
-const DEFAULT_TESTIMONIALS: SanityTestimonial[] = [
+export const DEFAULT_TESTIMONIALS: SanityTestimonial[] = [
   {
     author: 'Sunita Sharma',
     role: 'Principal',
@@ -641,7 +667,7 @@ const DEFAULT_TESTIMONIALS: SanityTestimonial[] = [
   },
 ];
 
-const DEFAULT_SERVICE_PAGES: Record<string, SanityServicePage> = {
+export const DEFAULT_SERVICE_PAGES: Record<string, SanityServicePage> = {
   schools: {
     title: 'Quriosity in Your School',
     slug: 'schools',

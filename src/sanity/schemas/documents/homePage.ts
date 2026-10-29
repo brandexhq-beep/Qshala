@@ -7,11 +7,12 @@ export default defineType({
   groups: [
     { name: 'hero', title: 'Hero Section' },
     { name: 'events', title: 'Upcoming Events' },
-    { name: 'effect', title: 'QShala Effect' },
+    { name: 'effect', title: 'The QShala Effect' },
     { name: 'game', title: 'Daily Game' },
     { name: 'store', title: 'Curated Store' },
+    { name: 'newsletter', title: 'QQL Club Newsletter' },
+    { name: 'impact', title: 'Real Impact Stories' },
     { name: 'faqs', title: 'FAQ Section' },
-    { name: 'newsletter', title: 'Newsletter' },
     { name: 'seo', title: 'SEO' },
   ],
   fields: [
@@ -50,7 +51,7 @@ export default defineType({
       title: 'Hero Intro Paragraph',
       type: 'text',
       rows: 3,
-      initialValue: 'QShala is India\'s premier curiosity platform and live quizmaster organization. Partnering with 250+ K-12 schools and 80+ top corporates to replace rote memorization with Socratic questioning, real-world discovery quests, and interactive buzzer championships.',
+      initialValue: 'QShala is India\'s premier quizzing company. We run quiz competitions, learning programs and team events for schools, colleges, companies and communities.',
       group: 'hero',
     }),
     defineField({
@@ -58,8 +59,8 @@ export default defineType({
       title: 'Hero Primary CTA Button',
       type: 'callToAction',
       initialValue: {
-        label: 'Book a Quriosity Experience →',
-        url: '/book-a-quiz',
+        label: 'What we can do for you',
+        url: '/services',
         variant: 'yellow',
       },
       group: 'hero',
@@ -79,6 +80,36 @@ export default defineType({
       type: 'string',
       initialValue: 'Join us for live quizzes, offline tournaments, and community events.',
       group: 'events',
+    }),
+
+    // THE QSHALA EFFECT (LIVE MOMENTS)
+    defineField({
+      name: 'effectBadge',
+      title: 'Effect Badge Label',
+      type: 'string',
+      initialValue: 'Live Moments',
+      group: 'effect',
+    }),
+    defineField({
+      name: 'effectHeading',
+      title: 'Effect Heading',
+      type: 'string',
+      initialValue: 'The QShala Effect',
+      group: 'effect',
+    }),
+    defineField({
+      name: 'effectLine',
+      title: 'Effect Tagline',
+      type: 'string',
+      initialValue: 'Bringing Joy to Every Room.',
+      group: 'effect',
+    }),
+    defineField({
+      name: 'effectButtonText',
+      title: 'Effect Button Label',
+      type: 'string',
+      initialValue: 'See It Yourself',
+      group: 'effect',
     }),
 
     // DAILY GAME
@@ -126,6 +157,90 @@ export default defineType({
       rows: 2,
       initialValue: 'Curated conversation decks, financial literacy storybooks, and STEM lab kits designed for homes and classrooms.',
       group: 'store',
+    }),
+
+    // QQL CLUB NEWSLETTER
+    defineField({
+      name: 'newsletterHeading',
+      title: 'Newsletter Heading',
+      type: 'string',
+      initialValue: 'Subscribe to QQL Club',
+      group: 'newsletter',
+    }),
+    defineField({
+      name: 'newsletterLine',
+      title: 'Newsletter Description & Pricing Line',
+      type: 'text',
+      rows: 2,
+      initialValue: 'Five questions in your inbox every day, and a Monthly Mega Quiz every month. ₹499 for six months.',
+      group: 'newsletter',
+    }),
+    defineField({
+      name: 'newsletterButtonLabel',
+      title: 'Newsletter Button Label',
+      type: 'string',
+      initialValue: 'Subscribe',
+      group: 'newsletter',
+    }),
+
+    // REAL IMPACT STORIES
+    defineField({
+      name: 'impactBadge',
+      title: 'Impact Stories Badge',
+      type: 'string',
+      initialValue: 'Real Impact Stories',
+      group: 'impact',
+    }),
+    defineField({
+      name: 'impactHeading',
+      title: 'Impact Stories Heading',
+      type: 'string',
+      initialValue: 'Quriosity in Action.',
+      group: 'impact',
+    }),
+    defineField({
+      name: 'impactButtonLabel',
+      title: 'Impact Stories Button Label',
+      type: 'string',
+      initialValue: 'See Our Work',
+      group: 'impact',
+    }),
+    defineField({
+      name: 'impactButtonUrl',
+      title: 'Impact Stories Link URL',
+      type: 'string',
+      initialValue: '/case-studies',
+      group: 'impact',
+    }),
+
+    // FAQS
+    defineField({
+      name: 'faqBadge',
+      title: 'FAQ Section Badge',
+      type: 'string',
+      initialValue: 'How can we help?',
+      group: 'faqs',
+    }),
+    defineField({
+      name: 'faqHeading',
+      title: 'FAQ Section Heading',
+      type: 'string',
+      initialValue: 'Frequently Asked Questions',
+      group: 'faqs',
+    }),
+    defineField({
+      name: 'faqButtonLabel',
+      title: 'FAQ Button Label',
+      type: 'string',
+      initialValue: 'View All FAQs & Help Center',
+      group: 'faqs',
+    }),
+    defineField({
+      name: 'faqButtonUrl',
+      title: 'FAQ Page Link URL',
+      type: 'string',
+      initialValue: '/faq',
+      group: 'faqs',
     }),
 
     // SEO

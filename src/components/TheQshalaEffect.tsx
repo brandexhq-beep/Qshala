@@ -87,7 +87,19 @@ const AUDIENCE_PHOTOS: GalleryPhoto[] = [
   }
 ];
 
-export default function TheQshalaEffect() {
+interface Props {
+  badge?: string;
+  heading?: string;
+  line?: string;
+  buttonText?: string;
+}
+
+export default function TheQshalaEffect({
+  badge = 'Live Moments',
+  heading = 'The QShala Effect',
+  line = 'Bringing Joy to Every Room.',
+  buttonText = 'See It Yourself'
+}: Props = {}) {
   const [selectedTag, setSelectedTag] = useState<string>('All Moments');
 
   const filteredPhotos = selectedTag === 'All Moments'
@@ -101,20 +113,20 @@ export default function TheQshalaEffect() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-            Live Moments
+            {badge}
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
-            The QShala Effect
+            {heading}
           </h2>
           <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            Bringing Joy to Every Room.
+            {line}
           </p>
           <div className="pt-1">
             <a
               href="#effect-gallery"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs sm:text-sm uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
             >
-              <span>See It Yourself</span>
+              <span>{buttonText}</span>
               <span>&darr;</span>
             </a>
           </div>

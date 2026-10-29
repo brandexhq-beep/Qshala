@@ -54,6 +54,18 @@ const storeBadge = homeData.storeBadge || "Quriosity Store";
 const storeHeading = homeData.storeHeading || "Books, Games & Thinking Kits.";
 const storeSubtitle = homeData.storeSubtitle || "Curated conversation decks, financial literacy storybooks, and STEM lab kits designed for homes and classrooms.";
 
+const newsletterHeading = homeData.newsletterHeading || "Subscribe to QQL Club";
+const newsletterLine = homeData.newsletterLine || "Five questions in your inbox every day, and a Monthly Mega Quiz every month. ₹499 for six months.";
+const newsletterButtonLabel = homeData.newsletterButtonLabel || "Subscribe";
+
+const impactBadge = homeData.impactBadge || "Real Impact Stories";
+const impactHeading = homeData.impactHeading || "Quriosity in Action.";
+const impactButtonLabel = homeData.impactButtonLabel || "See Our Work";
+const impactButtonUrl = homeData.impactButtonUrl || "/case-studies";
+
+const faqBadge = homeData.faqBadge || "How can we help?";
+const faqHeading = homeData.faqHeading || "Frequently Asked Questions";
+
 const pageTitle = homeData.seo?.metaTitle || siteSettings.defaultSeo?.metaTitle || "QShala | Quizmaster in India & Bengaluru Quizzing — Questions • Quriosity • Quests";
 const pageDesc = homeData.seo?.metaDescription || siteSettings.defaultSeo?.metaDescription || "India's premier curiosity and live quiz platform. Replacing rote learning with Socratic wonder across 250+ partner schools and 80+ top corporates in Bengaluru and across India.";
 
@@ -153,7 +165,13 @@ const faqSchema = {
 
     <!-- 4. THE QSHALA EFFECT (Photo gallery only) -->
     <section id="effect" class="relative overflow-hidden">
-      <TheQshalaEffect client:visible />
+      <TheQshalaEffect 
+        client:visible 
+        badge={homeData.effectBadge}
+        heading={homeData.effectHeading}
+        line={homeData.effectLine}
+        buttonText={homeData.effectButtonText}
+      />
     </section>
 
     <!-- 5. GAME (Daily Quiz Playground with Dynamic Rotation) -->
@@ -302,10 +320,10 @@ const faqSchema = {
         <!-- Left Content -->
         <div class="text-center lg:text-left space-y-3 max-w-xl">
           <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-heading">
-            Subscribe to QQL Club
+            {newsletterHeading}
           </h2>
           <p class="text-slate-700 text-base md:text-lg font-semibold leading-relaxed">
-            Five questions in your inbox every day, and a Monthly Mega Quiz every month. ₹499 for six months.
+            {newsletterLine}
           </p>
         </div>
         
@@ -316,7 +334,7 @@ const faqSchema = {
               client:visible 
               variant="qql" 
               isDirectLink={true} 
-              buttonLabel="Subscribe" 
+              buttonLabel={newsletterButtonLabel} 
               paymentUrl={siteSettings.qqlPaymentUrl} 
             />
           </div>
@@ -344,14 +362,14 @@ const faqSchema = {
         <div class="flex flex-col md:flex-row md:items-end justify-between">
           <div>
             <span class="px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-              Real Impact Stories
+              {impactBadge}
             </span>
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-4 font-heading">
-              Quriosity in Action.
+              {impactHeading}
             </h2>
           </div>
-          <a href="/case-studies" class="mt-4 md:mt-0 px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all inline-block">
-            See Our Work &rarr;
+          <a href={impactButtonUrl} class="mt-4 md:mt-0 px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all inline-block">
+            {impactButtonLabel} &rarr;
           </a>
         </div>
 
@@ -369,9 +387,9 @@ const faqSchema = {
       <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12">
         <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
           <span class="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading">
-            How can we help?
+            {faqBadge}
           </span>
-          <h2 class="text-4xl md:text-5xl font-black text-slate-900 font-heading">Frequently Asked Questions</h2>
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 font-heading">{faqHeading}</h2>
         </div>
         <FAQSection items={faqs} client:load />
       </div>

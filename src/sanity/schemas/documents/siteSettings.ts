@@ -7,6 +7,7 @@ export default defineType({
   groups: [
     { name: 'general', title: 'General & Contact' },
     { name: 'social', title: 'Social Media' },
+    { name: 'pageHeaders', title: 'Page Banners & Headers' },
     { name: 'seo', title: 'Default SEO' },
   ],
   fields: [
@@ -97,6 +98,68 @@ export default defineType({
         { platform: 'Facebook', url: 'https://www.facebook.com/QShala/' },
       ],
     }),
+
+    // PAGE BANNERS & HEADERS
+    defineField({
+      name: 'blogBannerLabel',
+      title: 'Blog Page Banner Label',
+      type: 'string',
+      initialValue: 'Quriosity Literature',
+      group: 'pageHeaders',
+    }),
+    defineField({
+      name: 'blogHeading',
+      title: 'Blog Page Heading',
+      type: 'string',
+      initialValue: 'Learning Out Loud.',
+      group: 'pageHeaders',
+    }),
+    defineField({
+      name: 'blogSubheading',
+      title: 'Blog Page Subheading',
+      type: 'text',
+      rows: 2,
+      initialValue: 'Stories, ideas and photos from the quizzes, classrooms and events we love running.',
+      group: 'pageHeaders',
+    }),
+    defineField({
+      name: 'contactHeading',
+      title: 'Contact Page Heading',
+      type: 'string',
+      initialValue: 'We\'d Love to Hear From You.',
+      group: 'pageHeaders',
+    }),
+    defineField({
+      name: 'contactSubheading',
+      title: 'Contact Page Subheading',
+      type: 'text',
+      rows: 2,
+      initialValue: 'Tell us about your school, company, college or community, or ask us anything about our quizzes. We\'ll write back and plan something together.',
+      group: 'pageHeaders',
+    }),
+    defineField({
+      name: 'servicesBannerLabel',
+      title: 'Services Overview Banner Label',
+      type: 'string',
+      initialValue: 'Our Offerings',
+      group: 'pageHeaders',
+    }),
+    defineField({
+      name: 'servicesHeading',
+      title: 'Services Overview Heading',
+      type: 'string',
+      initialValue: 'Quriosity for Every Audience.',
+      group: 'pageHeaders',
+    }),
+    defineField({
+      name: 'servicesSubheading',
+      title: 'Services Overview Subheading',
+      type: 'text',
+      rows: 2,
+      initialValue: 'Quizzes are what we\'re best known for, but we also run games, workshops and team activities. Start here, explore as you go!',
+      group: 'pageHeaders',
+    }),
+
     defineField({
       name: 'defaultSeo',
       title: 'Default Site SEO & OpenGraph',

@@ -10,6 +10,9 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "sanity:dev": "sanity dev",
+    "sanity:deploy": "sanity deploy",
+    "sanity:build": "sanity build dist/studio",
     "sanity:seed": "node scripts/seed-sanity.mjs"
   },
   "dependencies": {

@@ -51,6 +51,14 @@ export interface SanitySiteSettings {
   address?: string;
   googleMapsUrl?: string;
   qqlPaymentUrl?: string;
+  blogBannerLabel?: string;
+  blogHeading?: string;
+  blogSubheading?: string;
+  contactHeading?: string;
+  contactSubheading?: string;
+  servicesBannerLabel?: string;
+  servicesHeading?: string;
+  servicesSubheading?: string;
   socialLinks?: Array<{ platform: string; url: string }>;
   defaultSeo?: SanitySeo;
 }
@@ -83,12 +91,27 @@ export interface SanityHomePage {
   heroCta?: SanityCallToAction;
   eventsHeading?: string;
   eventsSubtitle?: string;
+  effectBadge?: string;
+  effectHeading?: string;
+  effectLine?: string;
+  effectButtonText?: string;
   gameBadge?: string;
   gameHeading?: string;
   gameSubtitle?: string;
   storeBadge?: string;
   storeHeading?: string;
   storeSubtitle?: string;
+  newsletterHeading?: string;
+  newsletterLine?: string;
+  newsletterButtonLabel?: string;
+  impactBadge?: string;
+  impactHeading?: string;
+  impactButtonLabel?: string;
+  impactButtonUrl?: string;
+  faqBadge?: string;
+  faqHeading?: string;
+  faqButtonLabel?: string;
+  faqButtonUrl?: string;
   seo?: SanitySeo;
 }
 
@@ -99,6 +122,9 @@ export interface SanityAboutPage {
   stats?: Array<{ value: string; label: string; color?: string }>;
   foundersHeading?: string;
   foundersSubtitle?: string;
+  teamSectionLabel?: string;
+  teamSectionHeading?: string;
+  teamSectionSubheading?: string;
   storyHeadline?: string;
   storyContent?: any;
   seo?: SanitySeo;

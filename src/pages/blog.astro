@@ -60,12 +60,12 @@ const blogSchema = {
     <!-- Page Header -->
     <div class="text-center max-w-3xl mx-auto space-y-4 pt-4">
       <span class="inline-block px-4 py-1.5 rounded-full bg-[#30B2E7] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
-        Quriosity Literature
+        {siteSettings.blogBannerLabel || "Quriosity Literature"}
       </span>
       
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 font-heading leading-tight">
-          Learning Out Loud.
+          {siteSettings.blogHeading || "Learning Out Loud."}
         </h1>
         <div class="shrink-0 hidden sm:block">
           <QTMascot client:visible variant="reading" size="md" />
@@ -73,7 +73,7 @@ const blogSchema = {
       </div>
       
       <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-        Stories, ideas and photos from the quizzes, classrooms and events we love running.
+        {siteSettings.blogSubheading || "Stories, ideas and photos from the quizzes, classrooms and events we love running."}
       </p>
     </div>
 

@@ -97,11 +97,11 @@ const localBusinessSchema = {
       </div>
 
       <h1 class="text-4xl sm:text-6xl font-black text-slate-900 font-heading tracking-tight">
-        We&apos;d Love to Hear From You.
+        {siteSettings.contactHeading || "We'd Love to Hear From You."}
       </h1>
       
       <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-        Tell us about your school, company, college or community, or ask us anything about our quizzes. We&apos;ll write back and plan something together.
+        {siteSettings.contactSubheading || "Tell us about your school, company, college or community, or ask us anything about our quizzes. We'll write back and plan something together."}
       </p>
     </section>
 

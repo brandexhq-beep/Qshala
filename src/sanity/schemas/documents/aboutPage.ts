@@ -8,6 +8,7 @@ export default defineType({
     { name: 'hero', title: 'Hero' },
     { name: 'stats', title: 'Impact Stats' },
     { name: 'founders', title: 'Founders Section' },
+    { name: 'team', title: 'The Quriosity Crew Team Section' },
     { name: 'story', title: 'Our Story' },
     { name: 'seo', title: 'SEO' },
   ],
@@ -30,7 +31,7 @@ export default defineType({
       name: 'heroHeading',
       title: 'Hero Main Heading',
       type: 'string',
-      initialValue: 'We Believe Curiosity is the Greatest Superpower.',
+      initialValue: 'It Started With a Love of Questions.',
       group: 'hero',
     }),
     defineField({
@@ -38,7 +39,7 @@ export default defineType({
       title: 'Hero Intro Paragraph',
       type: 'text',
       rows: 3,
-      initialValue: 'Founded in 2014 by national quizmasters Sachin Ravi & Raghav Chakravarthy, QShala is on a mission to spark questioning minds, build lateral thinking, and bring back the joy of discovery for students, teachers, and professionals across India.',
+      initialValue: 'QShala began in 2014 with two law school friends and a love of quizzing.',
       group: 'hero',
     }),
     defineField({
@@ -67,16 +68,41 @@ export default defineType({
       name: 'foundersHeading',
       title: 'Founders Section Heading',
       type: 'string',
-      initialValue: 'Meet The Co-Founders',
+      initialValue: 'Meet the Co-Founders',
       group: 'founders',
     }),
     defineField({
       name: 'foundersSubtitle',
       title: 'Founders Section Subtitle',
       type: 'string',
-      initialValue: 'National quiz champions turned educational innovators, dedicated to making inquiry an everyday habit.',
+      initialValue: 'Lawyers by training. Quizzers at heart.',
       group: 'founders',
     }),
+
+    // TEAM SECTION (THE QURIOSITY CREW)
+    defineField({
+      name: 'teamSectionLabel',
+      title: 'Team Section Label Badge',
+      type: 'string',
+      initialValue: 'Meet Our Team',
+      group: 'team',
+    }),
+    defineField({
+      name: 'teamSectionHeading',
+      title: 'Team Section Main Heading',
+      type: 'string',
+      initialValue: 'The Quriosity Crew.',
+      group: 'team',
+    }),
+    defineField({
+      name: 'teamSectionSubheading',
+      title: 'Team Section Subheading',
+      type: 'text',
+      rows: 2,
+      initialValue: 'Archaeologists, architects, lawyers, educators and more, sparking Quriosity across India.',
+      group: 'team',
+    }),
+
     defineField({
       name: 'storyHeadline',
       title: 'Origin Story Headline',

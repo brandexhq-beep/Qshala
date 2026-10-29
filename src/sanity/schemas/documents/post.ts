@@ -27,6 +27,7 @@ export default defineType({
       type: 'string',
       options: {
         list: [
+          { title: 'Blog', value: 'Blog' },
           { title: 'Events', value: 'Events' },
           { title: 'Case Study', value: 'Case Study' },
           { title: 'Insights', value: 'Insights' },

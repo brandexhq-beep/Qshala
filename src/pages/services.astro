@@ -3,9 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
-import { getAllServicePages } from '../lib/sanity/api';
+import { getAllServicePages, getSiteSettings } from '../lib/sanity/api';
 
 const cmsServices = await getAllServicePages();
+const siteSettings = await getSiteSettings();
 
 const DEFAULT_SERVICE_MODULES = [
   {
@@ -126,16 +127,16 @@ const servicesSchema = {
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
           <span class="w-2.5 h-2.5 rounded-full bg-[#30B2E7] animate-ping"></span>
           <span class="text-xs font-black uppercase text-slate-800 tracking-wider font-heading">
-            Our Offerings
+            {siteSettings.servicesBannerLabel || "Our Offerings"}
           </span>
         </div>
 
         <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-heading">
-          Quriosity for Every Audience.
+          {siteSettings.servicesHeading || "Quriosity for Every Audience."}
         </h1>
 
         <p class="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-          Quizzes are what we're best known for, but we also run games, workshops and team activities. Start here, explore as you go!
+          {siteSettings.servicesSubheading || "Quizzes are what we're best known for, but we also run games, workshops and team activities. Start here, explore as you go!"}
         </p>
       </div>
     </section>
