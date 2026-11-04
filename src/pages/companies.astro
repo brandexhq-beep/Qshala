@@ -95,7 +95,7 @@ const companyServiceSchema = {
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {CORPORATE_OFFERINGS.map((item) => (
+          {CORPORATE_OFFERINGS.map((item: any) => (
             <div class={`rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-all ${item.bg} flex flex-col justify-between space-y-4`}>
               <div class="space-y-3">
                 <div class="flex items-center justify-between gap-3 flex-wrap">

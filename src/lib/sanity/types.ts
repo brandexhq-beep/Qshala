@@ -190,6 +190,8 @@ export interface SanityAdvisor {
   color: string;
   logo?: SanityImageReference;
   logoUrl?: string;
+  image?: SanityImageReference;
+  avatarUrl?: string;
 }
 
 export interface SanityFAQ {

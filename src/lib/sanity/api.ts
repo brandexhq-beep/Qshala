@@ -470,6 +470,7 @@ const DEFAULT_ADVISORS: SanityAdvisor[] = [
     color: '#387ED1',
     badge: 'Angel Backer',
     logoUrl: '/assets/logos/zerodha.svg',
+    avatarUrl: '/assets/advisors/nithin-kamath.webp',
   },
   {
     name: 'Kalyan Banerjee',
@@ -478,6 +479,7 @@ const DEFAULT_ADVISORS: SanityAdvisor[] = [
     color: '#FDB913',
     badge: 'Advisor & Angel',
     logoUrl: '/assets/logos/mindtree.svg',
+    avatarUrl: '/assets/advisors/kalyan-banerjee.webp',
   },
   {
     name: 'Preeti Sawhney',
@@ -486,6 +488,7 @@ const DEFAULT_ADVISORS: SanityAdvisor[] = [
     color: '#75B543',
     badge: 'Strategic Advisor',
     logoUrl: '/assets/logos/lowelintas.webp',
+    avatarUrl: '/assets/advisors/preeti-sawhney.webp',
   },
   {
     name: 'Sanjay Tambwekar',
@@ -494,6 +497,7 @@ const DEFAULT_ADVISORS: SanityAdvisor[] = [
     color: '#9333EA',
     badge: 'Angel Backer',
     logoUrl: '/assets/logos/qwikcilver.svg',
+    avatarUrl: '/assets/advisors/sanjay-tambwekar.webp',
   },
   {
     name: 'Suresh Kumar Pinglay',
@@ -502,6 +506,7 @@ const DEFAULT_ADVISORS: SanityAdvisor[] = [
     color: '#F80000',
     badge: 'Strategic Advisor',
     logoUrl: '/assets/logos/oracle.svg',
+    avatarUrl: '/assets/advisors/suresh-kumar-pinglay.webp',
   },
   {
     name: 'Chetan Vinchhi',
@@ -510,6 +515,7 @@ const DEFAULT_ADVISORS: SanityAdvisor[] = [
     color: '#30B2E7',
     badge: 'Angel Backer',
     logoUrl: '/assets/logos/uptycs.webp',
+    avatarUrl: '/assets/advisors/chetan-vinchhi.webp',
   },
 ];
 

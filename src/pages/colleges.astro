@@ -91,7 +91,7 @@ const collegeServiceSchema = {
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {COLLEGE_OFFERINGS.map((item) => (
+          {COLLEGE_OFFERINGS.map((item: any) => (
             <div class={`rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-all ${item.bg} flex flex-col justify-between space-y-4`}>
               <div class="space-y-3">
                 <span 
