@@ -265,14 +265,11 @@ h1, h2, h3, h4, h5, h6, p, a, span, li, blockquote {
 }
 
 /* Ensure all media and embeds never overflow viewport bounds */
-img, video, canvas, svg, iframe {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-/* Preserve intrinsic aspect ratios for images and videos */
-img, video {
-  height: auto;
+@layer base {
+  img, video, canvas, svg, iframe {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 /* Touch responsiveness: eliminate sluggish tap highlights on mobile browsers */

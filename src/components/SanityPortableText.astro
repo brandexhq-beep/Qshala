@@ -11,8 +11,17 @@ const { value, class: className = '' } = Astro.props;
 
 let html = '';
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 if (typeof value === 'string') {
-  html = value;
+  html = escapeHtml(value);
 } else if (value && Array.isArray(value)) {
   try {
     html = toHTML(value, {
@@ -20,16 +29,21 @@ if (typeof value === 'string') {
         types: {
           image: ({ value }) => {
             const url = getImageUrl(value);
-            const alt = value.alt || 'QShala Content Image';
-            const caption = value.caption ? `<figcaption class="text-xs text-slate-500 mt-2 text-center font-medium">${value.caption}</figcaption>` : '';
-            return `<figure class="my-6 rounded-2xl overflow-hidden shadow-sm"><img src="${url}" alt="${alt}" class="w-full h-auto object-cover" loading="lazy" />${caption}</figure>`;
+            const safeAlt = escapeHtml(String(value.alt || 'QShala Content Image'));
+            const safeCaption = value.caption ? `<figcaption class="text-xs text-slate-500 mt-2 text-center font-medium">${escapeHtml(String(value.caption))}</figcaption>` : '';
+            return `<figure class="my-6 rounded-2xl overflow-hidden shadow-sm"><img src="${url}" alt="${safeAlt}" class="w-full h-auto object-cover" loading="lazy" />${safeCaption}</figure>`;
           },
         },
         marks: {
           link: ({ children, value }) => {
-            const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined;
-            const target = value.blank ? '_blank' : undefined;
-            return `<a href="${value.href}" rel="${rel || ''}" target="${target || ''}" class="text-[#30B2E7] hover:underline font-bold">${children}</a>`;
+            const rawHref = String(value?.href || '').trim();
+            // Security: Strictly enforce safe URI schemes to prevent javascript: or data: XSS attacks
+            const isSafeScheme = /^(https?:|\/|mailto:|tel:|#)/i.test(rawHref);
+            const safeHref = isSafeScheme ? rawHref.replace(/"/g, '&quot;') : '#';
+            const isExternal = /^https?:\/\//i.test(safeHref);
+            const rel = isExternal ? 'noreferrer noopener' : undefined;
+            const target = (value?.blank || isExternal) ? '_blank' : undefined;
+            return `<a href="${safeHref}" ${rel ? `rel="${rel}"` : ''} ${target ? `target="${target}"` : ''} class="text-[#30B2E7] hover:underline font-bold">${children}</a>`;
           },
         },
       },

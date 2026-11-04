@@ -39,7 +39,7 @@ export default function DailyQuizSection({ initialQuizzes }: { initialQuizzes?: 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         {quizzes.map((quiz, idx) => (
           <InteractiveQuizCard 
-            key={quiz.id} 
+            key={`quiz-slot-${idx}`} 
             quiz={quiz} 
             onShuffle={() => shuffleCard(idx)}
           />

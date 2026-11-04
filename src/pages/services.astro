@@ -77,7 +77,10 @@ const DEFAULT_SERVICE_MODULES = [
 ];
 
 const SERVICE_MODULES = DEFAULT_SERVICE_MODULES.map((def) => {
-  const match = cmsServices.find((s) => s.slug === def.id || (typeof s.slug === 'object' && (s.slug as any).current === def.id));
+  const match = cmsServices.find((s) => {
+    const sSlug = typeof s.slug === 'string' ? s.slug : (s.slug as any)?.current;
+    return sSlug === def.id;
+  });
   if (!match) return def;
   return {
     ...def,

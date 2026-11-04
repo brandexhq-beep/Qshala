@@ -227,12 +227,14 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                 </div>
               </div>
 
-              <blockquote className="border-l-4 border-[#FDB913] pl-4 py-3 bg-[#FFFDF5] rounded-r-2xl border border-amber-100">
-                <p className="text-slate-800 text-sm font-semibold italic">&ldquo;{selectedModalCase.quote.text}&rdquo;</p>
-                <footer className="text-slate-900 font-black text-xs not-italic mt-1 font-heading">
-                  — {selectedModalCase.quote.author}, {selectedModalCase.quote.role}
-                </footer>
-              </blockquote>
+              {selectedModalCase.quote?.text && (
+                <blockquote className="border-l-4 border-[#FDB913] pl-4 py-3 bg-[#FFFDF5] rounded-r-2xl border border-amber-100">
+                  <p className="text-slate-800 text-sm font-semibold italic">&ldquo;{selectedModalCase.quote.text}&rdquo;</p>
+                  <footer className="text-slate-900 font-black text-xs not-italic mt-1 font-heading">
+                    — {selectedModalCase.quote.author}{selectedModalCase.quote.role ? `, ${selectedModalCase.quote.role}` : ''}
+                  </footer>
+                </blockquote>
+              )}
 
               <div className="pt-4 border-t border-slate-100 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-2">

@@ -3,53 +3,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ShopStorefront, { type ProductItem } from '../components/ShopStorefront';
-import { getProducts } from '../lib/sanity/api';
-import { getImageUrl } from '../lib/sanity/image';
+import { getShopifyProducts } from '../lib/shopify/client';
 
-const cmsProducts = await getProducts();
-
-const CATEGORY_MAP: Record<string, ProductItem['category']> = {
-  Games: 'Games',
-  Game: 'Games',
-  Books: 'Books',
-  Book: 'Books',
-  'Learning Kits': 'Learning Kits',
-  'Learning Kit': 'Learning Kits',
-  Stationery: 'Stationery',
-  'QShala Merch': 'QShala Merch'
-};
-
-function parsePrice(val: number | string | undefined): number {
-  const num = typeof val === 'number' ? val : Number.parseFloat(String(val || '').replace(/[^0-9.]/g, ''));
-  return Number.isFinite(num) && num > 0 ? num : 299;
+// Fetch live products directly from Shopify Storefront API
+let shopifyProducts: ProductItem[] = [];
+try {
+  const sfItems = await getShopifyProducts();
+  if (sfItems && sfItems.length > 0) {
+    shopifyProducts = sfItems.map((item) => ({
+      id: item.id,
+      variantId: item.variantId,
+      handle: item.handle,
+      title: item.title,
+      price: item.price,
+      originalPrice: item.originalPrice,
+      category: item.category,
+      subtitle: item.subtitle,
+      description: item.description,
+      imageSrc: item.imageSrc,
+      badge: item.badge,
+      cardColor: item.cardColor,
+      mascotVariant: item.mascotVariant,
+      variants: item.variants,
+      availableForSale: item.availableForSale,
+    }));
+  }
+} catch (err) {
+  console.warn('[Shop] Live Shopify fetch error:', err);
 }
 
-const formattedProducts: ProductItem[] = cmsProducts.map((p, idx) => {
-  const numPrice = parsePrice(p.price);
-  const validCat: ProductItem['category'] = CATEGORY_MAP[p.category] || 'QShala Merch';
-  const fallbackImg = (p as any).imageSrc || (p as any).imageUrl || 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop';
-
-  return {
-    id: p._id || p.id || `prod-${idx + 1}`,
-    title: p.title,
-    price: numPrice,
-    originalPrice: p.originalPrice || Math.round(numPrice * 1.25),
-    category: validCat,
-    subtitle: p.subtitle || p.description?.slice(0, 50) || '',
-    description: p.description || '',
-    imageSrc: p.image ? getImageUrl(p.image, 800, 600) : fallbackImg,
-    badge: p.badge || (p.isPopular ? 'Popular' : undefined),
-    cardColor: p.cardColor || '#FFF8E1',
-    mascotVariant: ((p.mascotVariant as any) || 'curious')
-  };
-});
+// Display strictly the verified Shopify products
+const finalProducts = shopifyProducts.length > 0 ? shopifyProducts : undefined;
 
 const shopSchema = {
   "@type": "OfferCatalog",
   "@id": "https://qshala.vercel.app/shop#catalog",
   "name": "QShala Quriosity Store & Thinking Games",
-  "description": "Curated socratic books, brain teasers, interactive quiz card games, and official QT mascot merchandise.",
-  "itemListElement": formattedProducts.map((product, index) => ({
+  "description": "Official socratic books, quiz books, and interactive card games from QShala.",
+  "itemListElement": (finalProducts || []).map((product, index) => ({
     "@type": "ListItem",
     "position": index + 1,
     "item": {
@@ -65,7 +56,7 @@ const shopSchema = {
         "@type": "Offer",
         "priceCurrency": "INR",
         "price": product.price,
-        "availability": "https://schema.org/InStock",
+        "availability": product.availableForSale !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
         "seller": {
           "@id": "https://qshala.vercel.app/#organization"
         }
@@ -76,8 +67,8 @@ const shopSchema = {
 ---
 
 <BaseLayout 
-  title="Quriosity Store | Books, Thinking Games & Merch | QShala"
-  description="Explore the QShala Store: curated socratic books, brain teasers, interactive quiz card games, and official QT mascot merchandise."
+  title="Quriosity Store | Books & Thinking Games | QShala"
+  description="Explore official QShala books and interactive socratic card games designed to spark curiosity, critical thinking, and playful learning."
   pageType="ItemPage"
   breadcrumbs={[
     { name: "Home", item: "/" },
@@ -87,9 +78,9 @@ const shopSchema = {
 >
   <Navbar />
 
-  <main id="main-content" class="flex-grow pt-header-safe pb-24 bg-[#FFFDF5] w-full">
-    <section class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 py-6">
-      <ShopStorefront client:load initialProducts={formattedProducts} />
+  <main id="main-content" class="flex-grow pt-[68px] sm:pt-[76px] pb-24 bg-[#FFFDF5] w-full">
+    <section class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 pt-4 sm:pt-6 pb-20">
+      <ShopStorefront client:load initialProducts={finalProducts} />
     </section>
   </main>
 

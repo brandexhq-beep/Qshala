@@ -1,6 +1,7 @@
 ---
 import { getNavigation, getSiteSettings } from '../lib/sanity/api';
 import { getImageUrl } from '../lib/sanity/image';
+import NavbarCartButton from './NavbarCartButton';
 
 const pathname = Astro.url.pathname;
 const navData = await getNavigation();
@@ -8,8 +9,8 @@ const siteSettings = await getSiteSettings();
 
 const NAV_LINKS = navData.links;
 const logoUrl = getImageUrl(siteSettings.logo, '/assets/logos/QShala%20Logo%201.svg');
-const ctaLabel = navData.ctaButton?.label || 'Get in Touch';
-const ctaUrl = navData.ctaButton?.url || '/contact';
+const ctaLabel = navData.ctaButton?.label || 'Book a Quiz';
+const ctaUrl = navData.ctaButton?.url || '/book-a-quiz';
 
 const isLinkActive = (href: string) => {
   if (href === '/') return pathname === '/' || pathname === '';
@@ -18,25 +19,32 @@ const isLinkActive = (href: string) => {
 ---
 
 <header 
-  class="fixed top-0 left-0 right-0 z-50 transition-all bg-white/90 backdrop-blur-md border-b border-slate-200/60 shadow-xs"
+  class="fixed top-0 left-0 right-0 z-50 h-[64px] sm:h-[72px] flex items-center transition-all bg-white/95 backdrop-blur-md border-b border-slate-200/60 shadow-xs"
   style="padding-top: env(safe-area-inset-top, 0px); padding-left: max(0.5rem, env(safe-area-inset-left, 0px)); padding-right: max(0.5rem, env(safe-area-inset-right, 0px));"
 >
-  <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 py-3.5 flex items-center justify-between">
+  <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 flex items-center justify-between gap-4">
     <!-- Official QShala SVG Logo -->
-    <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="QShala Home">
-      <img
-        src={logoUrl}
-        alt={`${siteSettings.brandName} Logo`}
-        width="140"
+    <a 
+      href="/" 
+      class="flex items-center shrink-0 group cursor-pointer h-9 sm:h-10 max-h-10"
+      aria-label="QShala Home"
+    >
+      <img 
+        src={logoUrl} 
+        alt="QShala Logo" 
+        class="h-8 sm:h-9 max-h-9 w-auto max-w-[150px] sm:max-w-[185px] object-contain transition-transform group-hover:scale-105" 
+        style="height: 36px !important; max-height: 36px !important; width: auto !important; max-width: 180px !important; object-fit: contain; display: block;"
+        width="166"
         height="36"
-        class="h-8 sm:h-9 w-auto object-contain hover:scale-105 transition-transform duration-300"
-        style="height: 36px; width: auto; max-width: 170px; display: block;"
         loading="eager"
       />
     </a>
 
-    <!-- Desktop Nav Links with Active Route Highlighting & Left-to-Right Animated Underline -->
-    <nav class="hidden lg:flex items-center gap-6 font-black text-slate-900 text-xs sm:text-sm font-heading">
+    <!-- Desktop Navigation Links Bar -->
+    <nav 
+      class="hidden lg:flex items-center gap-4 xl:gap-7 font-black text-xs xl:text-sm text-slate-800 tracking-tight font-heading"
+      aria-label="Primary Navigation"
+    >
       {NAV_LINKS.map((link) => {
         const active = isLinkActive(link.href);
         return (
@@ -44,7 +52,7 @@ const isLinkActive = (href: string) => {
             href={link.href} 
             data-nav-href={link.href}
             data-astro-prefetch="hover" 
-            class={`relative py-1 transition-colors ${
+            class={`relative py-1 whitespace-nowrap transition-colors ${
               active 
                 ? 'text-[#30B2E7] after:w-full' 
                 : 'hover:text-[#30B2E7] after:w-0 hover:after:w-full'
@@ -56,29 +64,33 @@ const isLinkActive = (href: string) => {
       })}
     </nav>
 
-    <!-- Action CTA -->
-    <div class="hidden lg:flex items-center gap-3">
+    <!-- Desktop Action CTA & Cart Button -->
+    <div class="hidden lg:flex items-center gap-3 shrink-0">
+      <NavbarCartButton client:load />
       <a
         href={ctaUrl}
         data-astro-prefetch="hover"
-        class="px-5 py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all font-heading"
+        class="whitespace-nowrap px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all font-heading"
       >
         {ctaLabel}
       </a>
     </div>
 
-    <!-- Mobile Hamburger SVG Icon Button -->
-    <button
-      id="menuToggleBtn"
-      class="lg:hidden w-11 h-11 rounded-full bg-slate-100 text-slate-900 border border-slate-200 flex items-center justify-center cursor-pointer shadow-sm hover:bg-slate-200 active:scale-95 transition-all shrink-0"
-      aria-label="Toggle Mobile Menu"
-      aria-expanded="false"
-      aria-controls="mobileMenu"
-    >
-      <svg class="w-5 h-5 fill-current text-slate-900" viewBox="0 0 24 24">
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-      </svg>
-    </button>
+    <!-- Mobile Header Actions (Cart + Hamburger) -->
+    <div class="flex lg:hidden items-center gap-2 shrink-0">
+      <NavbarCartButton client:load />
+      <button
+        id="menuToggleBtn"
+        class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-100 text-slate-900 border border-slate-200 flex items-center justify-center cursor-pointer shadow-sm hover:bg-slate-200 active:scale-95 transition-all shrink-0"
+        aria-label="Toggle Mobile Menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+      >
+        <svg class="w-5 h-5 fill-current text-slate-900" viewBox="0 0 24 24">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile Dropdown Panel -->

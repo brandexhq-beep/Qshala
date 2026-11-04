@@ -13,6 +13,7 @@ import FAQSection from '../components/FAQSection';
 import TestimonialsMarquee from '../components/TestimonialsMarquee.astro';
 import UpcomingEventsSlider from '../components/UpcomingEventsSlider';
 import NewsletterSubscription from '../components/NewsletterSubscription';
+import { getShopifyProducts, type ShopifyProductItem } from '../lib/shopify/client';
 import { 
   getHomePage, 
   getSiteSettings, 
@@ -26,6 +27,14 @@ const siteSettings = await getSiteSettings();
 const faqs = await getFAQs(true);
 const caseStudies = await getAllCaseStudies();
 const cmsEvents = await getUpcomingEvents();
+
+let shopifyProducts: ShopifyProductItem[] = [];
+try {
+  shopifyProducts = await getShopifyProducts();
+} catch (err) {
+  console.warn('[HomePage] Shopify live fetch notice:', err);
+}
+const curatedStoreProducts = shopifyProducts.slice(0, 3);
 
 const formattedEvents = cmsEvents.map((ev, idx) => ({
   id: ev._id || ev.id || `event-${idx}`,
@@ -215,101 +224,62 @@ const faqSchema = {
           </a>
         </div>
 
-        <!-- 3 Curated Products Grid (1:1 Aspect Ratio) -->
+        <!-- 3 Curated Products Grid (Aspect [4/5] object-contain for books/game boxes) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-2">
-          
-          <!-- Product 1 -->
-          <a href="/shop" class="bg-[#FFFDF5] rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between space-y-4 group cursor-pointer block no-underline text-inherit">
-            <div class="space-y-3">
-              <div class="relative overflow-hidden rounded-2xl aspect-square bg-slate-100 shadow-xs">
-                <img 
-                  src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop" 
-                  alt="Finance Quest" 
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  loading="lazy"
-                />
-                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading shadow-xs">
-                  Bestseller
-                </span>
-              </div>
-              <div>
-                <span class="text-[10px] font-black uppercase text-amber-600 tracking-wider font-heading">Books</span>
-                <h3 class="text-xl font-black text-slate-900 group-hover:text-[#30B2E7] transition-colors font-heading leading-snug">Finance Quest</h3>
-                <p class="text-slate-600 text-xs font-semibold mt-1 line-clamp-2">
-                  Interactive storybook teaching kids saving, budgeting, and smart money mindsets.
-                </p>
-              </div>
-            </div>
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-              <span class="text-xl font-black text-slate-900 font-heading">₹299/-</span>
-              <span class="px-5 py-2.5 min-h-[44px] rounded-full bg-[#FDB913] group-hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-xs group-hover:shadow-sm transition-all inline-flex items-center justify-center">
-                View &rarr;
-              </span>
-            </div>
-          </a>
+          {curatedStoreProducts.map((product) => {
+            const productUrl = product.handle ? `/shop/${product.handle}` : '/shop';
+            return (
+              <a 
+                href={productUrl} 
+                class="bg-[#FFFDF5] rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between space-y-4 group cursor-pointer block no-underline text-inherit"
+              >
+                <div class="space-y-4">
+                  {/* Portrait 4/5 Frame with soft gradient so books and game boxes sit cleanly without cropping */}
+                  <div class="relative overflow-hidden rounded-2xl aspect-[4/5] bg-gradient-to-b from-slate-50 via-slate-100/70 to-slate-200/50 border border-slate-200/80 p-4 flex items-center justify-center">
+                    <img 
+                      src={product.imageSrc} 
+                      alt={product.title} 
+                      class="max-h-full max-w-full w-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500" 
+                      loading="lazy"
+                    />
+                    {product.badge && (
+                      <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-900 text-white font-black text-[10px] uppercase font-heading shadow-xs">
+                        {product.badge}
+                      </span>
+                    )}
+                  </div>
 
-          <!-- Product 2 -->
-          <a href="/shop" class="bg-[#FFFDF5] rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between space-y-4 group cursor-pointer block no-underline text-inherit">
-            <div class="space-y-3">
-              <div class="relative overflow-hidden rounded-2xl aspect-square bg-slate-100 shadow-xs">
-                <img 
-                  src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?q=80&w=800&auto=format&fit=crop" 
-                  alt="Socratic Dinner Deck" 
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  loading="lazy"
-                />
-                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#30B2E7] text-white font-black text-[10px] uppercase font-heading shadow-xs">
-                  Family Favorite
-                </span>
-              </div>
-              <div>
-                <span class="text-[10px] font-black uppercase text-sky-600 tracking-wider font-heading">Games</span>
-                <h3 class="text-xl font-black text-slate-900 group-hover:text-[#30B2E7] transition-colors font-heading leading-snug">Socratic Dinner Deck</h3>
-                <p class="text-slate-600 text-xs font-semibold mt-1 line-clamp-2">
-                  100 thought-provoking conversation prompt cards that turn dinner into discovery.
-                </p>
-              </div>
-            </div>
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-              <span class="text-xl font-black text-slate-900 font-heading">₹499/-</span>
-              <span class="px-5 py-2.5 min-h-[44px] rounded-full bg-[#FDB913] group-hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-xs group-hover:shadow-sm transition-all inline-flex items-center justify-center">
-                View &rarr;
-              </span>
-            </div>
-          </a>
+                  <div class="space-y-1.5">
+                    <span class="text-[10px] font-black uppercase text-slate-700 tracking-wider font-heading bg-slate-100 px-2.5 py-0.5 rounded-full inline-block">
+                      {product.category}
+                    </span>
+                    <h3 class="text-xl font-black text-slate-900 group-hover:text-[#30B2E7] transition-colors font-heading leading-snug line-clamp-2">
+                      {product.title}
+                    </h3>
+                    <p class="text-slate-600 text-xs font-semibold leading-relaxed line-clamp-2">
+                      {product.subtitle || product.description}
+                    </p>
+                  </div>
+                </div>
 
-          <!-- Product 3 -->
-          <a href="/shop" class="bg-[#FFFDF5] rounded-3xl p-6 border border-slate-200/80 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between space-y-4 group cursor-pointer block no-underline text-inherit">
-            <div class="space-y-3">
-              <div class="relative overflow-hidden rounded-2xl aspect-square bg-slate-100 shadow-xs">
-                <img 
-                  src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop" 
-                  alt="Science Quest Lab Kit" 
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  loading="lazy"
-                />
-                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#75B543] text-white font-black text-[10px] uppercase font-heading shadow-xs">
-                  STEM Kit
-                </span>
-              </div>
-              <div>
-                <span class="text-[10px] font-black uppercase text-emerald-600 tracking-wider font-heading">Learning Kits</span>
-                <h3 class="text-xl font-black text-slate-900 group-hover:text-[#30B2E7] transition-colors font-heading leading-snug">Science Quest Lab Kit</h3>
-                <p class="text-slate-600 text-xs font-semibold mt-1 line-clamp-2">
-                  Safe, reusable physics &amp; chemistry lab kit with 25 hands-on experiments.
-                </p>
-              </div>
-            </div>
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-              <span class="text-xl font-black text-slate-900 font-heading">₹799/-</span>
-              <span class="px-5 py-2.5 min-h-[44px] rounded-full bg-[#FDB913] group-hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-xs group-hover:shadow-sm transition-all inline-flex items-center justify-center">
-                View &rarr;
-              </span>
-            </div>
-          </a>
-
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-2xl font-black text-slate-900 font-heading">₹{product.price}/-</span>
+                    {product.originalPrice && product.originalPrice > product.price && (
+                      <span class="text-xs font-bold text-slate-400 line-through ml-2 font-heading">
+                        ₹{product.originalPrice}/-
+                      </span>
+                    )}
+                  </div>
+                  <span class="px-5 py-2.5 min-h-[44px] rounded-full bg-[#FDB913] group-hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-xs group-hover:shadow-sm transition-all inline-flex items-center justify-center gap-1.5">
+                    <span>View</span>
+                    <span>&rarr;</span>
+                  </span>
+                </div>
+              </a>
+            );
+          })}
         </div>
-
       </div>
     </section>
 

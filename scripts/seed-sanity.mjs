@@ -38,7 +38,7 @@ import {
   DEFAULT_FAQS,
   DEFAULT_TESTIMONIALS,
 } from '../src/lib/sanity/api.ts';
-import { CASE_STUDIES_DATA, PRODUCTS_DATA } from '../src/data/index.ts';
+import { CASE_STUDIES_DATA, PRODUCTS_DATA } from '../src/lib/data.ts';
 
 const projectId = process.env.PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_PROJECT_ID;
 const dataset = process.env.PUBLIC_SANITY_DATASET || process.env.SANITY_DATASET || 'production';
@@ -139,12 +139,13 @@ const SEED_DOCUMENTS = [
     _type: 'caseStudy',
     title: cs.title,
     slug: { current: cs.slug },
-    clientName: cs.client,
-    clientType: cs.audience,
+    clientName: cs.clientName || cs.client || '',
+    clientType: cs.clientType || cs.audience || 'School',
     summary: cs.summary,
-    impactMetrics: cs.metrics.map((m) => ({ value: m.value, label: m.label })),
+    impactMetrics: (cs.impactMetrics || cs.metrics || []).map((m) => ({ value: m.value, label: m.label })),
     order: idx + 1,
     isFeatured: true,
+    quote: cs.quote ? { text: cs.quote.text, author: cs.quote.author, role: cs.quote.role } : undefined,
   })),
 
   // 11. PRODUCTS
