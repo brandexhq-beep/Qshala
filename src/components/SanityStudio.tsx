@@ -9,7 +9,7 @@ interface Props {
 
 export default function SanityStudio({ projectId, dataset }: Props) {
   const config = useMemo(() => {
-    return getSanityConfig(projectId, dataset);
+    return getSanityConfig(projectId, dataset, '/studio');
   }, [projectId, dataset]);
 
   return (

@@ -16,14 +16,18 @@ const defaultDataset =
   (typeof process !== 'undefined' && process.env?.SANITY_DATASET) ||
   'production';
 
-export function getSanityConfig(projectIdOverride?: string, datasetOverride?: string) {
+export function getSanityConfig(
+  projectIdOverride?: string, 
+  datasetOverride?: string, 
+  basePathOverride?: string
+) {
   const activeProjectId = projectIdOverride || defaultProjectId || 'your-project-id';
   const activeDataset = datasetOverride || defaultDataset || 'production';
 
   return defineConfig({
     name: 'qshala-studio',
     title: 'QShala Content Studio',
-    basePath: '/studio',
+    ...(basePathOverride ? { basePath: basePathOverride } : {}),
 
     projectId: activeProjectId,
     dataset: activeDataset,
@@ -36,4 +40,5 @@ export function getSanityConfig(projectIdOverride?: string, datasetOverride?: st
   });
 }
 
+// Default export has no basePath so `sanity deploy` and `sanity dev` run cleanly at root '/'
 export default getSanityConfig();
