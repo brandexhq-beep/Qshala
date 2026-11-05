@@ -7,7 +7,7 @@ const defaultProjectId =
   (typeof import.meta !== 'undefined' && (import.meta as any).env?.SANITY_PROJECT_ID) ||
   (typeof process !== 'undefined' && process.env?.PUBLIC_SANITY_PROJECT_ID) ||
   (typeof process !== 'undefined' && process.env?.SANITY_PROJECT_ID) ||
-  '';
+  '7fw1qn07';
 
 const defaultDataset = 
   (typeof import.meta !== 'undefined' && (import.meta as any).env?.PUBLIC_SANITY_DATASET) ||
@@ -21,7 +21,7 @@ export function getSanityConfig(
   datasetOverride?: string, 
   basePathOverride?: string
 ) {
-  const activeProjectId = projectIdOverride || defaultProjectId || 'your-project-id';
+  const activeProjectId = projectIdOverride || defaultProjectId || '7fw1qn07';
   const activeDataset = datasetOverride || defaultDataset || 'production';
 
   return defineConfig({

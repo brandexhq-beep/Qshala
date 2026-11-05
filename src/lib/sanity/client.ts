@@ -5,7 +5,7 @@ const projectId =
   (typeof import.meta !== 'undefined' && import.meta.env?.SANITY_PROJECT_ID) || 
   (typeof process !== 'undefined' && process.env?.PUBLIC_SANITY_PROJECT_ID) || 
   (typeof process !== 'undefined' && process.env?.SANITY_PROJECT_ID) || 
-  '';
+  '7fw1qn07';
 
 const dataset = 
   (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_SANITY_DATASET) || 
