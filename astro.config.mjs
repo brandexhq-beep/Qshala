@@ -11,7 +11,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.includes('/admin') && !page.includes('/studio'),
+      filter: (page) => !page.includes('/admin'),
       serialize(item) {
         const url = item.url.replace(/\/+$/, '');
         if (url === 'https://qshala.com') {

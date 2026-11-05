@@ -21,11 +21,6 @@ const apiVersion =
   (typeof process !== 'undefined' && process.env?.SANITY_API_VERSION) || 
   '2024-03-01';
 
-const token = 
-  (typeof import.meta !== 'undefined' && import.meta.env?.SANITY_API_TOKEN) || 
-  (typeof process !== 'undefined' && process.env?.SANITY_API_TOKEN) || 
-  '';
-
 export function isSanityConfigured(): boolean {
   return Boolean(
     projectId && 
@@ -40,6 +35,5 @@ export const sanityClient = createClient({
   dataset,
   apiVersion,
   useCdn: true,
-  token: typeof window === 'undefined' ? (token || undefined) : undefined,
   perspective: 'published',
 });

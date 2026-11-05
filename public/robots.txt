@@ -5,75 +5,61 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /admin/
-Disallow: /studio
-Disallow: /studio/
 
 # OpenAI / ChatGPT Search
 User-agent: GPTBot
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 # Perplexity AI
 User-agent: PerplexityBot
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 # Anthropic Claude & Claude Search
 User-agent: ClaudeBot
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 User-agent: Claude-Web
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 User-agent: anthropic-ai
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 # Google Search & Gemini Extended
 User-agent: Googlebot
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 User-agent: Google-Extended
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 # Microsoft Bing & Copilot
 User-agent: Bingbot
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 # Apple Search & Siri
 User-agent: Applebot
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 # Meta AI & External Crawlers
 User-agent: Meta-ExternalAgent
 Allow: /
 Disallow: /admin/
-Disallow: /studio/
 
 # Sitemap location
 Sitemap: https://qshala.com/sitemap-index.xml

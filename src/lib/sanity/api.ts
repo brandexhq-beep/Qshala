@@ -1,5 +1,5 @@
-import { sanityClient, isSanityConfigured } from './client';
-import * as queries from './queries';
+import { sanityClient, isSanityConfigured } from './client.ts';
+import * as queries from './queries.ts';
 import type {
   SanitySiteSettings,
   SanityNavigation,
@@ -18,7 +18,7 @@ import type {
   SanityPartner,
 } from './types';
 import { CASE_STUDIES_DATA, PRODUCTS_DATA } from '../data';
-import { DEFAULT_EVENTS } from '../eventsStore';
+import { DEFAULT_EVENTS } from '../eventsStore.ts';
 
 // ==========================================
 // AUDITED STATIC FALLBACK DATA
@@ -462,7 +462,7 @@ export const DEFAULT_CURIOSITY_CREW: SanityTeamMember[] = [
   },
 ];
 
-const DEFAULT_ADVISORS: SanityAdvisor[] = [
+export const DEFAULT_ADVISORS: SanityAdvisor[] = [
   {
     name: 'Nithin Kamath',
     role: 'Co-Founder & CEO, Zerodha',

@@ -16,7 +16,7 @@
     "sanity:dev": "sanity dev",
     "sanity:deploy": "sanity deploy",
     "sanity:build": "sanity build dist/studio",
-    "sanity:seed": "node scripts/seed-sanity.mjs"
+    "sanity:seed": "npx tsx scripts/seed-sanity.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

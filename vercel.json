@@ -6,12 +6,6 @@
       "permanent": false
     }
   ],
-  "rewrites": [
-    {
-      "source": "/studio/:path*",
-      "destination": "/studio"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
