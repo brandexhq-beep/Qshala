@@ -1,7 +1,7 @@
 # QShala — India's Curiosity Company Web Platform
 
 <div align="center">
-  <img src="public/og-image.png" alt="QShala — India's Curiosity Company Social Banner" width="760" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" />
+  <img src="public/og-image.jpg" alt="QShala — India's Curiosity Company Social Banner" width="760" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" />
   
   <br /><br />
 
@@ -11,134 +11,116 @@
 
   > **Mission**: Replacing Rote Learning with Curiosity, Socratic Storytelling, Questions, and Wonder.
 
-  [![Astro Version](https://img.shields.io/badge/Astro-v5.2.0-ff5e00?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
-  [![React Version](https://img.shields.io/badge/React-v19.0.0-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-v5.7.3-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-  [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4.0.5-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+  [![Astro Version](https://img.shields.io/badge/Astro-v5.18-ff5e00?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
+  [![React Version](https://img.shields.io/badge/React-v19.2-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-v5.9-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+  [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4.3-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
 </div>
 
 ---
 
-## 🌟 Key Features & Architecture
+## 🌟 Key Architecture & Stack
 
-### 1. 🐱 QT Mascot Stage (`AnimatedHeroMascotStage.tsx`)
-- Interactive spring-animated mascot guide featuring **QT the Black Cat**.
-- Reactive speech bubbles that dynamically change according to QT's curiosity mood (*Curious QT*, *Sherlock QT*, *Eureka QT*, *Scholar QT*, *Winner QT*).
-- Integrated across pages with custom SVGs from QShala's official brand asset library (`public/assets/qt/`).
-
-### 2. 🎲 Rolling Stat Counter Cards (`RollingStatCounters.tsx`)
-- Animated 2-second slot-machine count-up physics with ease-out cubic slowdown.
-- High-contrast neobrutalist metric cards:
-  - **`250+`** `SCHOOLS PARTNERED` (Sky Blue `#30B2E7`)
-  - **`80+`** `CORPORATE CLIENTS` (Gold `#FDB913`)
-  - **`4.9★`** `AVERAGE RATING` (Leaf Green `#75B543`)
-  - **`18+`** `CITIES COVERED` (Sky Blue `#30B2E7`)
-
-### 3. 📚 10+ Storytelling Case Studies Showcase (`InteractiveCaseStudiesShowcase.tsx`)
-- Interactive category filter pills (*`All (10)`*, *`Schools (3)`*, *`Corporates (4)`*, *`Colleges (2)`*, *`Communities (1)`*).
-- Switchable view modes: **`Featured View`** vs **`Grid View`**.
-- Encapsulated carousel controls with dot indicators and next/prev arrow buttons contained inside the case study card box.
-
-### 4. 🎯 Compact Tailored Curiosity Finder (`CuriosityRecommendationWidget.tsx`)
-- Neobrutalist role selector pills (*School Educator*, *HR / Corporate*, *Parent / Family*, *Fest Organizer*).
-- Instant recommendation output with direct program booking links.
-
-### 5. ⚡ 5-Scene Curiosity Loading Screen (`LoadingScreen.tsx`)
-- Navigation timing inspector (`performance.getEntriesByType('navigation')`).
-- Plays the 5-stage curiosity animation on direct visits and page reloads while bypassing it on internal page link clicks for lightning-fast page transitions.
-
-### 6. 🔐 QShala Mission Control Admin Dashboard (`/admin`)
-- Passcode-protected administrative portal (`1234` / `admin` or Quick Demo Access).
-- Lead Management Table with status triggers, Question Bank Editor, Curiosity Store Inventory Control, and Magazine Post Manager.
-
-### 7. 📲 Animated Mascot Social Share Previews (`BaseLayout.astro`)
-- Full OpenGraph, Twitter Cards, and WhatsApp metadata resolution.
-- Optimized 129KB social preview card (`og-image.jpg`) paired with animated GIF/WebP previews (`og-image.gif`, `og-image.webp`).
-
----
-
-## 🎨 Brand Identity & Guidelines
-
-| Brand Token | Hex Code | Purpose |
-| :--- | :--- | :--- |
-| **Qurious Sky** | `#30B2E7` | Primary Action Buttons & Accents |
-| **Joy of Quest** | `#FDB913` | Highlight Badges & Hero Buttons |
-| **Always Questioning** | `#75B543` | Impact Metrics & Success States |
-| **Warm Cream Canvas** | `#FFFDF5` | Editorial Background Canvas |
-
-### Typography Stack
-- **Mikado** (`--font-mikado` for Schools & playful headlines)
-- **Causten Round Black** (`--font-causten-black` for headers)
-- **Causten Round** (`--font-causten-round` for body copy)
-
----
-
-## 🗺️ Site Navigation & Routes
-
-1. `/` — Home (Hero Stage, Rolling Counters, Bento Grid, Quiz Cards, Client Marquee)
-2. `/about` — Our Story, Socratic Philosophy & QT Mascot Spotlight
-3. `/services` — Program Formats for Schools, Corporates, Colleges & Communities
-4. `/schools` — QShala K-12 Curiosity Curriculum & Weekly Clubs
-5. `/companies` — Corporate Offsites, Trivia Nights & Workplace Culture
-6. `/book-a-quiz` — 4-Step Interactive Quiz Booking Wizard
-7. `/learn` — Kids Corner & Daily Socratic Trivia
-8. `/case-studies` — 10+ Storytelling Impact Studies (DPS Bangalore, Wipro, Flipkart, etc.)
-9. `/shop` — Curiosity Store (Handcrafted Decks & Learning Kits)
-10. `/blog` — QShala Magazine Index & Dynamic Article Views (`/blog/[slug]`)
-11. `/team` — Meet the Founders & QT Curiosity Crew
-12. `/contact` — Contact Form & Campus Address Details
-13. `/admin` — QShala Admin Control Panel
-
----
-
-## 🛠️ Technology Stack
-
-- **Framework**: Astro 5 (Static Architecture + React Islands)
-- **UI Components**: React 19
-- **Language**: TypeScript
-- **Styling**: Vanilla CSS & TailwindCSS v4
-- **Animations**: Framer Motion
-- **Interactive FX**: Canvas Confetti
-- **Icons**: Lucide React & Official QShala Brand SVGs
+- **Framework**: [Astro 5](https://astro.build) (Static Site Generation / SSG with 45 prerendered pages).
+- **Client Islands**: [React 19](https://react.dev) with Framer Motion and Lucide Icons.
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com) integrated directly via `@tailwindcss/vite`.
+- **E-Commerce**: Headless [Shopify Storefront GraphQL API](https://shopify.dev/docs/api/storefront) (`2025-01`).
+- **Headless CMS**: [Sanity Studio v6](https://sanity.io) (`qshala-studio`) for Events, Blogs, and Case Studies.
+- **Testing**: Built-in native Node.js Test Runner (`node --test`) covering cart state, lead serialization, and Shopify mapping.
+- **Lead Capture & Ingestion**: Dual-pipeline support (local optimistic state + asynchronous dispatch to `/api/leads` and external webhooks).
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/PavanKumar-HQ/Qshala.git
-cd Qshala
-```
+### 1. Prerequisites
+- **Node.js**: `v20.0.0` or higher (`v22` LTS recommended)
+- **Package Manager**: `npm`
 
-### 2. Install dependencies
+### 2. Installation
 ```bash
+git clone https://github.com/walnut-knowledge/qshala-website.git
+cd qshala-website
 npm install
 ```
 
-### 3. Run development server
+### 3. Environment Configuration
+Copy the provided `.env.example` to `.env`:
 ```bash
-npm run dev
+cp .env.example .env
 ```
-Open [http://localhost:4321](http://localhost:4321) in your browser.
 
-### 4. Build for production
-```bash
-npm run build
+Supply your project credentials:
+```ini
+# Sanity CMS
+PUBLIC_SANITY_PROJECT_ID=your_project_id
+PUBLIC_SANITY_DATASET=production
+PUBLIC_SANITY_API_VERSION=2024-03-01
+SANITY_API_TOKEN=your_private_sanity_token
+
+# Shopify Headless Storefront (Curiosity Store)
+PUBLIC_SHOPIFY_STORE_DOMAIN=shop.qshala.com
+PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN=your_storefront_access_token
+
+# Optional Remote Inbound Lead Webhook (Slack, Make, Formspree, CRM)
+PUBLIC_LEADS_WEBHOOK_URL=https://your-webhook-endpoint.com/api/leads
 ```
 
 ---
 
-## 📄 Official Contact Details
+## 📜 Available NPM Scripts
 
-- **Phone**: +91 89716 76100
-- **Email**: qshala@walnuts.co.in
-- **Address**: 1st Floor, Fortuna 1, 8th Main Road, 14th Cross Road, JP Nagar 3rd Phase, Bengaluru, Karnataka - 560078
+| Command | Description |
+| :--- | :--- |
+| `npm run dev` | Launches the local Astro development server at `http://localhost:4321`. |
+| `npm run build` | Runs prebuild WebP image converter, Astro typecheck (`astro check`), and static SSG build. |
+| `npm test` | Executes native Node.js unit tests (`node --test tests/**/*.test.mjs`). |
+| `npm run preview` | Previews the production static build locally. |
+| `npm run convert:webp`| Automatically converts `.png` and `.jpg` in `public/assets/` to `.webp` via Sharp. |
+| `npm run sanity:dev` | Runs Sanity Studio locally at `http://localhost:3333`. |
+| `npm run sanity:deploy`| Deploys Sanity Studio schema to your hosted Sanity account. |
+| `npm run sanity:seed` | Seeds Sanity dataset with initial events and case studies. |
 
 ---
 
-<div align="center">
-  <img src="public/assets/qt/QT happy.svg" alt="QT Happy Mascot" width="80" />
-  <p><b>Designed & Developed for QShala (Curiosita Educational Services / Walnuts). All rights reserved.</b></p>
-</div>
+## 🛍️ Curiosity Store & E-Commerce Integration
+
+The Curiosity Store integrates directly with Shopify via the Storefront API (`2025-01`):
+- **Live Catalog**: Queries active products, variant prices, and multiple gallery images (`src/lib/shopify/client.ts`).
+- **Global Cart Store**: Synchronizes cart quantity and line items across the navigation bar, store catalog, and product drawers using native custom events (`src/lib/shopify/cartStore.ts`).
+- **Headless Checkout**: Generates direct Shopify checkout URLs using the `cartCreate` GraphQL mutation.
+
+---
+
+## 📬 Lead Capture & Inbound Inquiries
+
+Inbound leads from `ContactForm.tsx`, `MultiStepBooking.tsx`, and `NewsletterSubscription.tsx`:
+1. Optimistically update local browser state for immediate visual feedback.
+2. Automatically dispatch an asynchronous JSON payload to `/api/leads` (Vercel serverless function) or `PUBLIC_LEADS_WEBHOOK_URL`.
+3. Provide one-click fallback to the verified WhatsApp Business line (`+91 89716 76100`) with pre-filled message text.
+
+---
+
+## 🧪 Testing & Quality Assurance
+
+Run the automated test suite:
+```bash
+npm test
+```
+
+Tests run with zero external dependencies and cover:
+- Cart quantity increments, decrements, and line item calculations.
+- Inbound lead serialization and WhatsApp URL formatting.
+- Shopify GraphQL node normalization and variant resolution.
+
+---
+
+## 🚢 Deployment (Vercel / Netlify / Cloudflare Pages)
+
+The project compiles to pure static HTML/JS/CSS in the `dist/` directory with zero runtime SSR dependencies.
+
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **Install Command**: `npm install`
+- **Node Version**: `>=20`

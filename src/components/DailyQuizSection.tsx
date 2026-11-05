@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { QUESTION_BANK, type QuizCardData } from '../lib/data';
 import InteractiveQuizCard from './InteractiveQuizCard';
 import { RefreshCw } from 'lucide-react';

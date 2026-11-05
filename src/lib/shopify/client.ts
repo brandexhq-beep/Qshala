@@ -39,7 +39,7 @@ export interface ShopifyProductItem {
 
 const DEFAULT_STORE_DOMAIN = 'shop.qshala.com';
 const DEFAULT_SF_TOKEN = '71386c677ca47211e5b241cf476e1a9a';
-const API_VERSION = '2024-01';
+const API_VERSION = '2025-01';
 
 export function getShopifyConfig() {
   const storeDomain =

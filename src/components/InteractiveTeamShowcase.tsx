@@ -306,9 +306,9 @@ export default function InteractiveTeamShowcase({
         <span className="inline-block px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm">
           {label}
         </span>
-        <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading leading-tight">
+        <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-heading leading-tight">
           {heading}
-        </h2>
+        </h1>
         <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
           {subheading}
         </p>

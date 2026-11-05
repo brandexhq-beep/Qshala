@@ -2,19 +2,38 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { schemaTypes } from './src/sanity/schemas';
 
-const projectId = process.env.PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_PROJECT_ID || 'your-project-id';
-const dataset = process.env.PUBLIC_SANITY_DATASET || process.env.SANITY_DATASET || 'production';
+const defaultProjectId = 
+  (typeof import.meta !== 'undefined' && (import.meta as any).env?.PUBLIC_SANITY_PROJECT_ID) ||
+  (typeof import.meta !== 'undefined' && (import.meta as any).env?.SANITY_PROJECT_ID) ||
+  (typeof process !== 'undefined' && process.env?.PUBLIC_SANITY_PROJECT_ID) ||
+  (typeof process !== 'undefined' && process.env?.SANITY_PROJECT_ID) ||
+  '';
 
-export default defineConfig({
-  name: 'qshala-studio',
-  title: 'QShala Content Studio',
+const defaultDataset = 
+  (typeof import.meta !== 'undefined' && (import.meta as any).env?.PUBLIC_SANITY_DATASET) ||
+  (typeof import.meta !== 'undefined' && (import.meta as any).env?.SANITY_DATASET) ||
+  (typeof process !== 'undefined' && process.env?.PUBLIC_SANITY_DATASET) ||
+  (typeof process !== 'undefined' && process.env?.SANITY_DATASET) ||
+  'production';
 
-  projectId,
-  dataset,
+export function getSanityConfig(projectIdOverride?: string, datasetOverride?: string) {
+  const activeProjectId = projectIdOverride || defaultProjectId || 'your-project-id';
+  const activeDataset = datasetOverride || defaultDataset || 'production';
 
-  plugins: [structureTool()],
+  return defineConfig({
+    name: 'qshala-studio',
+    title: 'QShala Content Studio',
+    basePath: '/studio',
 
-  schema: {
-    types: schemaTypes,
-  },
-});
+    projectId: activeProjectId,
+    dataset: activeDataset,
+
+    plugins: [structureTool()],
+
+    schema: {
+      types: schemaTypes,
+    },
+  });
+}
+
+export default getSanityConfig();

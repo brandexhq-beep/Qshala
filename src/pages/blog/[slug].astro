@@ -694,33 +694,33 @@ const { post } = Astro.props;
 
 const articleSchema = {
   "@type": "BlogPosting",
-  "@id": `https://qshala.vercel.app/blog/${post.slug}#article`,
+  "@id": `https://qshala.com/blog/${post.slug}#article`,
   "headline": post.title,
   "description": post.summary,
   "articleSection": post.category,
   "inLanguage": "en-IN",
-  "url": `https://qshala.vercel.app/blog/${post.slug}`,
+  "url": `https://qshala.com/blog/${post.slug}`,
   "datePublished": post.isoDate,
   "dateModified": "2026-10-14T18:00:00+05:30",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://qshala.vercel.app/blog/${post.slug}`
+    "@id": `https://qshala.com/blog/${post.slug}`
   },
   "author": {
     "@type": "Person",
     "name": post.author,
     "jobTitle": post.authorRole,
     "worksFor": {
-      "@id": "https://qshala.vercel.app/#organization"
+      "@id": "https://qshala.com/#organization"
     }
   },
   "publisher": {
-    "@id": "https://qshala.vercel.app/#organization"
+    "@id": "https://qshala.com/#organization"
   },
   "isPartOf": {
-    "@id": "https://qshala.vercel.app/#website"
+    "@id": "https://qshala.com/#website"
   },
-  "image": post.gallery && post.gallery[0] ? post.gallery[0].url : "https://qshala.vercel.app/og-image.jpg"
+  "image": post.gallery && post.gallery[0] ? post.gallery[0].url : "https://qshala.com/og-image.jpg"
 };
 ---
 
@@ -728,7 +728,7 @@ const articleSchema = {
   title={`${post.title} | QShala`}
   description={post.summary}
   ogType="article"
-  ogImage={post.gallery && post.gallery[0] ? post.gallery[0].url : 'https://qshala.vercel.app/og-image.jpg'}
+  ogImage={post.gallery && post.gallery[0] ? post.gallery[0].url : 'https://qshala.com/og-image.jpg'}
   articleMeta={{
     publishedTime: post.isoDate,
     modifiedTime: "2026-10-14T18:00:00+05:30",

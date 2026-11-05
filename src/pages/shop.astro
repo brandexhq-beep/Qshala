@@ -37,7 +37,7 @@ const finalProducts = shopifyProducts.length > 0 ? shopifyProducts : undefined;
 
 const shopSchema = {
   "@type": "OfferCatalog",
-  "@id": "https://qshala.vercel.app/shop#catalog",
+  "@id": "https://qshala.com/shop#catalog",
   "name": "QShala Quriosity Store & Thinking Games",
   "description": "Official socratic books, quiz books, and interactive card games from QShala.",
   "itemListElement": (finalProducts || []).map((product, index) => ({
@@ -58,7 +58,7 @@ const shopSchema = {
         "price": product.price,
         "availability": product.availableForSale !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
         "seller": {
-          "@id": "https://qshala.vercel.app/#organization"
+          "@id": "https://qshala.com/#organization"
         }
       }
     }

@@ -1,0 +1,16 @@
+{
+  "name": "QShala — India's Quriosity Company",
+  "short_name": "QShala",
+  "description": "Replacing Rote Learning with Quriosity, Socratic Storytelling, and Inquiry.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFDF5",
+  "theme_color": "#30B2E7",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

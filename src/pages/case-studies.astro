@@ -29,7 +29,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 const caseStudiesSchema = {
   "@type": "ItemList",
-  "@id": "https://qshala.vercel.app/case-studies#list",
+  "@id": "https://qshala.com/case-studies#list",
   "name": "QShala Learning Impact & Partner Case Studies",
   "itemListElement": caseStudies.map((study, idx) => ({
     "@type": "ListItem",
@@ -40,7 +40,7 @@ const caseStudiesSchema = {
       "headline": study.title,
       "abstract": study.summary,
       "author": {
-        "@id": "https://qshala.vercel.app/#organization"
+        "@id": "https://qshala.com/#organization"
       }
     }
   }))

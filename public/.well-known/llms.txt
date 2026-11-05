@@ -11,7 +11,7 @@
 - **Year Founded**: 2014
 - **Headquarters Address**: 1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078, India
 - **Operating Regions**: Bengaluru, Mumbai, Delhi NCR, Hyderabad, Chennai, Kolkata, Pune, and pan-India; hybrid & global online reach.
-- **Official Website**: https://qshala.vercel.app
+- **Official Website**: https://qshala.com
 - **Official Contact**:
   - Email: qshala@walnuts.co.in
   - Phone: +91 89716 76100
@@ -36,7 +36,7 @@
 ## 3. Services & Program Directory (WHAT & WHO FOR)
 
 ### A. K-12 Schools & Timetabled Curriculum
-- **URL**: https://qshala.vercel.app/schools
+- **URL**: https://qshala.com/schools
 - **Audience**: Principals, Academic Coordinators, Trustees, and Students (Grades 1 to 12).
 - **Delivery Format**: 40 to 60-minute weekly timetabled modules replacing or complementing General Knowledge / Life Skills periods.
 - **4 Year-Long Programs**:
@@ -47,41 +47,41 @@
 - **Championships**: Inter-school buzzer championships with stage setups and live quizmasters.
 
 ### B. Corporates & Hybrid Teams
-- **URL**: https://qshala.vercel.app/companies
+- **URL**: https://qshala.com/companies
 - **Audience**: HR Heads, Chief People Officers, L&D Directors, Culture Leads.
 - **Clients**: Google, Flipkart, Wipro, TCS, Infosys, Amazon, Microsoft, HDFC Bank, Netflix, Apple.
 - **Formats**: High-octane Friday trivia nights, gamified new hire onboarding, leadership offsites, and company milestone trivia.
 - **Measured Outcomes**: 90%+ employee engagement scores and 10% average reduction in workplace attrition through psychological safety.
 
 ### C. Colleges & Campus Fests
-- **URL**: https://qshala.vercel.app/colleges
+- **URL**: https://qshala.com/colleges
 - **Audience**: College Fest Committees, Student Councils, Academic Departments.
 - **Formats**: Law moot trivia, Finance leagues, STEM hackathon quizzes, and packed auditorium festival championships.
 
 ### D. Communities & Families
-- **URL**: https://qshala.vercel.app/communities
+- **URL**: https://qshala.com/communities
 - **Audience**: Housing societies, apartment complexes, alumni reunions, family gatherings.
 - **Formats**: Screen-free weekend family game nights, inter-apartment quiz leagues, milestone birthday trivia.
 
 ### E. Custom Experiences & Bespoke Quests
-- **URL**: https://qshala.vercel.app/custom
+- **URL**: https://qshala.com/custom
 - **Formats**: Museum scavenger trails, brand activation challenges, podcast trivia experiences.
 
 ---
 
 ## 4. Key Links & Sitemaps
-- **Homepage**: https://qshala.vercel.app
-- **About Us**: https://qshala.vercel.app/about
-- **All Services**: https://qshala.vercel.app/services
-- **Schools**: https://qshala.vercel.app/schools
-- **Corporates**: https://qshala.vercel.app/companies
-- **Colleges**: https://qshala.vercel.app/colleges
-- **Communities**: https://qshala.vercel.app/communities
-- **Custom Quests**: https://qshala.vercel.app/custom
-- **Case Studies**: https://qshala.vercel.app/case-studies
-- **Magazine & Blog**: https://qshala.vercel.app/blog
-- **Store**: https://qshala.vercel.app/shop
-- **Learn Hub**: https://qshala.vercel.app/learn
-- **FAQ**: https://qshala.vercel.app/faq
-- **Contact**: https://qshala.vercel.app/contact
-- **XML Sitemap**: https://qshala.vercel.app/sitemap-index.xml
+- **Homepage**: https://qshala.com
+- **About Us**: https://qshala.com/about
+- **All Services**: https://qshala.com/services
+- **Schools**: https://qshala.com/schools
+- **Corporates**: https://qshala.com/companies
+- **Colleges**: https://qshala.com/colleges
+- **Communities**: https://qshala.com/communities
+- **Custom Quests**: https://qshala.com/custom
+- **Case Studies**: https://qshala.com/case-studies
+- **Magazine & Blog**: https://qshala.com/blog
+- **Store**: https://qshala.com/shop
+- **Learn Hub**: https://qshala.com/learn
+- **FAQ**: https://qshala.com/faq
+- **Contact**: https://qshala.com/contact
+- **XML Sitemap**: https://qshala.com/sitemap-index.xml

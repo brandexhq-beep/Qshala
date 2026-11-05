@@ -42,7 +42,7 @@ const {
   schema
 } = Astro.props;
 
-const siteUrl = 'https://qshala.vercel.app';
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/+$/, '') : (import.meta.env.SITE_URL || 'https://qshala.com');
 // Strip query/UTM parameters and clean trailing slash
 const cleanPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const canonicalURL = canonical || (cleanPath === '/' ? siteUrl : `${siteUrl}${cleanPath}`);
@@ -219,6 +219,7 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
     
     <!-- Primary SEO Meta Tags -->
     <title>{title}</title>

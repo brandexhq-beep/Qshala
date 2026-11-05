@@ -26,11 +26,11 @@ const pageDesc = aboutData.seo?.metaDescription || "Learn about QShala's mission
 
 const aboutSchema = {
   "@type": "AboutPage",
-  "@id": "https://qshala.vercel.app/about#page",
+  "@id": "https://qshala.com/about#page",
   "name": "About QShala — Our Story, Founders & Mission",
   "description": pageDesc,
   "mainEntity": {
-    "@id": "https://qshala.vercel.app/#organization"
+    "@id": "https://qshala.com/#organization"
   }
 };
 ---
@@ -179,52 +179,31 @@ const aboutSchema = {
             const logoPath = inv.logoUrl || getImageUrl(inv.logo);
             const avatarPath = inv.avatarUrl || (inv.image ? getImageUrl(inv.image, 200, 200) : undefined);
             return (
-              <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-4 hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
-                <div>
-                  <div class="flex items-center justify-between gap-3">
-                    {(() => {
-                      const badgeKey = (inv.badge || '').toLowerCase();
-                      let theme = { bg: 'bg-sky-50', text: 'text-sky-900', border: 'border-sky-200' };
-                      if (badgeKey.includes('strategic')) {
-                        theme = { bg: 'bg-emerald-50', text: 'text-emerald-950', border: 'border-emerald-300' };
-                      } else if (badgeKey.includes('advisor') || badgeKey.includes('angel')) {
-                        theme = badgeKey.includes('advisor &') 
-                          ? { bg: 'bg-amber-50', text: 'text-amber-950', border: 'border-amber-300' }
-                          : { bg: 'bg-blue-50', text: 'text-blue-950', border: 'border-blue-200' };
-                      }
-                      return (
-                        <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-heading tracking-wide border shadow-2xs ${theme.bg} ${theme.text} ${theme.border}`}>
-                          <span class="w-1.5 h-1.5 rounded-full bg-current opacity-60"></span>
-                          {inv.badge}
-                        </span>
-                      );
-                    })()}
-                    {logoPath && (
-                      <div class="w-11 h-11 rounded-2xl bg-slate-50 border border-slate-200/90 flex items-center justify-center p-2 shadow-2xs shrink-0 group-hover:border-slate-300 transition-colors">
-                        <img src={logoPath} alt={inv.company} class="w-full h-full object-contain" onerror="this.style.display='none'" />
-                      </div>
-                    )}
-                  </div>
-
-                  <div class="flex items-center gap-4 pt-4">
-                    {avatarPath && (
-                      <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden aspect-square border-2 border-slate-100 shadow-sm shrink-0 bg-slate-50 group-hover:scale-105 transition-transform">
-                        <img 
-                          src={avatarPath} 
-                          alt={inv.name} 
-                          class="w-full h-full object-cover object-top" 
-                          loading="lazy" 
-                        />
-                      </div>
-                    )}
-                    <div class="min-w-0">
-                      <h3 class="text-lg font-black text-slate-900 font-heading leading-tight truncate">{inv.name}</h3>
-                      <p class="text-slate-600 text-xs font-semibold mt-1 leading-snug">
-                        {inv.role}
-                      </p>
+              <div class="p-5 sm:p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center justify-between gap-4 group">
+                <div class="flex items-center gap-4 min-w-0">
+                  {avatarPath && (
+                    <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden aspect-square border-2 border-slate-100 shadow-sm shrink-0 bg-slate-50 group-hover:scale-105 transition-transform">
+                      <img 
+                        src={avatarPath} 
+                        alt={inv.name} 
+                        class="w-full h-full object-cover object-top" 
+                        loading="lazy" 
+                      />
                     </div>
+                  )}
+                  <div class="min-w-0">
+                    <h3 class="text-base sm:text-lg font-black text-slate-900 font-heading leading-tight truncate">{inv.name}</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm font-semibold mt-1 leading-snug">
+                      {inv.role || inv.company}
+                    </p>
                   </div>
                 </div>
+
+                {logoPath && (
+                  <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200/90 flex items-center justify-center p-2.5 shadow-2xs shrink-0 group-hover:border-slate-300 transition-colors">
+                    <img src={logoPath} alt={inv.company} class="w-full h-full object-contain" onerror="this.style.display='none'" />
+                  </div>
+                )}
               </div>
             );
           })}

@@ -93,7 +93,7 @@ const SERVICE_MODULES = DEFAULT_SERVICE_MODULES.map((def) => {
 
 const servicesSchema = {
   "@type": "ItemList",
-  "@id": "https://qshala.vercel.app/services#list",
+  "@id": "https://qshala.com/services#list",
   "name": "QShala Services & Learning Modules",
   "itemListElement": SERVICE_MODULES.map((service, idx) => ({
     "@type": "ListItem",
@@ -104,7 +104,7 @@ const servicesSchema = {
       "description": service.description,
       "serviceType": service.badge,
       "provider": {
-        "@id": "https://qshala.vercel.app/#organization"
+        "@id": "https://qshala.com/#organization"
       }
     }
   }))

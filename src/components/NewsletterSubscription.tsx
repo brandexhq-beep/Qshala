@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, type SyntheticEvent } from 'react';
 import { saveLead } from '../lib/leadsStore';
 
 interface Props {
@@ -42,7 +42,7 @@ export default function NewsletterSubscription({
     );
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email || !email.includes('@')) return;
 

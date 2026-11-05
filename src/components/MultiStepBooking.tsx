@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, type SyntheticEvent, useEffect } from 'react';
 import { saveLead, generateWhatsAppBookingUrl } from '../lib/leadsStore';
 
 type BookingStep = 1 | 2 | 3 | 4;
@@ -55,7 +55,7 @@ export default function MultiStepBooking() {
   const handleNext = () => setStep((prev) => (prev < 4 ? ((prev + 1) as BookingStep) : prev));
   const handlePrev = () => setStep((prev) => (prev > 1 ? ((prev - 1) as BookingStep) : prev));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     saveLead({
       type: 'quiz_booking',
