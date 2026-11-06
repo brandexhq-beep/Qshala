@@ -6,17 +6,24 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Case Study Title',
+      name: 'clientName',
+      title: 'Client / Institution Name (Flip Card Title: e.g. Delhi Public School)',
       type: 'string',
-      description: 'The main headline for this case study (e.g. How DPS Transformed General Knowledge into an Active Weekly Sport).',
+      description: 'The school, company, or institution name (e.g. Delhi Public School, Flipkart). This directly controls the "Delhi Public School" title on the homepage flip card, showcase cards, and in the Sanity sidebar.',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'title',
+      title: 'Case Study Headline (e.g. How DPS Transformed General Knowledge...)',
+      type: 'string',
+      description: 'The main story headline shown beneath the client name on the flip card and as the main headline on the case study page.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      description: 'Click "Generate" to auto-create from the title. This forms the web link (qshala.com/case-studies/your-slug). Do not type slashes.',
+      description: 'Click "Generate" to auto-create from the headline or client name. This forms the web link (qshala.com/case-studies/your-slug). Do not type slashes.',
       options: {
         source: 'title',
         maxLength: 96,
@@ -33,15 +40,8 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'clientName',
-      title: 'Client / Institution Name',
-      type: 'string',
-      description: 'e.g. Delhi Public School, Flipkart, Wipro, WeWork India',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'clientType',
-      title: 'Client Type',
+      title: 'Client / Audience Type',
       type: 'string',
       options: {
         list: [
@@ -142,6 +142,13 @@ export default defineType({
       title: 'clientName',
       subtitle: 'title',
       media: 'image',
+    },
+    prepare({ title, subtitle, media }: any) {
+      return {
+        title: title || 'Untitled Client / School',
+        subtitle: subtitle || 'No headline set',
+        media,
+      };
     },
   },
 });
