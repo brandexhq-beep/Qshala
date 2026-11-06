@@ -42,14 +42,33 @@ const {
   schema
 } = Astro.props;
 
-const siteUrl = Astro.site ? Astro.site.toString().replace(/\/+$/, '') : (import.meta.env.SITE_URL || 'https://qshala.com');
+// 1. Base Canonical Site URL
+const siteUrl = (import.meta.env.PUBLIC_SITE_URL || (Astro.site ? Astro.site.toString() : 'https://qshala.com')).replace(/\/+$/, '');
 // Strip query/UTM parameters and clean trailing slash
 const cleanPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const canonicalURL = canonical || (cleanPath === '/' ? siteUrl : `${siteUrl}${cleanPath}`);
-const ogImageUrl = ogImage || `${siteUrl}/og-image.jpg`;
-const ogImageType = ogImageUrl.endsWith('.png')
+
+// 2. Open Graph & Social Sharing Image URL:
+// During DNS migration, qshala.com still points to the legacy Ubuntu server which returns 404 for new assets.
+// Using the live Vercel domain (https://qshala.vercel.app or process.env.PUBLIC_OG_IMAGE_BASE) ensures
+// WhatsApp, iMessage, Facebook, Twitter/X, and LinkedIn scrapers immediately receive HTTP 200 OK.
+const ogBaseUrl = (
+  import.meta.env.PUBLIC_OG_IMAGE_BASE ||
+  (typeof process !== 'undefined' && process.env.PUBLIC_SITE_URL) ||
+  'https://qshala.vercel.app'
+).replace(/\/+$/, '');
+
+let resolvedOgImage = ogImage || `${ogBaseUrl}/og-image.jpg?v=2`;
+if (resolvedOgImage.startsWith('/')) {
+  resolvedOgImage = `${ogBaseUrl}${resolvedOgImage}`;
+} else if (resolvedOgImage.startsWith('https://qshala.com/og-image.jpg')) {
+  resolvedOgImage = `${ogBaseUrl}/og-image.jpg?v=2`;
+}
+const ogImageUrl = resolvedOgImage;
+const cleanOgImageUrl = ogImageUrl.split('?')[0];
+const ogImageType = cleanOgImageUrl.endsWith('.png')
   ? 'image/png'
-  : ogImageUrl.endsWith('.webp')
+  : cleanOgImageUrl.endsWith('.webp')
   ? 'image/webp'
   : 'image/jpeg';
 
@@ -66,7 +85,7 @@ const orgEntity: Record<string, any> = {
     "url": `${siteUrl}/assets/logos/QShala%20Logo%201.svg`,
     "caption": "QShala Logo"
   },
-  "image": `${siteUrl}/og-image.jpg`,
+  "image": ogImageUrl,
   "description": "India's premier curiosity platform fostering socratic questioning, critical thinking, school curiosity clubs, and corporate trivia engagement.",
   "telephone": "+91-89716-76100",
   "email": "qshala@walnuts.co.in",
@@ -250,6 +269,7 @@ const jsonLd = {
     <meta name="format-detection" content="telephone=yes" />
 
     <!-- Open Graph / WhatsApp / Facebook / LinkedIn / iMessage Link Preview -->
+    <link rel="image_src" href={ogImageUrl} />
     <meta property="og:site_name" content="QShala — India's Quriosity Company" />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
