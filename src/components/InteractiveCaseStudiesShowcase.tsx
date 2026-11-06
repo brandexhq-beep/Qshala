@@ -124,7 +124,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
                 </div>
                 <div className="pt-2 flex flex-wrap items-center gap-3">
                   <a
-                    href={`/blog/${cs.slug}`}
+                    href={`/case-studies/${cs.slug}`}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer"
                   >
                     <span>Read Event Story &amp; View Photos</span>
@@ -260,7 +260,7 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
 
                 <div className="flex flex-wrap items-center gap-2">
                   <a
-                    href={`/blog/${selectedModalCase.slug}`}
+                    href={`/case-studies/${selectedModalCase.slug}`}
                     className="px-5 py-2.5 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md transition-all text-center min-h-[40px] flex items-center justify-center"
                   >
                     View Photos &amp; Event Story &rarr;

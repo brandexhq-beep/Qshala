@@ -38,6 +38,7 @@ import {
   DEFAULT_SERVICE_PAGES,
   DEFAULT_FAQS,
   DEFAULT_TESTIMONIALS,
+  DEFAULT_CAREERS,
 } from '../src/lib/sanity/api.ts';
 import { CASE_STUDIES_DATA, PRODUCTS_DATA } from '../src/lib/data.ts';
 import { DEFAULT_EVENTS } from '../src/lib/eventsStore.ts';
@@ -491,6 +492,24 @@ const SEED_DOCUMENTS = [
     logoUrl: partner.logoUrl,
     order: idx + 1,
   })),
+
+  // 17. CAREERS & JOB OPENINGS
+  ...DEFAULT_CAREERS.map((career, idx) => ({
+    _id: `career-${career.slug.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
+    _type: 'career',
+    title: career.title,
+    slug: toSlug(career.slug),
+    department: career.department,
+    location: career.location,
+    employmentType: career.employmentType || 'Full-time',
+    shortSummary: career.shortSummary,
+    color: career.color || '#EDF7E5',
+    imageSrc: career.imageSrc,
+    applyEmail: career.applyEmail || 'mailto:work@walnuts.co.in',
+    isActive: true,
+    order: idx + 1,
+  })),
+
 ];
 
 async function seed() {

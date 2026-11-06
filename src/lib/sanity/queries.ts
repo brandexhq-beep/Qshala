@@ -225,6 +225,15 @@ export const allCaseStudiesQuery = `*[_type == "caseStudy"] | order(order asc){
   clientType,
   title,
   summary,
+  body,
+  gallery[]{
+    url,
+    caption,
+    alt
+  },
+  showInBlogFeed,
+  isFeatured,
+  publishedDate,
   impactMetrics[]{
     value,
     label
@@ -236,6 +245,70 @@ export const allCaseStudiesQuery = `*[_type == "caseStudy"] | order(order asc){
   },
   tags,
   image
+}`;
+
+export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $slug][0]{
+  _id,
+  "id": _id,
+  "slug": slug.current,
+  clientName,
+  clientType,
+  title,
+  summary,
+  body,
+  gallery[]{
+    url,
+    caption,
+    alt
+  },
+  showInBlogFeed,
+  isFeatured,
+  publishedDate,
+  impactMetrics[]{
+    value,
+    label
+  },
+  quote {
+    text,
+    author,
+    role
+  },
+  tags,
+  image,
+  seo
+}`;
+
+export const allCareersQuery = `*[_type == "career" && isActive != false] | order(order asc){
+  _id,
+  "id": _id,
+  title,
+  "slug": slug.current,
+  department,
+  location,
+  employmentType,
+  shortSummary,
+  body,
+  color,
+  imageSrc,
+  applyEmail,
+  isActive
+}`;
+
+export const careerBySlugQuery = `*[_type == "career" && slug.current == $slug][0]{
+  _id,
+  "id": _id,
+  title,
+  "slug": slug.current,
+  department,
+  location,
+  employmentType,
+  shortSummary,
+  body,
+  color,
+  imageSrc,
+  applyEmail,
+  isActive,
+  seo
 }`;
 
 export const coFoundersQuery = `*[_type == "teamMember" && isCoFounder == true] | order(order asc){

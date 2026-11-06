@@ -17,6 +17,7 @@ import aboutPage from './documents/aboutPage';
 import servicePage from './documents/servicePage';
 import event from './documents/event';
 import caseStudy from './documents/caseStudy';
+import career from './documents/career';
 import teamMember from './documents/teamMember';
 import advisor from './documents/advisor';
 import faq from './documents/faq';
@@ -45,6 +46,7 @@ export const schemaTypes = [
   servicePage,
   event,
   caseStudy,
+  career,
   teamMember,
   advisor,
   faq,

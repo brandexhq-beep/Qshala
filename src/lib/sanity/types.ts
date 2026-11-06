@@ -147,6 +147,23 @@ export interface SanityEvent {
   isFeatured?: boolean;
 }
 
+export interface SanityCareer {
+  _id?: string;
+  id?: string;
+  title: string;
+  slug: string | { current: string };
+  department: string;
+  location: string;
+  employmentType?: string;
+  shortSummary: string;
+  body?: any;
+  color?: string;
+  imageSrc?: string;
+  applyEmail?: string;
+  isActive?: boolean;
+  order?: number;
+}
+
 export interface SanityCaseStudy {
   _id?: string;
   id?: string;
@@ -155,9 +172,14 @@ export interface SanityCaseStudy {
   clientType: 'School' | 'Corporate' | 'College' | 'Community';
   title: string;
   summary: string;
-  impactMetrics: SanityMetric[];
-  quote: SanityQuote;
-  tags: string[];
+  body?: any;
+  gallery?: Array<{ url: string; caption?: string; alt?: string; image?: any }>;
+  showInBlogFeed?: boolean;
+  isFeatured?: boolean;
+  publishedDate?: string;
+  impactMetrics?: SanityMetric[];
+  quote?: SanityQuote;
+  tags?: string[];
   image?: SanityImageReference;
   imageUrl?: string;
   coverImage?: SanityImageReference;

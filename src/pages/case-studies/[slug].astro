@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import EventPhotoGallery from '../../components/EventPhotoGallery';
+import SanityPortableText from '../../components/SanityPortableText.astro';
+import { getAllCaseStudies } from '../../lib/sanity/api';
+import type { SanityCaseStudy, SanityMetric } from '../../lib/sanity/types';
+import { getImageUrl } from '../../lib/sanity/image';
+
+const CASE_STUDY_IMAGES: Record<string, string> = {
+  'dps-bangalore-quriosity-league': '/assets/media/schools/qe1.webp',
+  'flipkart-corporate-trivia-league': '/assets/media/corporate/qe3.webp',
+  'wipro-onboarding-gamification': '/assets/media/corporate/corp_hertie.webp',
+  'nps-socratic-science-storytelling': '/assets/media/schools/2.webp',
+  'inventure-academy-critical-thinking': '/assets/media/schools/3.webp',
+  'tcs-cross-hub-workplace-engagement': '/assets/media/corporate/photo-2026-10-09-16-30-40.webp',
+  'iit-bombay-techfest-championship': '/assets/media/colleges/c1.webp',
+  'iim-bangalore-business-simulations': '/assets/media/colleges/c2.webp',
+  'sobha-city-family-game-nights': '/assets/media/crowd/dsc07829.webp',
+  'wework-community-networking-nights': '/assets/media/corporate/qe5.webp',
+};
+
+const CATEGORY_STYLES: Record<string, { bg: string; text: string; badgeBg: string }> = {
+  School: { bg: 'bg-[#75B543]/15', text: 'text-[#75B543]', badgeBg: 'bg-[#75B543]' },
+  Corporate: { bg: 'bg-[#FDB913]/25', text: 'text-amber-800', badgeBg: 'bg-[#FDB913]' },
+  College: { bg: 'bg-[#30B2E7]/15', text: 'text-[#30B2E7]', badgeBg: 'bg-[#30B2E7]' },
+  Community: { bg: 'bg-[#9333EA]/15', text: 'text-[#9333EA]', badgeBg: 'bg-[#9333EA]' },
+};
+
+export async function getStaticPaths() {
+  const caseStudies = await getAllCaseStudies();
+
+  return caseStudies.map((study) => {
+    const slugStr = typeof study.slug === 'string' ? study.slug : study.slug?.current || '';
+    return {
+      params: { slug: slugStr },
+      props: { study },
+    };
+  });
+}
+
+interface Props {
+  study: SanityCaseStudy;
+}
+
+const { study } = Astro.props;
+const slug = typeof study.slug === 'string' ? study.slug : study.slug?.current || '';
+const catStyle = CATEGORY_STYLES[study.clientType] || CATEGORY_STYLES.School;
+const formattedGallery = study.gallery?.map((g: any) => ({
+  url: g.url || '',
+  caption: g.caption || study.title,
+  alt: g.alt || study.title,
+})) || [];
+
+const coverImage = (study.coverImage ? getImageUrl(study.coverImage, 1200, 630) : null) || 
+  CASE_STUDY_IMAGES[slug] || 
+  'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop';
+
+const caseStudySchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": study.title,
+  "description": study.summary,
+  "image": coverImage,
+  "author": {
+    "@type": "Organization",
+    "name": "QShala",
+    "url": "https://qshala.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "QShala",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://qshala.com/assets/logos/QShala%20Logo%201.svg"
+    }
+  },
+  "isPartOf": {
+    "@id": "https://qshala.com/#website"
+  }
+};
+---
+
+<BaseLayout 
+  title={`${study.title} | ${study.clientName} Case Study`}
+  description={study.summary}
+  ogImage={coverImage}
+  breadcrumbs={[
+    { name: "Home", item: "/" },
+    { name: "Case Studies", item: "/case-studies" },
+    { name: study.title, item: `/case-studies/${slug}` }
+  ]}
+  schema={caseStudySchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="flex-grow pt-header-safe pb-16 sm:pb-24 px-4 sm:px-6 bg-[#FFFDF5]">
+    <article class="max-w-4xl mx-auto space-y-10">
+      
+      {/* Top Navigation */}
+      <div class="flex items-center justify-between pt-6">
+        <a 
+          href="/case-studies"
+          class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-slate-600 hover:text-slate-900 font-heading transition-colors"
+        >
+          &larr; Back to Case Studies
+        </a>
+        <span class={`px-3.5 py-1 rounded-full text-xs font-black uppercase font-heading ${catStyle.bg} ${catStyle.text}`}>
+          {study.clientType} • {study.clientName}
+        </span>
+      </div>
+
+      {/* Hero Headline */}
+      <div class="space-y-4">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black font-heading text-slate-900 leading-tight">
+          {study.title}
+        </h1>
+        <p class="text-base sm:text-lg text-slate-700 font-semibold leading-relaxed">
+          {study.summary}
+        </p>
+      </div>
+
+      {/* Hero Feature Image */}
+      <div class="rounded-3xl overflow-hidden aspect-[16/9] bg-slate-100 shadow-md border border-slate-200/80">
+        <img 
+          src={coverImage} 
+          alt={study.title} 
+          class="w-full h-full object-cover" 
+          fetchpriority="high" 
+        />
+      </div>
+
+      {/* Impact Metrics Row */}
+      {study.impactMetrics && study.impactMetrics.length > 0 && (
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {study.impactMetrics.map((metric: SanityMetric) => (
+            <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
+              <div class="text-2xl sm:text-3xl font-black font-heading text-[#30B2E7]">
+                {metric.value}
+              </div>
+              <div class="text-xs font-bold text-slate-600 uppercase tracking-wider font-heading">
+                {metric.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Optional Client Testimonial Quote */}
+      {study.quote?.text && (
+        <blockquote class="border-l-4 border-[#FDB913] pl-5 py-4 bg-amber-50/60 rounded-r-2xl border border-amber-200/50">
+          <p class="text-slate-800 text-base sm:text-lg font-semibold italic">
+            &ldquo;{study.quote.text}&rdquo;
+          </p>
+          <footer class="text-slate-900 font-black text-sm not-italic mt-2 font-heading">
+            — {study.quote.author}{study.quote.role ? `, ${study.quote.role}` : ''}
+          </footer>
+        </blockquote>
+      )}
+
+      {/* Detailed Narrative Story Body */}
+      {study.body ? (
+        <div class="pt-4">
+          <SanityPortableText value={study.body} class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" />
+        </div>
+      ) : (
+        <div class="space-y-6 text-slate-700 text-base leading-relaxed font-medium pt-2">
+          <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900">
+            About the Program &amp; Engagement
+          </h2>
+          <p>
+            QShala partnered with {study.clientName} to bring inquiry-driven socratic storytelling, interactive quizzing formats, and curiosity-building modules into their active community.
+          </p>
+          <h3 class="text-xl font-black font-heading text-slate-900">
+            Execution Strategy
+          </h3>
+          <p>
+            Unlike traditional rote-memory programs, our quizmasters facilitated lateral thinking, reverse-engineering scientific discoveries, historical crossroads, and current affairs through collaborative problem-solving.
+          </p>
+        </div>
+      )}
+
+      {/* Photo Gallery (if available) */}
+      {study.gallery && study.gallery.length > 0 && (
+        <section class="mt-12 pt-8 border-t border-slate-200 space-y-6">
+          <div class="space-y-1">
+            <span class="inline-block px-3 py-1 rounded-full bg-[#FDB913] text-slate-950 font-black text-xs uppercase font-heading">
+              Event Gallery ({study.gallery.length} Photos)
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900">
+              Photographs &amp; Highlights
+            </h2>
+            <p class="text-slate-600 text-sm font-semibold">
+              Click any photograph to view in full resolution or download.
+            </p>
+          </div>
+          <EventPhotoGallery client:visible photos={formattedGallery} title={study.title} />
+        </section>
+      )}
+
+      {/* Bottom Conversion Card */}
+      <div class="mt-12 p-6 sm:p-8 rounded-3xl bg-[#FFFDF5] border-2 border-amber-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="space-y-1 text-center sm:text-left">
+          <h3 class="text-xl sm:text-2xl font-black font-heading text-slate-900">
+            Want similar impact for your institution?
+          </h3>
+          <p class="text-slate-600 text-sm font-semibold">
+            Partner with QShala to create engaging, memorable quiz championships and curiosity programs.
+          </p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <a 
+            href="/contact"
+            class="px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-md hover:shadow-lg transition-all"
+          >
+            Plan With Us &rarr;
+          </a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

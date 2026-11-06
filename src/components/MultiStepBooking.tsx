@@ -55,8 +55,35 @@ export default function MultiStepBooking() {
   const handleNext = () => setStep((prev) => (prev < 4 ? ((prev + 1) as BookingStep) : prev));
   const handlePrev = () => setStep((prev) => (prev > 1 ? ((prev - 1) as BookingStep) : prev));
 
-  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const accessKey =
+      (typeof import.meta !== 'undefined' && (import.meta as any).env?.PUBLIC_WEB3FORMS_ACCESS_KEY) ||
+      'ebcc3a75-bd60-4c56-ad57-75fc47f37925';
+
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        access_key: accessKey,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || 'N/A',
+        organization: formData.organization,
+        audience_type: formData.audienceType,
+        event_date: formData.eventDate || 'Flexible / To be confirmed',
+        expected_audience: formData.expectedAudience,
+        preferred_topic: formData.preferredTopic,
+        notes: formData.additionalNotes,
+        from_name: 'QShala Experience Booking Flow',
+        subject: `New Quiz Booking Inquiry from ${formData.name} (${formData.organization})`,
+      }),
+    }).catch((err) => console.warn('Web3Forms dispatch warning:', err));
+
     saveLead({
       type: 'quiz_booking',
       name: formData.name,

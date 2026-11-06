@@ -1,3 +1,4 @@
+export type { SanityCaseStudy, SanityCareer } from './types';
 import { sanityClient, isSanityConfigured } from './client.ts';
 import * as queries from './queries.ts';
 import type {
@@ -9,6 +10,7 @@ import type {
   SanityServicePage,
   SanityEvent,
   SanityCaseStudy,
+  SanityCareer,
   SanityTeamMember,
   SanityAdvisor,
   SanityFAQ,
@@ -23,6 +25,62 @@ import { DEFAULT_EVENTS } from '../eventsStore.ts';
 // ==========================================
 // AUDITED STATIC FALLBACK DATA
 // ==========================================
+
+
+export const DEFAULT_CAREERS: SanityCareer[] = [
+  {
+    id: 'career-marketing-manager',
+    slug: 'careers-marketing-manager',
+    title: 'Marketing Manager',
+    department: 'Marketing & School Outreach',
+    location: 'Bengaluru, Karnataka (Hybrid)',
+    employmentType: 'Full-time',
+    shortSummary: 'Lead brand campaigns, school outreach, and digital quriosity stories.',
+    color: '#EDF7E5',
+    imageSrc: '/assets/media/corporate/photo-2026-10-09-16-30-24.webp',
+    applyEmail: 'mailto:work@walnuts.co.in',
+    isActive: true,
+  },
+  {
+    id: 'career-operations-associate',
+    slug: 'careers-operations-associate',
+    title: 'Operations Associate',
+    department: 'Operations & Event Logistics',
+    location: 'Bengaluru, Karnataka (On-site)',
+    employmentType: 'Full-time',
+    shortSummary: 'Manage live quiz event logistics, buzzer setups, and school coordination.',
+    color: '#FFF8E1',
+    imageSrc: '/assets/media/banners/teams-3_1.webp',
+    applyEmail: 'mailto:work@walnuts.co.in',
+    isActive: true,
+  },
+  {
+    id: 'career-engagement-associate',
+    slug: 'careers-engagement-associate',
+    title: 'Engagement Associate & Quizmaster',
+    department: 'Pedagogy & Quizmastering',
+    location: 'Bengaluru, Karnataka (On-site)',
+    employmentType: 'Full-time',
+    shortSummary: 'Facilitate socratic sessions, host interactive trivia, and inspire young quizzers.',
+    color: '#E8F6FD',
+    imageSrc: '/assets/media/schools/untitled_design.webp',
+    applyEmail: 'mailto:work@walnuts.co.in',
+    isActive: true,
+  },
+  {
+    id: 'career-video-editor',
+    slug: 'careers-video-editor',
+    title: 'Video Editor & Visual Storyteller',
+    department: 'Creative & Video Production',
+    location: 'Bengaluru, Karnataka (On-site / Hybrid)',
+    employmentType: 'Full-time',
+    shortSummary: 'Craft exciting video highlight reels, QShots clips, and animated stories.',
+    color: '#EDF7E5',
+    imageSrc: '/assets/media/crowd/dsc07629.webp',
+    applyEmail: 'mailto:work@walnuts.co.in',
+    isActive: true,
+  },
+];
 
 export const DEFAULT_SITE_SETTINGS: SanitySiteSettings = {
   brandName: 'QShala',
@@ -989,3 +1047,23 @@ export const getPostBySlug = (slug: string): Promise<SanityPost | null> =>
 
 export const getPartners = (): Promise<SanityPartner[]> =>
   fetchWithFallback(queries.allPartnersQuery, []);
+
+
+export const getAllCareers = (): Promise<SanityCareer[]> =>
+  fetchWithFallback(queries.allCareersQuery, DEFAULT_CAREERS);
+
+export const getCareerBySlug = (slug: string): Promise<SanityCareer | null> =>
+  fetchWithFallback(
+    queries.careerBySlugQuery, 
+    DEFAULT_CAREERS.find((c) => (typeof c.slug === 'string' ? c.slug : c.slug?.current) === slug) || null,
+    (d) => Boolean(d?.title),
+    { slug }
+  );
+
+export const getCaseStudyBySlug = (slug: string): Promise<SanityCaseStudy | null> =>
+  fetchWithFallback(
+    queries.caseStudyBySlugQuery,
+    CASE_STUDIES_DATA.find((c: any) => (typeof c.slug === 'string' ? c.slug : c.slug?.current) === slug) || null,
+    (d) => Boolean(d?.title),
+    { slug }
+  );

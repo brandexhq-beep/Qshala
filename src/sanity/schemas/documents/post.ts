@@ -9,15 +9,25 @@ export default defineType({
       name: 'title',
       title: 'Article / Story Title',
       type: 'string',
+      description: 'The headline for this article or event photo story.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description: 'Click "Generate" to create a web-friendly URL. Do not type slashes.',
       options: {
         source: 'title',
         maxLength: 96,
+        slugify: (input: string) =>
+          input
+            .toLowerCase()
+            .replace(/^\/+/g, '')
+            .replace(/blog\//g, '')
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9-]/g, '')
+            .slice(0, 96),
       },
       validation: (Rule) => Rule.required(),
     }),
@@ -31,7 +41,6 @@ export default defineType({
           { title: 'Events', value: 'Events' },
           { title: 'Case Study', value: 'Case Study' },
           { title: 'Insights', value: 'Insights' },
-          { title: 'Careers', value: 'Careers' },
           { title: 'School', value: 'School' },
           { title: 'Corporate', value: 'Corporate' },
         ],
@@ -109,10 +118,23 @@ export default defineType({
       of: [{ type: 'galleryImage' }],
     }),
     defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      initialValue: 0,
+    }),
+    defineField({
       name: 'seo',
       title: 'SEO Overrides',
       type: 'seo',
     }),
+  ],
+  orderings: [
+    {
+      title: 'Display Order',
+      name: 'orderAsc',
+      by: [{ field: 'order', direction: 'asc' }],
+    },
   ],
   preview: {
     select: {

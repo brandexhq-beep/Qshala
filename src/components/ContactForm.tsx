@@ -11,11 +11,33 @@ export default function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
+      const accessKey =
+        (typeof import.meta !== 'undefined' && (import.meta as any).env?.PUBLIC_WEB3FORMS_ACCESS_KEY) ||
+        'ebcc3a75-bd60-4c56-ad57-75fc47f37925';
+
+      // Send via Web3Forms API to deliver inquiry directly to email
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'N/A',
+          message: formData.message,
+          from_name: 'QShala Website Contact Form',
+          subject: `New Inquiry from ${formData.name}`,
+        }),
+      }).catch((err) => console.warn('Web3Forms dispatch warning:', err));
+
       saveLead({
         type: 'contact_inquiry',
         name: formData.name,
@@ -23,7 +45,7 @@ export default function ContactForm() {
         phone: formData.phone,
         organization: 'Direct Website Contact',
         audienceType: 'General Inquiry',
-        message: formData.message
+        message: formData.message,
       });
       setIsSubmitted(true);
     } catch (err) {
