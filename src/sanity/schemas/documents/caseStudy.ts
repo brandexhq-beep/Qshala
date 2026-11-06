@@ -57,7 +57,8 @@ export default defineType({
     }),
     defineField({
       name: 'quote',
-      title: 'Client Testimonial Quote',
+      title: 'Client Testimonial Quote (Optional)',
+      description: 'Optional quotation from a principal, HR leader, or client partner.',
       type: 'quote',
     }),
     defineField({

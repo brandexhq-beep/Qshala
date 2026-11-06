@@ -163,7 +163,7 @@ const faqSchema = {
           <p class="text-slate-600 font-semibold text-sm sm:text-base">{eventsSubtitle}</p>
         </div>
         
-        <UpcomingEventsSlider client:load initialEvents={formattedEvents} />
+        <UpcomingEventsSlider client:visible initialEvents={formattedEvents} />
       </div>
     </section>
 
@@ -194,7 +194,7 @@ const faqSchema = {
           <p class="text-sm font-semibold text-slate-600 mt-2">{gameSubtitle}</p>
         </div>
 
-        <DailyQuizSection client:load />
+        <DailyQuizSection client:visible />
       </div>
     </section>
 
@@ -361,7 +361,7 @@ const faqSchema = {
           </span>
           <h2 class="text-4xl md:text-5xl font-black text-slate-900 font-heading">{faqHeading}</h2>
         </div>
-        <FAQSection items={faqs} client:load />
+        <FAQSection items={faqs} client:visible />
       </div>
     </section>
   </main>

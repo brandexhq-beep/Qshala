@@ -20,8 +20,44 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#039;');
 }
 
+/**
+ * Sanitizes raw HTML strings according to modern-web-guidance
+ * Strips XSS vectors (scripts, inline events, unsafe schemes) while preserving
+ * standard typography tags (p, h1-h6, ul, ol, li, blockquote, a, img, strong, em).
+ */
+function sanitizeHtmlContent(raw: string): string {
+  if (!raw) return '';
+  const trimmed = raw.trim();
+
+  // If the input is plain text without any HTML tags, wrap cleanly in paragraphs
+  if (!/<[a-z][\s\S]*>/i.test(trimmed)) {
+    return trimmed
+      .split(/\n\s*\n/)
+      .map(p => `<p class="leading-relaxed mb-4">${escapeHtml(p.trim())}</p>`)
+      .join('');
+  }
+
+  // Strip dangerous elements
+  let clean = trimmed
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+    .replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, '')
+    .replace(/<embed\b[^>]*>/gi, '')
+    .replace(/<applet\b[^<]*(?:(?!<\/applet>)<[^<]*)*<\/applet>/gi, '')
+    .replace(/<form\b[^<]*(?:(?!<\/form>)<[^<]*)*<\/form>/gi, '');
+
+  // Strip all on* attributes (onclick, onerror, onload, etc.)
+  clean = clean.replace(/\s+on[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+
+  // Disarm dangerous URI schemes (javascript:, vbscript:, data:)
+  clean = clean.replace(/(href|src)\s*=\s*(["'])\s*(javascript|data|vbscript):/gi, '$1=$2#safe-fallback:');
+
+  return clean;
+}
+
 if (typeof value === 'string') {
-  html = escapeHtml(value);
+  html = sanitizeHtmlContent(value);
 } else if (value && Array.isArray(value)) {
   try {
     html = toHTML(value, {

@@ -7,7 +7,10 @@ import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://qshala.com',
-  prefetch: true,
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: 'hover'
+  },
   integrations: [
     react(),
     sitemap({

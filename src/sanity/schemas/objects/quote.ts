@@ -2,7 +2,7 @@ import { defineType, defineField } from 'sanity';
 
 export default defineType({
   name: 'quote',
-  title: 'Client / Stakeholder Quote',
+  title: 'Client / Stakeholder Quote (Optional)',
   type: 'object',
   fields: [
     defineField({
@@ -10,18 +10,19 @@ export default defineType({
       title: 'Quotation Text',
       type: 'text',
       rows: 3,
-      validation: (Rule) => Rule.required(),
+      description: 'Optional quotation text. Leave blank if this case study has no testimonial.',
     }),
     defineField({
       name: 'author',
       title: 'Author Name',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      description: 'Optional — e.g. Sunita Sharma',
     }),
     defineField({
       name: 'role',
       title: 'Author Role / Organization',
       type: 'string',
+      description: 'Optional — e.g. Principal, DPS Bangalore East',
     }),
   ],
 });

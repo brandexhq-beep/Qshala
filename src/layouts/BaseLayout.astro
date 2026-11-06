@@ -495,6 +495,7 @@ const jsonLd = {
         });
 
         document.addEventListener('visibilitychange', function() {
+          if (titleInterval) clearInterval(titleInterval);
           if (document.hidden) {
             var msg = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
             document.title = msg;
@@ -502,7 +503,6 @@ const jsonLd = {
               if (document.title !== msg) document.title = msg;
             }, 1000);
           } else {
-            clearInterval(titleInterval);
             document.title = originalTitle;
           }
         });
