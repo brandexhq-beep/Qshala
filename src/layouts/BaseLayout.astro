@@ -19,6 +19,7 @@ export interface ArticleMetadata {
 export interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
   canonical?: string;
   ogImage?: string;
   ogType?: 'website' | 'article';
@@ -29,9 +30,12 @@ export interface Props {
   schema?: Record<string, any> | Array<Record<string, any>>;
 }
 
+const DEFAULT_KEYWORDS = "QShala, Quriosity, Quiz, Quizmaster, Quiz master India, Best quiz company in India, Corporate quizzing, School quiz club, Socratic pedagogy, Inquiry-based learning, Critical thinking for children, NEP 2020 experiential learning, Corporate employee engagement, Team offsite trivia, Bangalore quizzing company, Sachin Ravi quizmaster, Raghav Chakravarthy, Family game nights, College fest quizzing, Inter-school quiz championship, Live buzzer quiz, Trivia competitions, Financial literacy for kids, Educational card games, Socratic questioning, Walnut Knowledge Solutions";
+
 const {
   title = "QShala | Questions • Quriosity • Quests — India's Quriosity Company",
   description = "Replacing Rote Learning with Quriosity, Socratic Storytelling, and Inquiry. Partnering with 250+ Schools & 80+ Corporates across India. Founded by Quizmasters Sachin Ravi & Raghav Chakravarthy.",
+  keywords,
   canonical,
   ogImage,
   ogType = 'website',
@@ -124,14 +128,21 @@ const orgEntity: Record<string, any> = {
     }
   ],
   "knowsAbout": [
-    "Socratic Method",
     "Quizzing",
-    "Quizmastering in India",
+    "Quizmastering",
+    "Quiz Competitions in India",
+    "Socratic Method & Pedagogy",
+    "Inquiry-Based Learning",
     "Critical Thinking for Children",
-    "Financial Literacy for Kids",
-    "Public Speaking & Debate",
+    "NEP 2020 Experiential Education",
+    "School Curiosity Clubs",
     "Corporate Employee Engagement",
-    "Gamified Learning"
+    "Gamified Team Offsites & Townhalls",
+    "Live Digital Buzzer Tournaments",
+    "College & B-School Business Quests",
+    "Financial Literacy for Kids",
+    "Curiosity Curriculum Design",
+    "Family Trivia Game Nights"
   ],
   "founders": [
     {
@@ -244,6 +255,7 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords || DEFAULT_KEYWORDS} />
     <meta name="theme-color" content="#30B2E7" />
     <meta name="color-scheme" content="light" />
     <link rel="canonical" href={canonicalURL} />
