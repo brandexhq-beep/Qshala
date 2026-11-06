@@ -494,19 +494,23 @@ const SEED_DOCUMENTS = [
 ];
 
 async function seed() {
-  let successCount = 0;
+  console.log(`\n📦 Committing all ${SEED_DOCUMENTS.length} documents in a single atomic transaction...`);
+  console.log('This prevents flooding Vercel with 100+ separate webhook deployment triggers.\n');
+  
+  const transaction = client.transaction();
   for (const doc of SEED_DOCUMENTS) {
-    try {
-      console.log(`Writing document [${doc._type}] id: "${doc._id}"...`);
-      await client.createOrReplace(doc);
-      successCount++;
-    } catch (err) {
-      console.error(`❌ Failed to write document "${doc._id}":`, err.message);
-    }
+    transaction.createOrReplace(doc);
   }
-
-  console.log(`\n🎉 Successfully seeded ${successCount} of ${SEED_DOCUMENTS.length} core documents into Sanity CMS!\n`);
-  console.log('You can now open Sanity Studio (https://qshala.sanity.studio) to view and edit all documents without schema errors.');
+  
+  try {
+    const res = await transaction.commit();
+    console.log(`🎉 Successfully seeded ${SEED_DOCUMENTS.length} core documents into Sanity CMS in 1 atomic commit!`);
+    console.log(`Transaction ID: ${res.transactionId}\n`);
+    console.log('You can now open Sanity Studio (https://qshala.sanity.studio) to view and edit all documents without schema errors.');
+  } catch (err) {
+    console.error(`❌ Atomic transaction commit failed:`, err.message);
+    process.exit(1);
+  }
 }
 
 seed().catch(err => {
