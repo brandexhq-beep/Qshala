@@ -48,6 +48,18 @@ export default defineType({
       description: 'e.g. /assets/logos/zerodha.svg',
     }),
     defineField({
+      name: 'image',
+      title: 'Advisor Portrait Photo',
+      type: 'image',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'avatarUrl',
+      title: 'Advisor Portrait Static URL Path',
+      type: 'string',
+      description: 'e.g. /assets/advisors/nithin-kamath.webp',
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
@@ -65,7 +77,7 @@ export default defineType({
     select: {
       title: 'name',
       subtitle: 'role',
-      media: 'logo',
+      media: 'image',
     },
   },
 });

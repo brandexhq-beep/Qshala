@@ -177,7 +177,8 @@ const aboutSchema = {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
           {advisors.map((inv) => {
             const logoPath = inv.logoUrl || getImageUrl(inv.logo);
-            const avatarPath = inv.avatarUrl || (inv.image ? getImageUrl(inv.image, 200, 200) : undefined);
+            const fallbackAvatar = `/assets/advisors/${inv.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}.webp`;
+            const avatarPath = inv.avatarUrl || (inv.image ? getImageUrl(inv.image, 200, 200) : undefined) || fallbackAvatar;
             return (
               <div class="p-5 sm:p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex items-center justify-between gap-4 group">
                 <div class="flex items-center gap-4 min-w-0">

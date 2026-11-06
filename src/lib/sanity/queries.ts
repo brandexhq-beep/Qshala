@@ -281,7 +281,9 @@ export const allAdvisorsQuery = `*[_type == "advisor"] | order(order asc){
   badge,
   color,
   logo,
-  logoUrl
+  logoUrl,
+  image,
+  avatarUrl
 }`;
 
 export const homeFaqsQuery = `*[_type == "faq" && showOnHome != false] | order(order asc){
