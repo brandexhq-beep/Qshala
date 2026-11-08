@@ -21,6 +21,9 @@ const crew = rawCrew.map(c => ({
   imageUrl: c.imageUrl || (c.image ? getImageUrl(c.image, 300, 300) : '/assets/team/gauri-kashyap.webp')
 }));
 
+
+// Feature toggle: Set to true when sticker pack, emojis and GIF download resources are ready
+const SHOW_MEET_QT_SECTION = false;
 const pageTitle = aboutData.seo?.metaTitle || "About Us — Our Story & Mission | QShala India";
 const pageDesc = aboutData.seo?.metaDescription || "Learn about QShala's mission to replace rote learning with curiosity and wonder. Founded in 2014 by Sachin Ravi & Raghav Chakravarthy, backed by top leaders.";
 
@@ -213,7 +216,8 @@ const aboutSchema = {
       </div>
     </section>
 
-    <!-- 4. MEET QT MASCOT SECTION -->
+    <!-- 4. MEET QT MASCOT SECTION (Toggled off until sticker/emoji/GIF resources are ready) -->
+    {SHOW_MEET_QT_SECTION && (
     <section id="meet-qt" class="py-12 md:py-16 bg-[#FFFDF5] relative w-full px-4 sm:px-8 md:px-12">
       <div class="max-w-7xl mx-auto">
         
@@ -288,6 +292,7 @@ const aboutSchema = {
 
       </div>
     </section>
+    )}
 
     <!-- 5. OUR TEAM: INTERACTIVE TEAM SHOWCASE -->
     <section id="our-team" class="py-16 md:py-20 bg-[#FFFDF5] relative w-full px-4 sm:px-8 md:px-12">

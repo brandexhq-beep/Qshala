@@ -52,3 +52,7 @@ scripts/*.py
 # raw marketing & design source archives (preserved locally, untracked by git)
 /2 COMPANY AND CONTENT INFO/
 /Assets Qshala/
+
+# Documentation & guide PDFs
+public/docs/
+*.pdf

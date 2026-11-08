@@ -1,3 +1,10 @@
-# Exclude heavy design assets from Vercel deployment bundle
+# Exclude heavy design assets, raw archives & scratch tooling from Vercel deployment bundle
 Assets Qshala/
+2 COMPANY AND CONTENT INFO/
 .DS_Store
+scripts/
+public/docs/
+*.pdf
+.agents/
+changes/
+tests/
