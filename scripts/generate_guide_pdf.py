@@ -613,7 +613,7 @@ def build_pdf(filename="public/docs/QShala_Sanity_CMS_Editors_Guide.pdf"):
     help_box = [
         [
             Paragraph("<b>Need Help or Have Questions?</b>", callout_bold),
-            Paragraph("For urgent CMS assistance, new feature requests, or schema changes, reach out to your engineering team or contact QShala Support at <b>hello@qshala.com</b>.", callout_text)
+            Paragraph("For technical assistance, schema changes, or website support, contact <b>Brandex</b>:<br/>Email: <b>team@brandex.co.in</b> &nbsp;|&nbsp; WhatsApp: <b>9480944727</b>", callout_text)
         ]
     ]
     t_help = Table(help_box, colWidths=[150, 354])
