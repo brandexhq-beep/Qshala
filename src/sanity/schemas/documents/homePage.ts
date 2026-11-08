@@ -82,12 +82,147 @@ export default defineType({
       group: 'events',
     }),
 
-    // THE QSHALA EFFECT (LIVE MOMENTS)
+        // THE QSHALA EFFECT (LIVE MOMENTS WIDGET)
+    defineField({
+      name: 'effectShow',
+      title: 'Show "The QShala Effect" section on Homepage?',
+      type: 'boolean',
+      initialValue: true,
+      group: 'effect',
+    }),
     defineField({
       name: 'effectBadge',
       title: 'Effect Badge Label',
       type: 'string',
       initialValue: 'Live Moments',
+      group: 'effect',
+    }),
+    defineField({
+      name: 'effectHeading',
+      title: 'Effect Heading',
+      type: 'string',
+      initialValue: 'The QShala Effect',
+      group: 'effect',
+    }),
+    defineField({
+      name: 'effectLine',
+      title: 'Effect Tagline',
+      type: 'string',
+      initialValue: 'Bringing Joy to Every Room.',
+      group: 'effect',
+    }),
+    defineField({
+      name: 'effectButtonText',
+      title: 'Effect Button Label',
+      type: 'string',
+      initialValue: 'See It Yourself',
+      group: 'effect',
+    }),
+    defineField({
+      name: 'effectButtonUrl',
+      title: 'Effect Button Anchor / URL',
+      type: 'string',
+      initialValue: '#effect-gallery',
+      group: 'effect',
+    }),
+    defineField({
+      name: 'effectMoments',
+      title: 'Curated Moments & Gallery Photos',
+      description: 'Upload custom moments to show in The QShala Effect gallery. Leave empty to use default curated photos.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'moment',
+          title: 'Moment',
+          fields: [
+            {
+              name: 'title',
+              title: 'Caption / Moment Title',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'category',
+              title: 'Audience Category',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Schools', value: 'Schools' },
+                  { title: 'Corporate', value: 'Corporate' },
+                  { title: 'Colleges', value: 'Colleges' },
+                  { title: 'Community', value: 'Community' },
+                ],
+              },
+              initialValue: 'Schools',
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'image',
+              title: 'Photo Upload',
+              type: 'image',
+              options: { hotspot: true },
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'customLink',
+              title: 'Click Destination (e.g. /schools, /companies, /case-studies/...)',
+              type: 'string',
+            },
+            {
+              name: 'customTag',
+              title: 'Custom Tag Label (optional, e.g. "Annual Tech Summit")',
+              type: 'string',
+            },
+            {
+              name: 'tagColor',
+              title: 'Custom Tag Color Hex (optional, e.g. #FDB913, #30B2E7, #75B543)',
+              type: 'string',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'category',
+              media: 'image',
+            },
+          },
+        },
+      ],
+      group: 'effect',
+    }),
+    defineField({
+      name: 'effectStats',
+      title: 'Impact Highlights / Key Numbers (Optional)',
+      description: 'Highlight key statistics inside The QShala Effect widget (e.g. "250+ Schools", "80+ Corporates").',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'stat',
+          title: 'Stat',
+          fields: [
+            {
+              name: 'value',
+              title: 'Metric / Number (e.g. "250+", "80+", "150K+")',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'label',
+              title: 'Metric Label (e.g. "Schools Partnered", "Top Corporates")',
+              type: 'string',
+              validation: (Rule: any) => Rule.required(),
+            },
+          ],
+          preview: {
+            select: {
+              title: 'value',
+              subtitle: 'label',
+            },
+          },
+        },
+      ],
       group: 'effect',
     }),
     defineField({

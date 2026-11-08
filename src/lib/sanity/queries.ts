@@ -68,10 +68,27 @@ export const homePageQuery = `*[_type == "homePage"][0]{
   },
   eventsHeading,
   eventsSubtitle,
+    effectShow,
   effectBadge,
   effectHeading,
   effectLine,
   effectButtonText,
+  effectButtonUrl,
+  effectMoments[] {
+    _key,
+    title,
+    category,
+    image,
+    "imageUrl": image.asset->url,
+    customLink,
+    customTag,
+    tagColor
+  },
+  effectStats[] {
+    _key,
+    value,
+    label
+  },
   gameBadge,
   gameHeading,
   gameSubtitle,

@@ -1,5 +1,5 @@
 export type EventCategory = 'School' | 'College' | 'Corporate' | 'Community';
-export type EventButtonType = 'none' | 'register' | 'learn_more';
+export type EventButtonType = 'none' | 'register' | 'learn_more' | 'host_similar' | 'private';
 
 export interface UpcomingEvent {
   id: string;
@@ -7,6 +7,9 @@ export interface UpcomingEvent {
   category: EventCategory;
   date: string;
   desc: string;
+  venue?: string;
+  isPrivate?: boolean;
+  hideHostCta?: boolean;
   buttonType: EventButtonType;
   buttonText?: string;
   buttonUrl?: string;
@@ -49,6 +52,7 @@ export const DEFAULT_EVENTS: UpcomingEvent[] = [
     category: 'Community',
     date: 'Oct 15, 2026',
     desc: 'A massive city-wide trivia showdown for all age groups. Bring your family!',
+    venue: 'Bengaluru / Public Arena',
     buttonType: 'register',
     buttonText: 'Register Now',
     buttonUrl: '/book-a-quiz'
@@ -59,6 +63,7 @@ export const DEFAULT_EVENTS: UpcomingEvent[] = [
     category: 'College',
     date: 'Oct 22, 2026',
     desc: 'Test your knowledge on the evolution of technology, from the abacus to AI.',
+    venue: 'Online & Campus Hubs',
     buttonType: 'register',
     buttonText: 'Register Now',
     buttonUrl: '/book-a-quiz'
@@ -69,6 +74,7 @@ export const DEFAULT_EVENTS: UpcomingEvent[] = [
     category: 'Corporate',
     date: 'Nov 05, 2026',
     desc: 'Compete against other top companies in this team-building trivia tournament.',
+    venue: 'Bengaluru Tech Corridor',
     buttonType: 'learn_more',
     buttonText: 'Learn More',
     buttonUrl: '/companies'
@@ -79,6 +85,7 @@ export const DEFAULT_EVENTS: UpcomingEvent[] = [
     category: 'School',
     date: 'Dec 10, 2026',
     desc: 'The grand finale of our nation-wide inter-school quiz competition.',
+    venue: 'Pan-India Hybrid',
     buttonType: 'learn_more',
     buttonText: 'Learn More',
     buttonUrl: '/schools'

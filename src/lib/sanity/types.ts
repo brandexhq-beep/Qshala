@@ -83,6 +83,23 @@ export interface SanityFooter {
   resourcesLinks?: Array<{ name: string; href: string }>;
 }
 
+export interface SanityEffectMoment {
+  _key?: string;
+  title: string;
+  category: 'Schools' | 'Corporate' | 'Colleges' | 'Community' | 'School' | 'College';
+  image?: SanityImageReference;
+  imageUrl?: string;
+  customLink?: string;
+  customTag?: string;
+  tagColor?: string;
+}
+
+export interface SanityEffectStat {
+  _key?: string;
+  value: string;
+  label: string;
+}
+
 export interface SanityHomePage {
   heroBadge?: string;
   heroTypewriterPrefix?: string;
@@ -94,7 +111,11 @@ export interface SanityHomePage {
   effectBadge?: string;
   effectHeading?: string;
   effectLine?: string;
+  effectShow?: boolean;
   effectButtonText?: string;
+  effectButtonUrl?: string;
+  effectMoments?: SanityEffectMoment[];
+  effectStats?: SanityEffectStat[];
   gameBadge?: string;
   gameHeading?: string;
   gameSubtitle?: string;
@@ -140,7 +161,9 @@ export interface SanityEvent {
   isoDate?: string;
   desc: string;
   venue?: string;
-  buttonType: 'register' | 'learn_more' | 'none';
+  isPrivate?: boolean;
+  hideHostCta?: boolean;
+  buttonType: 'register' | 'learn_more' | 'host_similar' | 'private' | 'none';
   buttonText?: string;
   buttonUrl?: string;
   heroImage?: SanityImageReference;
