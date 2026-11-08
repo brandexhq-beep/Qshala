@@ -182,33 +182,42 @@ const caseStudiesSchema = {
       })}
     </div>
 
-    <!-- Client-side Fast Filtering Script -->
+        <!-- Client-side Fast Filtering Script (View Transition & ClientRouter compatible) -->
     <script is:inline>
-      const buttons = document.querySelectorAll('.cs-filter-btn');
-      const cards = document.querySelectorAll('[data-category]');
+      function setupCaseStudyFilters() {
+        const buttons = document.querySelectorAll('.cs-filter-btn');
+        const cards = document.querySelectorAll('[data-category]');
 
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const filter = btn.getAttribute('data-filter');
+        buttons.forEach(btn => {
+          // Prevent attaching duplicate listeners across page transitions
+          if (btn.hasAttribute('data-cs-initialized')) return;
+          btn.setAttribute('data-cs-initialized', 'true');
 
-          // Toggle Active Classes on Buttons
-          buttons.forEach(b => {
-            b.classList.remove('bg-slate-900', 'text-white', 'shadow-xs');
-            b.classList.add('bg-white', 'text-slate-700', 'hover:bg-slate-100', 'border', 'border-slate-200');
-          });
-          btn.classList.add('bg-slate-900', 'text-white', 'shadow-xs');
-          btn.classList.remove('bg-white', 'text-slate-700', 'hover:bg-slate-100', 'border', 'border-slate-200');
+          btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter');
 
-          // Filter Cards
-          cards.forEach(card => {
-            if (filter === 'all' || card.getAttribute('data-category') === filter) {
-              card.style.display = 'flex';
-            } else {
-              card.style.display = 'none';
-            }
+            // Toggle Active Classes on Buttons
+            buttons.forEach(b => {
+              b.classList.remove('bg-slate-900', 'text-white', 'shadow-xs');
+              b.classList.add('bg-white', 'text-slate-700', 'hover:bg-slate-100', 'border', 'border-slate-200');
+            });
+            btn.classList.add('bg-slate-900', 'text-white', 'shadow-xs');
+            btn.classList.remove('bg-white', 'text-slate-700', 'hover:bg-slate-100', 'border', 'border-slate-200');
+
+            // Filter Cards
+            cards.forEach(card => {
+              if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                card.style.display = 'flex';
+              } else {
+                card.style.display = 'none';
+              }
+            });
           });
         });
-      });
+      }
+
+      setupCaseStudyFilters();
+      document.addEventListener('astro:page-load', setupCaseStudyFilters);
     </script>
 
   </main>
