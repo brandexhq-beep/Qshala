@@ -82,9 +82,15 @@ export function saveLead(
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newLead),
-      }).catch(err => {
-        console.warn('[LeadsStore] Background webhook dispatch warning:', err);
-      });
+      })
+        .then((res) => {
+          if (!res.ok && res.status === 404) {
+            console.info('[LeadsStore] Inbound lead recorded locally; endpoint returned 404 in this environment.');
+          }
+        })
+        .catch(err => {
+          console.warn('[LeadsStore] Background webhook dispatch warning:', err);
+        });
     }
   }
 

@@ -5,6 +5,31 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 
 // https://astro.build/config
+// Vite plugin to simulate /api/leads serverless endpoint during local Astro development
+function devLeadsApiPlugin() {
+  return {
+    name: 'dev-leads-api',
+    /** @param {any} server */
+    configureServer(server) {
+      server.middlewares.use('/api/leads', /** @param {any} req @param {any} res */ (req, res) => {
+        if (req.method === 'POST') {
+          let body = '';
+          req.on('data', /** @param {any} chunk */ (chunk) => { body += chunk; });
+          req.on('end', () => {
+            res.setHeader('Content-Type', 'application/json');
+            res.statusCode = 200;
+            res.end(JSON.stringify({ success: true, message: 'Inquiry received (dev mode)' }));
+          });
+          return;
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = 200;
+        res.end(JSON.stringify({ status: 'ok' }));
+      });
+    }
+  };
+}
+
 export default defineConfig({
   site: 'https://qshala.com',
   prefetch: {
@@ -41,7 +66,7 @@ export default defineConfig({
   },
   compressHTML: true,
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), devLeadsApiPlugin()],
     build: {
       cssCodeSplit: true,
     },

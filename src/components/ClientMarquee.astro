@@ -23,6 +23,34 @@ const DEFAULT_ROW2 = [
   { name: "Intel", category: "Hardware", color: "#75B543", bg: "#EDF7E5", logo: "intel.svg" },
 ];
 
+// Set of verified local logos in public/assets/logos/
+const LOCAL_LOGOS = new Set([
+  'google.svg', 'hdfcbank.svg', 'wipro.svg', 'microsoft.svg', 'tatagroup.svg', 'amazon.svg',
+  'infosys.svg', 'netflix.svg', 'apple.svg', 'byjus.svg', 'facebook.svg', 'intel.svg',
+  'zerodha.svg', 'mindtree.svg', 'tatamotors.svg', 'oracle.svg', 'qwikcilver.svg',
+  'lowelintas.webp', 'uptycs.webp'
+]);
+
+function resolveLogoUrl(p: any): string | null {
+  if (p.logo) {
+    return getImageUrl(p.logo, 200, 100);
+  }
+  if (p.logoUrl && typeof p.logoUrl === 'string' && p.logoUrl.trim()) {
+    if (p.logoUrl.startsWith('http://') || p.logoUrl.startsWith('https://')) {
+      return p.logoUrl;
+    }
+    const cleanPath = p.logoUrl.replace(/^\/assets\/logos\//, '');
+    if (LOCAL_LOGOS.has(cleanPath)) {
+      return `/assets/logos/${cleanPath}`;
+    }
+  }
+  const normalizedSvg = `${p.name?.toLowerCase().replace(/[^a-z0-9]/g, '')}.svg`;
+  if (LOCAL_LOGOS.has(normalizedSvg)) {
+    return `/assets/logos/${normalizedSvg}`;
+  }
+  return null;
+}
+
 // If CMS has custom partners, use them, otherwise fallback to defaults
 const hasCmsPartners = cmsPartners && cmsPartners.length >= 6;
 const activeList1 = hasCmsPartners 
@@ -31,7 +59,7 @@ const activeList1 = hasCmsPartners
       category: p.category || 'Partner',
       color: "#30B2E7",
       bg: "#E8F6FD",
-      logoUrl: p.logo ? getImageUrl(p.logo, 200, 100) : `/assets/logos/${p.name.toLowerCase().replace(/[^a-z0-9]/g, '')}.svg`
+      logoUrl: resolveLogoUrl(p)
     }))
   : DEFAULT_ROW1.map(p => ({ ...p, logoUrl: `/assets/logos/${p.logo}` }));
 
@@ -41,7 +69,7 @@ const activeList2 = hasCmsPartners
       category: p.category || 'Partner',
       color: "#FDB913",
       bg: "#FFF8E1",
-      logoUrl: p.logo ? getImageUrl(p.logo, 200, 100) : `/assets/logos/${p.name.toLowerCase().replace(/[^a-z0-9]/g, '')}.svg`
+      logoUrl: resolveLogoUrl(p)
     }))
   : DEFAULT_ROW2.map(p => ({ ...p, logoUrl: `/assets/logos/${p.logo}` }));
 
@@ -72,14 +100,17 @@ const row2 = [...activeList2, ...activeList2, ...activeList2];
             <div class="client-card-badge">
               {client.name[0]}
             </div>
-            <img
-              src={client.logoUrl}
-              alt={`${client.name} logo`}
-              class="client-logo"
-              style="opacity: 0; transition: opacity 0.2s;"
-              loading="lazy"
-              onload="this.style.opacity='1';"
-            />
+            {client.logoUrl && (
+              <img
+                src={client.logoUrl}
+                alt={`${client.name} logo`}
+                class="client-logo"
+                style="opacity: 0; transition: opacity 0.2s;"
+                loading="lazy"
+                onload="this.style.opacity='1';"
+                onerror="this.style.display='none';"
+              />
+            )}
           </div>
           <div class="client-card-body">
             <div class="client-card-name">{client.name}</div>
@@ -101,14 +132,17 @@ const row2 = [...activeList2, ...activeList2, ...activeList2];
             <div class="client-card-badge">
               {client.name[0]}
             </div>
-            <img
-              src={client.logoUrl}
-              alt={`${client.name} logo`}
-              class="client-logo"
-              style="opacity: 0; transition: opacity 0.2s;"
-              loading="lazy"
-              onload="this.style.opacity='1';"
-            />
+            {client.logoUrl && (
+              <img
+                src={client.logoUrl}
+                alt={`${client.name} logo`}
+                class="client-logo"
+                style="opacity: 0; transition: opacity 0.2s;"
+                loading="lazy"
+                onload="this.style.opacity='1';"
+                onerror="this.style.display='none';"
+              />
+            )}
           </div>
           <div class="client-card-body">
             <div class="client-card-name">{client.name}</div>
