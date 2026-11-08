@@ -19,10 +19,10 @@ const isLinkActive = (href: string) => {
 ---
 
 <header 
-  class="fixed top-0 left-0 right-0 z-50 h-[64px] sm:h-[72px] flex items-center transition-all bg-white/95 backdrop-blur-md border-b border-slate-200/60 shadow-xs"
+  class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/60 shadow-xs transition-all"
   style="padding-top: env(safe-area-inset-top, 0px); padding-left: max(0.5rem, env(safe-area-inset-left, 0px)); padding-right: max(0.5rem, env(safe-area-inset-right, 0px));"
 >
-  <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 flex items-center justify-between gap-4">
+  <div class="h-[64px] sm:h-[72px] w-full max-w-[1536px] mx-auto px-4 sm:px-8 md:px-12 flex items-center justify-between gap-4">
     <!-- Official QShala SVG Logo -->
     <a 
       href="/" 
@@ -86,26 +86,29 @@ const isLinkActive = (href: string) => {
         aria-expanded="false"
         aria-controls="mobileMenu"
       >
-        <svg class="w-5 h-5 fill-current text-slate-900" viewBox="0 0 24 24">
+        <svg id="menuIconHamburger" class="w-5 h-5 fill-current text-slate-900" viewBox="0 0 24 24">
           <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+        <svg id="menuIconClose" class="w-5 h-5 fill-current text-slate-900 hidden" viewBox="0 0 24 24">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
         </svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Dropdown Panel -->
+  <!-- Mobile Dropdown Panel (Properly absolute-positioned across full width) -->
   <div
     id="mobileMenu"
-    class="hidden lg:hidden mt-2 mx-3 sm:mx-6 max-w-7xl bg-white rounded-3xl p-4 sm:p-5 shadow-xl border border-slate-200 max-h-[calc(100dvh-5rem-env(safe-area-inset-top,0px))] overflow-y-auto scroll-touch"
+    class="hidden lg:hidden absolute top-full left-0 right-0 w-full bg-white/98 backdrop-blur-xl border-b border-slate-200 shadow-2xl px-4 py-4 sm:px-6 max-h-[calc(100dvh-4.5rem)] overflow-y-auto scroll-touch"
   >
-    <div class="flex flex-col gap-2 font-black text-slate-900 font-heading text-sm">
+    <div class="flex flex-col gap-2 font-black text-slate-900 font-heading text-sm max-w-lg mx-auto">
       {NAV_LINKS.map((link) => {
         const active = isLinkActive(link.href);
         return (
           <a
             href={link.href}
             data-nav-href={link.href}
-            class={`px-4 py-3 min-h-[44px] rounded-2xl flex items-center justify-between transition-all ${
+            class={`px-4 py-3 min-h-[48px] rounded-2xl flex items-center justify-between transition-all ${
               active
                 ? 'bg-[#30B2E7] text-white shadow-sm font-black'
                 : 'text-slate-800 hover:bg-slate-50 font-bold'
@@ -121,7 +124,7 @@ const isLinkActive = (href: string) => {
 
       <a
         href={ctaUrl}
-        class="mt-3 text-center py-3.5 min-h-[44px] rounded-2xl bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black shadow-sm uppercase tracking-wider text-xs font-heading flex items-center justify-center"
+        class="mt-2 text-center py-3.5 min-h-[48px] rounded-2xl bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black shadow-sm uppercase tracking-wider text-xs font-heading flex items-center justify-center transition-all"
       >
         {ctaLabel} &rarr;
       </a>
@@ -144,10 +147,10 @@ const isLinkActive = (href: string) => {
         : currentPath.startsWith(href || '');
 
       if (isCurrent) {
-        link.className = "px-4 py-3 min-h-[44px] rounded-2xl flex items-center justify-between transition-all bg-[#30B2E7] text-white shadow-sm font-black";
+        link.className = "px-4 py-3 min-h-[48px] rounded-2xl flex items-center justify-between transition-all bg-[#30B2E7] text-white shadow-sm font-black";
         badge?.classList.remove('hidden');
       } else {
-        link.className = "px-4 py-3 min-h-[44px] rounded-2xl flex items-center justify-between transition-all text-slate-800 hover:bg-slate-50 font-bold";
+        link.className = "px-4 py-3 min-h-[48px] rounded-2xl flex items-center justify-between transition-all text-slate-800 hover:bg-slate-50 font-bold";
         badge?.classList.add('hidden');
       }
     });
@@ -175,6 +178,8 @@ const isLinkActive = (href: string) => {
   function setupMenuToggle() {
     const menuToggleBtn = document.getElementById('menuToggleBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const hamburgerIcon = document.getElementById('menuIconHamburger');
+    const closeIcon = document.getElementById('menuIconClose');
 
     if (outsideClickHandler) {
       document.removeEventListener('click', outsideClickHandler);
@@ -182,19 +187,30 @@ const isLinkActive = (href: string) => {
     }
 
     if (menuToggleBtn && mobileMenu) {
+      const setMenuOpen = (open: boolean) => {
+        menuToggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+          mobileMenu.classList.remove('hidden');
+          hamburgerIcon?.classList.add('hidden');
+          closeIcon?.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon?.classList.remove('hidden');
+          closeIcon?.classList.add('hidden');
+        }
+      };
+
       menuToggleBtn.onclick = (e) => {
         e.stopPropagation();
         const isExpanded = menuToggleBtn.getAttribute('aria-expanded') === 'true';
-        menuToggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
-        mobileMenu.classList.toggle('hidden');
+        setMenuOpen(!isExpanded);
       };
 
       // Auto-close dropdown when a navigation link is clicked
       const menuLinks = mobileMenu.querySelectorAll('a');
       menuLinks.forEach((link) => {
         link.onclick = () => {
-          mobileMenu.classList.add('hidden');
-          menuToggleBtn.setAttribute('aria-expanded', 'false');
+          setMenuOpen(false);
           const href = link.getAttribute('href') || link.getAttribute('data-nav-href');
           if (href && (href === window.location.pathname || href === window.location.pathname.replace(/\/+$/, ''))) {
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -204,8 +220,7 @@ const isLinkActive = (href: string) => {
 
       outsideClickHandler = (e: MouseEvent) => {
         if (!mobileMenu.contains(e.target as Node) && !menuToggleBtn.contains(e.target as Node)) {
-          mobileMenu.classList.add('hidden');
-          menuToggleBtn.setAttribute('aria-expanded', 'false');
+          setMenuOpen(false);
         }
       };
 
