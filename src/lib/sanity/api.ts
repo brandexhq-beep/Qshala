@@ -965,10 +965,10 @@ async function fetchWithFallback<T>(
   if (!isSanityConfigured()) return fallback;
   try {
     const data = await sanityClient.fetch<any>(query, params);
-    if (!data) return fallback;
+    if (data === null || data === undefined) return fallback;
     if (validator && !validator(data)) return fallback;
     if (Array.isArray(fallback)) {
-      return (Array.isArray(data) && data.length > 0 ? data : fallback) as unknown as T;
+      return (Array.isArray(data) ? data : fallback) as unknown as T;
     }
     return { ...(fallback as any), ...data };
   } catch (err) {

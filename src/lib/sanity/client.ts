@@ -34,6 +34,7 @@ export const sanityClient = createClient({
   projectId: isSanityConfigured() ? projectId : 'placeholder-id',
   dataset,
   apiVersion,
-  useCdn: true,
+  // In SSG, always query fresh origin data during build so newly published articles reflect instantly
+  useCdn: false,
   perspective: 'published',
 });

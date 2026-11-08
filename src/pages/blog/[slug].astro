@@ -5,12 +5,12 @@ import Footer from '../../components/Footer.astro';
 import QTMascot from '../../components/QTMascot';
 import EventPhotoGallery from '../../components/EventPhotoGallery';
 import SanityPortableText from '../../components/SanityPortableText.astro';
-import { getPosts } from '../../lib/sanity/api';
+import { getPosts, getAllCaseStudies } from '../../lib/sanity/api';
 import { getImageUrl } from '../../lib/sanity/image';
 import { RAZORPAY_QQL_PAYMENT_URL } from '../../components/NewsletterSubscription';
 
 export async function getStaticPaths() {
-  const cmsPosts = await getPosts();
+  const [cmsPosts, caseStudies] = await Promise.all([getPosts(), getAllCaseStudies()]);
   const posts = [
     {
       slug: 'bangalore-inter-school-quriosity-cup-2026',
@@ -675,6 +675,39 @@ export async function getStaticPaths() {
   }
 
   const cmsMap = new Map<string, any>();
+
+  // Surface case studies with showInBlogFeed in blog stream routes
+  caseStudies.filter((cs: any) => cs.showInBlogFeed !== false).forEach((cs: any) => {
+    const slugStr = typeof cs.slug === 'string' ? cs.slug : cs.slug?.current;
+    if (slugStr) {
+      const gallery = (cs.gallery || []).map((g: any) => ({
+        url: (g.image ? getImageUrl(g.image, 1600, 1200) : '') || g.imageUrl || g.url || (g.asset ? getImageUrl(g, 1600, 1200) : ''),
+        caption: g.caption || cs.title
+      })).filter((p: any) => Boolean(p.url));
+
+      const coverUrl = (cs.image ? getImageUrl(cs.image, 1200, 630) : null) ||
+        cs.imageUrl ||
+        (cs.coverImage ? getImageUrl(cs.coverImage, 1200, 630) : null);
+
+      cmsMap.set(slugStr, {
+        slug: slugStr,
+        title: cs.title,
+        category: 'Events',
+        readTime: cs.clientName ? cs.clientName : 'Case Study',
+        date: cs.publishedDate ? new Date(cs.publishedDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Recent',
+        isoDate: cs.publishedDate || '2026-10-14T10:00:00+05:30',
+        author: cs.clientName || 'QShala Team',
+        authorRole: 'Case Study & Event Story',
+        summary: cs.summary || '',
+        color: '#FDB913',
+        bg: 'bg-[#FFF8E1]',
+        body: cs.body || null,
+        content: typeof cs.summary === 'string' ? `<p>${cs.summary}</p>` : '',
+        gallery,
+        coverImage: coverUrl
+      });
+    }
+  });
   cmsPosts.forEach(cp => {
     const slugStr = typeof cp.slug === 'string' ? cp.slug : cp.slug?.current;
     if (slugStr) {
@@ -774,6 +807,17 @@ const articleSchema = {
             {post.title}
           </h1>
         </div>
+
+        {post.coverImage && (
+          <div class="rounded-3xl overflow-hidden aspect-[16/9] bg-slate-100 shadow-md border border-slate-200/80 mb-8">
+            <img 
+              src={post.coverImage} 
+              alt={post.title} 
+              class="w-full h-full object-cover" 
+              fetchpriority="high" 
+            />
+          </div>
+        )}
 
         <!-- Article Body -->
         <SanityPortableText value={post.body || post.content} class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" />

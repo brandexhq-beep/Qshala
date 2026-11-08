@@ -217,7 +217,7 @@ export const upcomingEventsQuery = `*[_type == "event" && isFeatured != false] |
   heroImage
 }`;
 
-export const allCaseStudiesQuery = `*[_type == "caseStudy"] | order(order asc){
+export const allCaseStudiesQuery = `*[_type == "caseStudy"] | order(coalesce(order, 0) asc, _createdAt desc){
   _id,
   "id": _id,
   "slug": slug.current,
@@ -229,10 +229,13 @@ export const allCaseStudiesQuery = `*[_type == "caseStudy"] | order(order asc){
   gallery[]{
     url,
     caption,
-    alt
+    alt,
+    image,
+    "imageUrl": image.asset->url
   },
   showInBlogFeed,
   isFeatured,
+  order,
   publishedDate,
   impactMetrics[]{
     value,
@@ -244,7 +247,9 @@ export const allCaseStudiesQuery = `*[_type == "caseStudy"] | order(order asc){
     role
   },
   tags,
-  image
+  image,
+  "imageUrl": image.asset->url,
+  seo
 }`;
 
 export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $slug][0]{
@@ -259,10 +264,13 @@ export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $
   gallery[]{
     url,
     caption,
-    alt
+    alt,
+    image,
+    "imageUrl": image.asset->url
   },
   showInBlogFeed,
   isFeatured,
+  order,
   publishedDate,
   impactMetrics[]{
     value,
@@ -275,6 +283,7 @@ export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $
   },
   tags,
   image,
+  "imageUrl": image.asset->url,
   seo
 }`;
 
@@ -400,6 +409,7 @@ export const allPostsQuery = `*[_type == "post"] | order(isoDate desc, _createdA
   bg,
   mainImage,
   mainImageUrl,
+  "imageUrl": coalesce(mainImage.asset->url, mainImageUrl),
   gallery[]{
     url,
     caption,
@@ -423,6 +433,7 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0]{
   bg,
   mainImage,
   mainImageUrl,
+  "imageUrl": coalesce(mainImage.asset->url, mainImageUrl),
   body,
   rawHtmlContent,
   gallery[]{

@@ -48,12 +48,14 @@ const { study } = Astro.props;
 const slug = typeof study.slug === 'string' ? study.slug : study.slug?.current || '';
 const catStyle = CATEGORY_STYLES[study.clientType] || CATEGORY_STYLES.School;
 const formattedGallery = study.gallery?.map((g: any) => ({
-  url: g.url || '',
+  url: (g.image ? getImageUrl(g.image, 1600, 1200) : '') || g.imageUrl || g.url || (g.asset ? getImageUrl(g, 1600, 1200) : ''),
   caption: g.caption || study.title,
   alt: g.alt || study.title,
-})) || [];
+})).filter((p: any) => Boolean(p.url)) || [];
 
-const coverImage = (study.coverImage ? getImageUrl(study.coverImage, 1200, 630) : null) || 
+const coverImage = (study.image ? getImageUrl(study.image, 1200, 630) : null) || 
+  study.imageUrl || 
+  (study.coverImage ? getImageUrl(study.coverImage, 1200, 630) : null) || 
   CASE_STUDY_IMAGES[slug] || 
   'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop';
 

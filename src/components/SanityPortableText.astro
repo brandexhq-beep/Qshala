@@ -33,7 +33,7 @@ function sanitizeHtmlContent(raw: string): string {
   if (!/<[a-z][\s\S]*>/i.test(trimmed)) {
     return trimmed
       .split(/\n\s*\n/)
-      .map(p => `<p class="leading-relaxed mb-4">${escapeHtml(p.trim())}</p>`)
+      .map(p => `<p class="text-base sm:text-lg text-slate-700 leading-relaxed font-medium mb-5">${escapeHtml(p.trim())}</p>`)
       .join('');
   }
 
@@ -62,15 +62,31 @@ if (typeof value === 'string') {
   try {
     html = toHTML(value, {
       components: {
-        types: {
-          image: ({ value }) => {
-            const url = getImageUrl(value);
-            const safeAlt = escapeHtml(String(value.alt || 'QShala Content Image'));
-            const safeCaption = value.caption ? `<figcaption class="text-xs text-slate-500 mt-2 text-center font-medium">${escapeHtml(String(value.caption))}</figcaption>` : '';
-            return `<figure class="my-6 rounded-2xl overflow-hidden shadow-sm"><img src="${url}" alt="${safeAlt}" class="w-full h-auto object-cover" loading="lazy" />${safeCaption}</figure>`;
+        block: {
+          normal: ({ children }) => {
+            const trimmed = String(children || '').trim();
+            if (!trimmed) return '';
+            return `<p class="text-base sm:text-lg text-slate-700 leading-relaxed font-medium mb-5">${children}</p>`;
           },
+          h1: ({ children }) => `<h1 class="text-3xl sm:text-4xl font-black font-heading text-slate-900 mt-10 mb-5 leading-tight">${children}</h1>`,
+          h2: ({ children }) => `<h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 mt-9 mb-4 leading-snug">${children}</h2>`,
+          h3: ({ children }) => `<h3 class="text-xl sm:text-2xl font-black font-heading text-slate-900 mt-7 mb-3 leading-snug">${children}</h3>`,
+          h4: ({ children }) => `<h4 class="text-lg sm:text-xl font-black font-heading text-slate-900 mt-6 mb-2 leading-snug">${children}</h4>`,
+          blockquote: ({ children }) => `<blockquote class="border-l-4 border-[#FDB913] pl-5 py-3.5 my-7 bg-[#FFFDF5] rounded-r-2xl border border-amber-200/50 italic text-slate-800 text-base sm:text-lg font-medium leading-relaxed">${children}</blockquote>`,
+        },
+        list: {
+          bullet: ({ children }) => `<ul class="list-disc pl-6 space-y-2.5 text-slate-700 font-medium my-6">${children}</ul>`,
+          number: ({ children }) => `<ol class="list-decimal pl-6 space-y-2.5 text-slate-700 font-medium my-6">${children}</ol>`,
+        },
+        listItem: {
+          bullet: ({ children }) => `<li class="leading-relaxed pl-1 text-slate-700 font-medium">${children}</li>`,
+          number: ({ children }) => `<li class="leading-relaxed pl-1 text-slate-700 font-medium">${children}</li>`,
         },
         marks: {
+          strong: ({ children }) => `<strong class="font-black text-slate-900">${children}</strong>`,
+          em: ({ children }) => `<em>${children}</em>`,
+          underline: ({ children }) => `<u>${children}</u>`,
+          code: ({ children }) => `<code class="bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-sm font-mono">${children}</code>`,
           link: ({ children, value }) => {
             const rawHref = String(value?.href || '').trim();
             // Security: Strictly enforce safe URI schemes to prevent javascript: or data: XSS attacks
@@ -79,7 +95,15 @@ if (typeof value === 'string') {
             const isExternal = /^https?:\/\//i.test(safeHref);
             const rel = isExternal ? 'noreferrer noopener' : undefined;
             const target = (value?.blank || isExternal) ? '_blank' : undefined;
-            return `<a href="${safeHref}" ${rel ? `rel="${rel}"` : ''} ${target ? `target="${target}"` : ''} class="text-[#30B2E7] hover:underline font-bold">${children}</a>`;
+            return `<a href="${safeHref}" ${rel ? `rel="${rel}"` : ''} ${target ? `target="${target}"` : ''} class="text-[#30B2E7] hover:underline font-bold transition-colors">${children}</a>`;
+          },
+        },
+        types: {
+          image: ({ value }) => {
+            const url = getImageUrl(value);
+            const safeAlt = escapeHtml(String(value.alt || 'QShala Content Image'));
+            const safeCaption = value.caption ? `<figcaption class="text-xs text-slate-500 mt-2 text-center font-medium">${escapeHtml(String(value.caption))}</figcaption>` : '';
+            return `<figure class="my-8 rounded-2xl overflow-hidden shadow-sm border border-slate-100"><img src="${url}" alt="${safeAlt}" class="w-full h-auto object-cover" loading="lazy" />${safeCaption}</figure>`;
           },
         },
       },

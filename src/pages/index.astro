@@ -13,6 +13,7 @@ import FAQSection from '../components/FAQSection';
 import TestimonialsMarquee from '../components/TestimonialsMarquee.astro';
 import UpcomingEventsSlider from '../components/UpcomingEventsSlider';
 import NewsletterSubscription from '../components/NewsletterSubscription';
+import { getImageUrl } from '../lib/sanity/image';
 import { getShopifyProducts, type ShopifyProductItem } from '../lib/shopify/client';
 import { 
   getHomePage, 
@@ -26,6 +27,17 @@ const homeData = await getHomePage();
 const siteSettings = await getSiteSettings();
 const faqs = await getFAQs(true);
 const caseStudies = await getAllCaseStudies();
+const enrichedCaseStudies = caseStudies.map(cs => {
+  const slug = typeof cs.slug === 'string' ? cs.slug : cs.slug?.current || '';
+  const resolvedImg = (cs.image ? getImageUrl(cs.image, 800, 600) : null) ||
+    cs.imageUrl ||
+    (cs.coverImage ? getImageUrl(cs.coverImage, 800, 600) : null);
+  return {
+    ...cs,
+    slug,
+    imageUrl: resolvedImg,
+  };
+});
 const cmsEvents = await getUpcomingEvents();
 
 let shopifyProducts: ShopifyProductItem[] = [];
@@ -343,7 +355,7 @@ const faqSchema = {
           </a>
         </div>
 
-        <InteractiveCaseStudiesShowcase caseStudies={caseStudies as any} client:visible />
+        <InteractiveCaseStudiesShowcase caseStudies={enrichedCaseStudies as any} client:visible />
       </div>
     </section>
 

@@ -1,0 +1,1154 @@
+[
+  {
+    "_createdAt": "2026-11-04T10:07:11Z",
+    "_id": "caseStudy-dps-bangalore-quriosity-league",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "Delhi Public School",
+    "clientType": "School",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_students_engaged",
+        "label": "Students Engaged",
+        "value": "4,200+"
+      },
+      {
+        "_key": "metric_2_retention_score",
+        "label": "Retention Score",
+        "value": "+88%"
+      },
+      {
+        "_key": "metric_3_parent_satisfaction",
+        "label": "Parent Satisfaction",
+        "value": "98.4%"
+      }
+    ],
+    "isFeatured": true,
+    "order": 1,
+    "quote": {
+      "author": "Sunita Sharma",
+      "role": "Principal, DPS Bangalore East",
+      "text": "QShala turned standard GK into the most anticipated hour of the school week. Children ask \"Why?\" with real passion now."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "dps-bangalore-quriosity-league"
+    },
+    "summary": "Replacing static encyclopedic learning with QShala interactive storytelling and weekly quriosity modules increased student participation by 340%.",
+    "title": "How DPS Transformed General Knowledge into an Active Weekly Sport for 4,000+ Students"
+  },
+  {
+    "_createdAt": "2026-11-04T10:07:12Z",
+    "_id": "caseStudy-flipkart-corporate-trivia-league",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "Flipkart",
+    "clientType": "Corporate",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_employees_joined",
+        "label": "Employees Joined",
+        "value": "1,800+"
+      },
+      {
+        "_key": "metric_2_live_engagement_rate",
+        "label": "Live Engagement Rate",
+        "value": "94%"
+      },
+      {
+        "_key": "metric_3_nps_score",
+        "label": "NPS Score",
+        "value": "92/100"
+      }
+    ],
+    "isFeatured": true,
+    "order": 2,
+    "quote": {
+      "author": "Rajesh Nair",
+      "role": "Head of Employee Experience, Flipkart",
+      "text": "The energy QT and the QShala team brought to our townhalls was phenomenal. It bonded engineering and marketing seamlessly."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "flipkart-corporate-trivia-league"
+    },
+    "summary": "A 6-week gamified cross-functional championship that boosted inter-departmental engagement during company-wide hybrid work initiatives.",
+    "title": "Driving Hybrid Team Connection Across 12 Cities with Custom QShala Live Trivia"
+  },
+  {
+    "_createdAt": "2026-11-04T10:07:18Z",
+    "_id": "caseStudy-iim-bangalore-business-simulations",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "IIM Bangalore",
+    "clientType": "College",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_mba_candidates",
+        "label": "MBA Candidates",
+        "value": "1,200+"
+      },
+      {
+        "_key": "metric_2_industry_relevance",
+        "label": "Industry Relevance",
+        "value": "100%"
+      },
+      {
+        "_key": "metric_3_satisfaction_score",
+        "label": "Satisfaction Score",
+        "value": "4.9/5"
+      }
+    ],
+    "isFeatured": true,
+    "order": 8,
+    "quote": {
+      "author": "Prof. Sourav Mukherji",
+      "role": "Dean of Programs, IIM Bangalore",
+      "text": "QShala brings an incredible blend of sharp business acumen and high-octane gamification."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "iim-bangalore-business-simulations"
+    },
+    "summary": "Interactive business trivia and market analysis strategy quests designed for future corporate leaders.",
+    "title": "Real-World Business Case Study Simulations & Strategy Quests for MBAs"
+  },
+  {
+    "_createdAt": "2026-11-04T10:07:17Z",
+    "_id": "caseStudy-iit-bombay-techfest-championship",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "IIT Bombay",
+    "clientType": "College",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_college_delegates",
+        "label": "College Delegates",
+        "value": "6,000+"
+      },
+      {
+        "_key": "metric_2_colleges_represented",
+        "label": "Colleges Represented",
+        "value": "50+"
+      },
+      {
+        "_key": "metric_3_fest_rating",
+        "label": "Fest Rating",
+        "value": "98%"
+      }
+    ],
+    "isFeatured": true,
+    "order": 7,
+    "quote": {
+      "author": "Aakash Verma",
+      "role": "Overall Coordinator, IIT Bombay Techfest",
+      "text": "The QShala quiz masters held an audience of 6,000 students spellbound for 3 straight hours."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "iit-bombay-techfest-championship"
+    },
+    "summary": "Packed auditoriums with 6,000+ delegates competing in high-stakes science, tech, and general awareness rounds.",
+    "title": "Hosting India's Largest Inter-Collegiate Quriosity Quiz Championship"
+  },
+  {
+    "_createdAt": "2026-11-04T10:07:15Z",
+    "_id": "caseStudy-inventure-academy-critical-thinking",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "Inventure Academy",
+    "clientType": "School",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_learners_joined",
+        "label": "Learners Joined",
+        "value": "1,500+"
+      },
+      {
+        "_key": "metric_2_participation_boost",
+        "label": "Participation Boost",
+        "value": "3.4x"
+      },
+      {
+        "_key": "metric_3_student_rating",
+        "label": "Student Rating",
+        "value": "4.9/5"
+      }
+    ],
+    "isFeatured": true,
+    "order": 5,
+    "quote": {
+      "author": "Nooraine Fazal",
+      "role": "Co-Founder & Managing Trustee, Inventure Academy",
+      "text": "QShala fits perfectly into our learner-centric philosophy. It builds confident, curious global citizens."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "inventure-academy-critical-thinking"
+    },
+    "summary": "A multi-tier quriosity league where students analyze global news stories, logical fallacies, and ethical dilemmas.",
+    "title": "Building 21st-Century Critical Thinking & Public Debate Leagues"
+  },
+  {
+    "_createdAt": "2026-11-04T10:07:14Z",
+    "_id": "caseStudy-nps-socratic-science-storytelling",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "National Public School",
+    "clientType": "School",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_students_active",
+        "label": "Students Active",
+        "value": "2,100+"
+      },
+      {
+        "_key": "metric_2_science_interest",
+        "label": "Science Interest",
+        "value": "+92%"
+      },
+      {
+        "_key": "metric_3_teacher_endorsement",
+        "label": "Teacher Endorsement",
+        "value": "99%"
+      }
+    ],
+    "isFeatured": true,
+    "order": 4,
+    "quote": {
+      "author": "Dr. Revathi Srinivasan",
+      "role": "Academic Director, NPS",
+      "text": "Our middle schoolers are engaged like never before. They don't just memorize science—they question it."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "nps-socratic-science-storytelling"
+    },
+    "summary": "Integrated weekly real-world discovery modules to connect textbook science with current affairs and everyday phenomena.",
+    "title": "Pioneering Socratic Science & Civics Storytelling for Middle Schoolers"
+  },
+  {
+    "_createdAt": "2026-11-04T10:07:19Z",
+    "_id": "caseStudy-sobha-city-family-game-nights",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "Sobha City Community",
+    "clientType": "Community",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_families_joined",
+        "label": "Families Joined",
+        "value": "450+"
+      },
+      {
+        "_key": "metric_2_screen-free_fun",
+        "label": "Screen-Free Fun",
+        "value": "100%"
+      },
+      {
+        "_key": "metric_3_community_rating",
+        "label": "Community Rating",
+        "value": "4.9/5"
+      }
+    ],
+    "isFeatured": true,
+    "order": 9,
+    "quote": {
+      "author": "Priya Sundaram",
+      "role": "President, Sobha Resident Association",
+      "text": "It brought our entire apartment complex together! Kids and grandparents were on the same team laughing and learning."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "sobha-city-family-game-nights"
+    },
+    "summary": "Bringing parents, kids, and neighbors together for weekend offline trivia tournaments in residential complexes.",
+    "title": "Screen-Free Weekend Family Game Nights & Neighborhood Pub Quizzes"
+  },
+  {
+    "_createdAt": "2026-11-04T10:07:16Z",
+    "_id": "caseStudy-tcs-cross-hub-workplace-engagement",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "TCS",
+    "clientType": "Corporate",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_participants_joined",
+        "label": "Participants Joined",
+        "value": "3,500+"
+      },
+      {
+        "_key": "metric_2_engagement_rate",
+        "label": "Engagement Rate",
+        "value": "91%"
+      },
+      {
+        "_key": "metric_3_nps_rating",
+        "label": "NPS Rating",
+        "value": "94/100"
+      }
+    ],
+    "isFeatured": true,
+    "order": 6,
+    "quote": {
+      "author": "Rahul Singh",
+      "role": "VP Employee Engagement, TCS",
+      "text": "QShala for more than two months now and we can’t get enough of them! The excitement in our hubs is palpable."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "tcs-cross-hub-workplace-engagement"
+    },
+    "summary": "Quarterly inter-hub quiz championships with live digital buzzers and real-time leaderboards.",
+    "title": "Cross-Functional Workplace Engagement Across 8 Regional Tech Hubs"
+  },
+  {
+    "_createdAt": "2026-11-04T10:07:20Z",
+    "_id": "caseStudy-wework-community-networking-nights",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "WeWork India",
+    "clientType": "Corporate",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_members_engaged",
+        "label": "Members Engaged",
+        "value": "2,400+"
+      },
+      {
+        "_key": "metric_2_networking_boost",
+        "label": "Networking Boost",
+        "value": "+91%"
+      },
+      {
+        "_key": "metric_3_satisfaction",
+        "label": "Satisfaction",
+        "value": "96/100"
+      }
+    ],
+    "isFeatured": true,
+    "order": 10,
+    "quote": {
+      "author": "Bhavya Tripathi",
+      "role": "Community Lead, WeWork",
+      "text": "We've been working with QShala for more than two months now and we can’t get enough of them! Essential member experience."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "wework-community-networking-nights"
+    },
+    "summary": "Gamified pub quizzes hosted across WeWork spaces to spark casual networking among founders and freelancers.",
+    "title": "Monthly Community Pub Quizzes & Startup Founder Networking Nights"
+  },
+  {
+    "_createdAt": "2026-11-04T10:07:13Z",
+    "_id": "caseStudy-wipro-onboarding-gamification",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "clientName": "Wipro",
+    "clientType": "Corporate",
+    "impactMetrics": [
+      {
+        "_key": "metric_1_new_hires_onboarded",
+        "label": "New Hires Onboarded",
+        "value": "5,000+"
+      },
+      {
+        "_key": "metric_2_completion_rate",
+        "label": "Completion Rate",
+        "value": "96%"
+      },
+      {
+        "_key": "metric_3_early_attrition_drop",
+        "label": "Early Attrition Drop",
+        "value": "-12%"
+      }
+    ],
+    "isFeatured": true,
+    "order": 3,
+    "quote": {
+      "author": "Manish Jain",
+      "role": "Global L&D Director, Wipro",
+      "text": "We've been working with QShala for over two months now and we can't get enough of them! It makes culture stick."
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "wipro-onboarding-gamification"
+    },
+    "summary": "Replaced traditional slide presentations with interactive brand quests and company history trivia tournaments.",
+    "title": "Gamifying Onboarding & Corporate Culture for 5,000+ Global New Hires"
+  },
+  {
+    "_createdAt": "2026-11-04T10:06:23Z",
+    "_id": "drafts.aboutPage",
+    "_rev": "741866f2-45e0-4c8f-9f4b-04dff17313a4",
+    "_system": {
+      "base": {
+        "id": "aboutPage",
+        "rev": "l326m66BRC3WVB323m3mvJ"
+      }
+    },
+    "_type": "aboutPage",
+    "_updatedAt": "2026-11-08T06:17:07Z",
+    "foundersHeading": "Meet the Co-Founders",
+    "foundersSubtitle": "Lawyers by training. Quizzers at heart.",
+    "heroBadge": "Our Story",
+    "heroHeading": "It Started With a Love of Questions.",
+    "heroIntro": "QShala began in 2014 with two law school friends and a love of quizzing.",
+    "stats": [
+      {
+        "_key": "stat_1_partner_schools",
+        "color": "#30B2E7",
+        "label": "Partner Schools",
+        "value": "250+"
+      },
+      {
+        "_key": "stat_2_top_corporates",
+        "color": "#75B543",
+        "label": "Top Corporates",
+        "value": "80+"
+      },
+      {
+        "_key": "stat_3_live_quests_hosted",
+        "color": "#FDB913",
+        "label": "Live Quests Hosted",
+        "value": "1,000+"
+      },
+      {
+        "_key": "stat_4_curious_learners",
+        "color": "#9333EA",
+        "label": "Curious Learners",
+        "value": "2.5L+"
+      }
+    ],
+    "storyHeadline": "From Law School Quizzers to a National Socratic Movement.",
+    "teamSectionHeading": "The Quriosity Crew.",
+    "teamSectionLabel": "Meet Our Team",
+    "teamSectionSubheading": "Archaeologists, architects, lawyers, educators and more, sparking Quriosity across India."
+  },
+  {
+    "_createdAt": "2026-11-05T20:31:41Z",
+    "_id": "drafts.event-ev-4",
+    "_rev": "63533eb6-7dce-4c56-b3dc-b358951d4694",
+    "_system": {
+      "base": {
+        "id": "event-ev-4",
+        "rev": "l326m66BRC3WVB323m3mvJ"
+      }
+    },
+    "_type": "event",
+    "_updatedAt": "2026-11-08T06:17:20Z",
+    "buttonText": "Learn More",
+    "buttonType": "learn_more",
+    "buttonUrl": "/schools",
+    "category": "School",
+    "date": "Dec 10, 2026",
+    "desc": "The grand finale of our nation-wide inter-school quiz competition.",
+    "order": 4,
+    "slug": {
+      "_type": "slug",
+      "current": "ev-4"
+    },
+    "title": "National Curiosity Cup",
+    "venue": "Bengaluru / Online"
+  },
+  {
+    "_createdAt": "2026-11-08T05:30:45Z",
+    "_id": "ed586a05-91ed-4cef-b3b4-595d933b2bb8",
+    "_rev": "l326m66BRC3WVB323rGDOr",
+    "_system": {
+      "base": {
+        "id": "ed586a05-91ed-4cef-b3b4-595d933b2bb8",
+        "rev": "CxSjO9a6auxLkr8fOK9DEZ"
+      }
+    },
+    "_type": "caseStudy",
+    "_updatedAt": "2026-11-08T06:20:35Z",
+    "body": [
+      {
+        "_key": "4ddd1584cb2e",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "The Arundhati Foundation and QShala collaborate every year to bring you Safety Quest, an online quiz, entirely free, for school children across the country. The 2026 edition is its tenth year."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "6a5d14dd5878",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "08b1edac9a1e",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "b19a658e9913",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Why a quiz on safety"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "55ae39a42ebf",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Safety lessons are easy to forget when they arrive as rules on a poster. A good question sticks. A child who has to think about what to do when a fire alarm rings, or why a pillion rider needs a helmet, remembers the answer far longer than one who has only been told. Safety Quest turns safety into something students want to figure out, and talk about with their friends and families afterwards."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "240cfb1965ec",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "368e52e49994",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "c755a9e6580e",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "What the questions cover"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "38077fe7255b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "The quiz goes well beyond road rules. Its questions cover:"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "d90e321dc4a2",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Road safety: signs, signals, seatbelts and helmets, including why pillion riders need them too."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "cccb5fb58f2f",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Fire safety: how fires start, what to do in an emergency and how to stay calm."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "e52eb9eb70a9",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Cybersecurity: staying safe online, a topic that matters more to young people every year."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "a190378f8338",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Emergency numbers: who to call, and when, so help reaches faster.\nStories of courage: real accounts of presence of mind from across the world, so students remember them and draw strength from them."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "26ec45883ecf",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b02db48081b8",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "95b19a8c1d20",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "How it works"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "737e3e9d4aec",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Safety Quest is played online, so school children from any city or town can join. It is free for every student, and the Arundhati Foundation and QShala run a new edition every year. Schools only need to encourage their students to sign up."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "f122c38b8d0d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "fadeb1863c88",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "03150dd0ed82",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Where it began"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "f9d7d88edf54",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Early editions were held in person, in Bengaluru and Goa. The Fire and Security Association of India and the Directorate of Fire and Emergency Services supported the Goa edition. Today the quiz is online, which lets children across the country take part together."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "8aa73d34e1db",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "564c2d58bca1",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "c1ea638ddebf",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Join the next edition"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "50fecc9dfbcf",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "27d7c94d8bf9",
+            "_type": "span",
+            "marks": [],
+            "text": "Check the Events page for the date of the next Safety Quest. If you are a school and would like your students to take part, write to us and we will help you get started."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "clientName": "Arundhati Foundation ",
+    "clientType": "School",
+    "gallery": [
+      {
+        "_key": "d64813b8e8dd",
+        "_type": "galleryImage",
+        "caption": "Safety Quiz 2025",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-deace3140625b59c841a116134e26663cce75424-1975x1055-png",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "530436a1f8f6",
+        "_type": "galleryImage",
+        "caption": "Safety Quiz 2023",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-76b4de85ad30b5f19ceab8c568af4eb94d138d05-2880x1800-png",
+            "_type": "reference"
+          }
+        }
+      }
+    ],
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-76b4de85ad30b5f19ceab8c568af4eb94d138d05-2880x1800-png",
+        "_type": "reference"
+      }
+    },
+    "impactMetrics": [
+      {
+        "_key": "c3960f20d060",
+        "_type": "metric",
+        "label": "students",
+        "value": "5,000+"
+      },
+      {
+        "_key": "ffee0cef9f6f",
+        "_type": "metric",
+        "label": "states",
+        "value": "15+"
+      },
+      {
+        "_key": "e5dfa4d2d895",
+        "_type": "metric",
+        "label": "Years",
+        "value": "10"
+      }
+    ],
+    "isFeatured": true,
+    "order": 1,
+    "publishedDate": "2026-11-08T05:40:00.000Z",
+    "seo": {
+      "_type": "seo",
+      "metaDescription": "Safety Quest is a free online quiz for school children across India, run every year by the Arundhati Foundation and QShala. See what it covers and how it works.",
+      "metaTitle": "Safety Quest: Free Online Safety Quiz for Students | QShala",
+      "noIndex": false
+    },
+    "showInBlogFeed": true,
+    "slug": {
+      "_type": "slug",
+      "current": "safety-quest-road-safety-one-question-at-a-time"
+    },
+    "summary": "Every year, school children across the country take on Safety Quest, a free online quiz from the Arundhati Foundation and QShala.",
+    "title": "Safety Quest: Safety, One Question at a Time"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:16Z",
+    "_id": "post-bangalore-inter-school-quriosity-cup-2026",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Sachin Ravi",
+    "authorRole": "Co-Founder, National Quizmaster",
+    "category": "Events",
+    "color": "#FDB913",
+    "date": "July 2026",
+    "gallery": [
+      {
+        "_key": "gallery_1_k1",
+        "caption": "Packed classroom of young quizzers holding QShala curriculum kits",
+        "url": "/assets/media/schools/qe1.webp"
+      },
+      {
+        "_key": "gallery_2_k2",
+        "caption": "Auditorium buzzing with students eagerly raising hands to answer",
+        "url": "/assets/media/crowd/dsc07829.webp"
+      },
+      {
+        "_key": "gallery_3_k3",
+        "caption": "Students proudly displaying their participation certificates",
+        "url": "/assets/media/schools/2.webp"
+      },
+      {
+        "_key": "gallery_4_k4",
+        "caption": "Inquiry-driven socratic storytelling session in progress",
+        "url": "/assets/media/schools/3.webp"
+      },
+      {
+        "_key": "gallery_5_k5",
+        "caption": "Campus delegates cheering during the visual buzzer heats",
+        "url": "/assets/media/colleges/c1.webp"
+      },
+      {
+        "_key": "gallery_6_k6",
+        "caption": "Grand finale stage clash with the QShala mascot on big screen",
+        "url": "/assets/media/banners/nlq_final.webp"
+      },
+      {
+        "_key": "gallery_7_k7",
+        "caption": "Inter-school championship participants conferring on lateral thinking clues",
+        "url": "/assets/media/schools/7.webp"
+      },
+      {
+        "_key": "gallery_8_k8",
+        "caption": "Hands shooting up across the middle-school tier",
+        "url": "/assets/media/schools/8.webp"
+      },
+      {
+        "_key": "gallery_9_k9",
+        "caption": "Audience questions and spot trivia giveaways",
+        "url": "/assets/media/crowd/dsc07629.webp"
+      },
+      {
+        "_key": "gallery_10_k10",
+        "caption": "The QShala team, educators, and finalists gathering for the closing photo",
+        "url": "/assets/media/banners/team_photo.webp"
+      }
+    ],
+    "isoDate": "2026-07-20T10:00:00+05:30",
+    "order": 1,
+    "readTime": "Photo Gallery",
+    "slug": {
+      "_type": "slug",
+      "current": "bangalore-inter-school-quriosity-cup-2026"
+    },
+    "summary": "Over 1,200 student quizzers representing 64 schools competed across 4 adrenaline-pumping buzzer rounds at St. John's Auditorium.",
+    "title": "Bangalore Inter-School Quriosity Cup 2026"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:18Z",
+    "_id": "post-dps-bangalore-quriosity-league",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Sachin Ravi",
+    "authorRole": "Co-Founder, National Quizmaster",
+    "category": "Case Study",
+    "color": "#75B543",
+    "date": "August 2026",
+    "isoDate": "2026-08-10T10:00:00+05:30",
+    "order": 3,
+    "readTime": "Case Study & Photos",
+    "slug": {
+      "_type": "slug",
+      "current": "dps-bangalore-quriosity-league"
+    },
+    "summary": "Replacing static encyclopedic learning with QShala interactive storytelling and weekly quriosity modules increased student participation by 340%.",
+    "title": "How DPS Transformed General Knowledge into an Active Weekly Sport for 4,000+ Students"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:19Z",
+    "_id": "post-flipkart-corporate-trivia-league",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Raghav Chakravarthy",
+    "authorRole": "Co-Founder, Chief Quizmaster",
+    "category": "Case Study",
+    "color": "#FDB913",
+    "date": "July 2026",
+    "isoDate": "2026-07-15T10:00:00+05:30",
+    "order": 4,
+    "readTime": "Case Study & Photos",
+    "slug": {
+      "_type": "slug",
+      "current": "flipkart-corporate-trivia-league"
+    },
+    "summary": "A 6-week gamified cross-functional championship that boosted inter-departmental engagement during company-wide hybrid work initiatives.",
+    "title": "Driving Hybrid Team Connection Across 12 Cities with Custom QShala Live Trivia"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:25Z",
+    "_id": "post-iim-bangalore-business-simulations",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Sachin Ravi",
+    "authorRole": "Co-Founder, National Quizmaster",
+    "category": "Case Study",
+    "color": "#30B2E7",
+    "date": "January 2026",
+    "isoDate": "2026-01-22T10:00:00+05:30",
+    "order": 10,
+    "readTime": "Case Study & Photos",
+    "slug": {
+      "_type": "slug",
+      "current": "iim-bangalore-business-simulations"
+    },
+    "summary": "Interactive business trivia and market analysis strategy quests designed for future corporate leaders.",
+    "title": "Real-World Business Case Study Simulations & Strategy Quests for MBAs"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:24Z",
+    "_id": "post-iit-bombay-techfest-championship",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Sachin Ravi",
+    "authorRole": "Co-Founder, National Quizmaster",
+    "category": "Events",
+    "color": "#30B2E7",
+    "date": "February 2026",
+    "isoDate": "2026-02-14T10:00:00+05:30",
+    "order": 9,
+    "readTime": "Case Study & Photos",
+    "slug": {
+      "_type": "slug",
+      "current": "iit-bombay-techfest-championship"
+    },
+    "summary": "Packed auditoriums with 6,000+ delegates competing in high-stakes science, tech, and general awareness rounds.",
+    "title": "Hosting India's Largest Inter-Collegiate Quriosity Quiz Championship"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:22Z",
+    "_id": "post-inventure-academy-critical-thinking",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Sachin Ravi",
+    "authorRole": "Co-Founder, National Quizmaster",
+    "category": "Case Study",
+    "color": "#75B543",
+    "date": "April 2026",
+    "isoDate": "2026-04-12T10:00:00+05:30",
+    "order": 7,
+    "readTime": "Case Study & Photos",
+    "slug": {
+      "_type": "slug",
+      "current": "inventure-academy-critical-thinking"
+    },
+    "summary": "A multi-tier quriosity league where students analyze global news stories, logical fallacies, and ethical dilemmas.",
+    "title": "Building 21st-Century Critical Thinking & Public Debate Leagues"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:17Z",
+    "_id": "post-national-corporate-trivia-summit",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Raghav Chakravarthy",
+    "authorRole": "Co-Founder, Chief Quizmaster",
+    "category": "Events",
+    "color": "#FDB913",
+    "date": "June 2026",
+    "gallery": [
+      {
+        "_key": "gallery_1_k1",
+        "caption": "Cross-functional corporate team laughing and giving thumbs up during live trivia",
+        "url": "/assets/media/corporate/qe3.webp"
+      },
+      {
+        "_key": "gallery_2_k2",
+        "caption": "Corporate tournament teams standing with official QShala challenge banner",
+        "url": "/assets/media/corporate/photo-2026-10-09-16-30-40.webp"
+      },
+      {
+        "_key": "gallery_3_k3",
+        "caption": "Leadership workshop engaging on culture and strategic trivia",
+        "url": "/assets/media/corporate/corp_hertie.webp"
+      },
+      {
+        "_key": "gallery_4_k4",
+        "caption": "Teams collaborating on rapid-fire business lore",
+        "url": "/assets/media/corporate/hertie2.webp"
+      },
+      {
+        "_key": "gallery_5_k5",
+        "caption": "Audience participation and live leaderboard reactions",
+        "url": "/assets/media/corporate/qe5.webp"
+      },
+      {
+        "_key": "gallery_6_k6",
+        "caption": "Stage finalists competing for the corporate championship trophy",
+        "url": "/assets/media/colleges/c2.webp"
+      },
+      {
+        "_key": "gallery_7_k7",
+        "caption": "Grand finale stage with over 300 spectators",
+        "url": "/assets/media/banners/nlq_final.webp"
+      },
+      {
+        "_key": "gallery_8_k8",
+        "caption": "Audience high-fives and networking after the buzzer round",
+        "url": "/assets/media/crowd/dsc07629.webp"
+      },
+      {
+        "_key": "gallery_9_k9",
+        "caption": "Corporate learning and culture building showcase",
+        "url": "/assets/media/banners/teams-3_1.webp"
+      },
+      {
+        "_key": "gallery_10_k10",
+        "caption": "All corporate participants gathering for commemorative group snapshot",
+        "url": "/assets/media/banners/team_photo.webp"
+      }
+    ],
+    "isoDate": "2026-06-25T10:00:00+05:30",
+    "order": 2,
+    "readTime": "Photo Gallery",
+    "slug": {
+      "_type": "slug",
+      "current": "national-corporate-trivia-summit"
+    },
+    "summary": "48 corporate teams from Flipkart, Google, Wipro, TCS, and Amazon competed in high-octane live buzzer trivia at JW Marriott, Bengaluru.",
+    "title": "National Corporate Trivia League Finals"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:21Z",
+    "_id": "post-nps-socratic-science-storytelling",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Sachin Ravi",
+    "authorRole": "Co-Founder, National Quizmaster",
+    "category": "Case Study",
+    "color": "#75B543",
+    "date": "May 2026",
+    "isoDate": "2026-05-20T10:00:00+05:30",
+    "order": 6,
+    "readTime": "Case Study & Photos",
+    "slug": {
+      "_type": "slug",
+      "current": "nps-socratic-science-storytelling"
+    },
+    "summary": "Integrated weekly real-world discovery modules to connect textbook science with current affairs and everyday phenomena.",
+    "title": "Pioneering Socratic Science & Civics Storytelling for Middle Schoolers"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:23Z",
+    "_id": "post-tcs-cross-hub-workplace-engagement",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Raghav Chakravarthy",
+    "authorRole": "Co-Founder, Chief Quizmaster",
+    "category": "Case Study",
+    "color": "#FDB913",
+    "date": "March 2026",
+    "isoDate": "2026-03-15T10:00:00+05:30",
+    "order": 8,
+    "readTime": "Case Study & Photos",
+    "slug": {
+      "_type": "slug",
+      "current": "tcs-cross-hub-workplace-engagement"
+    },
+    "summary": "Quarterly inter-hub quiz championships with live digital buzzers and real-time leaderboards.",
+    "title": "Cross-Functional Workplace Engagement Across 8 Regional Tech Hubs"
+  },
+  {
+    "_createdAt": "2026-11-05T20:32:20Z",
+    "_id": "post-wipro-onboarding-gamification",
+    "_rev": "l326m66BRC3WVB323m3mvJ",
+    "_type": "post",
+    "_updatedAt": "2026-11-06T08:35:26Z",
+    "author": "Sachin Ravi",
+    "authorRole": "Co-Founder, National Quizmaster",
+    "category": "Case Study",
+    "color": "#FDB913",
+    "date": "June 2026",
+    "isoDate": "2026-06-18T10:00:00+05:30",
+    "order": 5,
+    "readTime": "Case Study & Photos",
+    "slug": {
+      "_type": "slug",
+      "current": "wipro-onboarding-gamification"
+    },
+    "summary": "Replaced traditional slide presentations with interactive brand quests and company history trivia tournaments.",
+    "title": "Gamifying Onboarding & Corporate Culture for 5,000+ Global New Hires"
+  }
+]

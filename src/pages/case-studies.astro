@@ -81,7 +81,7 @@ const caseStudiesSchema = {
         data-filter="all"
         class="cs-filter-btn px-4 py-2 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[38px] bg-slate-900 text-white shadow-xs"
       >
-        All Stories (10)
+        All Stories ({caseStudies.length})
       </button>
       <button
         type="button"
@@ -117,7 +117,7 @@ const caseStudiesSchema = {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
       {caseStudies.map((cs) => {
         const slug = typeof cs.slug === 'string' ? cs.slug : cs.slug?.current || '';
-        const image = (cs.coverImage ? getImageUrl(cs.coverImage, 800, 600) : null) || CASE_STUDY_IMAGES[slug] || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';
+        const image = (cs.image ? getImageUrl(cs.image, 800, 600) : null) || cs.imageUrl || (cs.coverImage ? getImageUrl(cs.coverImage, 800, 600) : null) || CASE_STUDY_IMAGES[slug] || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';
         const tagColor = CATEGORY_COLORS[cs.clientType] || '#30B2E7';
 
         return (

@@ -115,7 +115,21 @@ export default defineType({
       name: 'gallery',
       title: 'Event Photo Gallery',
       type: 'array',
-      of: [{ type: 'galleryImage' }],
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption / Alt Text',
+            },
+          ],
+        },
+        { type: 'galleryImage' },
+      ],
+      description: 'Drag & drop multiple photos at once directly here, or add gallery items individually.',
     }),
     defineField({
       name: 'order',

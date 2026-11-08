@@ -29,16 +29,22 @@ const CATEGORY_STYLES: Record<string, { bg: string; text: string; buttonBg: stri
 };
 
 export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
+  if (!caseStudies || caseStudies.length === 0) {
+    return null;
+  }
+
   // Curated items for homepage rotation
   const displayStudies = caseStudies.slice(0, 5);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedModalCase, setSelectedModalCase] = useState<CaseStudyItem | null>(null);
 
   const handleNext = () => {
+    if (displayStudies.length <= 1) return;
     setCurrentIndex((prev) => (prev + 1) % displayStudies.length);
   };
 
   const handlePrev = () => {
+    if (displayStudies.length <= 1) return;
     setCurrentIndex((prev) => (prev - 1 + displayStudies.length) % displayStudies.length);
   };
 
@@ -60,10 +66,13 @@ export default function InteractiveCaseStudiesShowcase({ caseStudies }: Props) {
     }
   };
 
-  const cs = displayStudies[currentIndex % displayStudies.length];
+  const safeIndex = displayStudies.length > 0 ? (currentIndex % displayStudies.length) : 0;
+  const cs = displayStudies[safeIndex];
   const mascotVariants = ['sherlock', 'quizzing', 'idea', 'reading', 'professional'] as const;
-  const mascot = mascotVariants[currentIndex % mascotVariants.length];
-  const currentImage = CASE_STUDY_IMAGES[cs.slug] || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';
+  const mascot = mascotVariants[safeIndex % mascotVariants.length];
+  const currentImage = (cs as any).imageUrl 
+    || CASE_STUDY_IMAGES[cs.slug] 
+    || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop';
   const catStyle = CATEGORY_STYLES[cs.clientType] || CATEGORY_STYLES.School;
 
   return (

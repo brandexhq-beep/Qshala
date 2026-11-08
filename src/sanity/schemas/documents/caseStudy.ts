@@ -71,8 +71,21 @@ export default defineType({
       name: 'gallery',
       title: 'Event & Classroom Photo Gallery',
       type: 'array',
-      of: [{ type: 'galleryImage' }],
-      description: 'Photographs from this project. Shown in a full-screen gallery lightbox on the case study page.',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption / Alt Text',
+            },
+          ],
+        },
+        { type: 'galleryImage' },
+      ],
+      description: 'Drag & drop multiple photos at once directly here, or add gallery items individually.',
     }),
     defineField({
       name: 'impactMetrics',

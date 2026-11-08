@@ -5,32 +5,66 @@ import Footer from '../components/Footer.astro';
 import QTMascot from '../components/QTMascot';
 import BlogShowcase, { type BlogPost } from '../components/BlogShowcase';
 import NewsletterSubscription from '../components/NewsletterSubscription';
-import { getPosts, getSiteSettings } from '../lib/sanity/api';
+import { getPosts, getAllCaseStudies, getSiteSettings } from '../lib/sanity/api';
 import { getImageUrl } from '../lib/sanity/image';
 
-const cmsPosts = await getPosts();
-const siteSettings = await getSiteSettings();
+const [cmsPosts, caseStudies, siteSettings] = await Promise.all([
+  getPosts(),
+  getAllCaseStudies(),
+  getSiteSettings(),
+]);
 
 const DEFAULT_POST_IMAGE = '/assets/media/banners/nlq_final.webp';
 
 function resolvePostImage(p: any): string {
-  if (p.mainImage) return getImageUrl(p.mainImage, 800, 500);
+  if (p.image) {
+    const url = getImageUrl(p.image, 800, 500);
+    if (url) return url;
+  }
+  if (p.imageUrl) return p.imageUrl;
+  if (p.mainImage) {
+    const url = getImageUrl(p.mainImage, 800, 500);
+    if (url) return url;
+  }
+  if (p.mainImageUrl) return p.mainImageUrl;
   const firstGallery = p.gallery?.[0];
-  if (firstGallery?.url) return firstGallery.url;
-  if (firstGallery?.asset) return getImageUrl(firstGallery, 800, 500);
+  if (firstGallery) {
+    if (firstGallery.image) {
+      const url = getImageUrl(firstGallery.image, 800, 500);
+      if (url) return url;
+    }
+    if (firstGallery.asset) {
+      const url = getImageUrl(firstGallery, 800, 500);
+      if (url) return url;
+    }
+    if (firstGallery.url) return firstGallery.url;
+  }
   return DEFAULT_POST_IMAGE;
 }
 
-const formattedPosts: BlogPost[] = cmsPosts.map(p => ({
+// Convert case studies with showInBlogFeed enabled into Blog/Events feed items
+const blogCaseStudies: BlogPost[] = caseStudies
+  .filter((cs: any) => cs.showInBlogFeed !== false)
+  .map((cs: any) => ({
+    slug: typeof cs.slug === 'string' ? cs.slug : cs.slug?.current || '',
+    title: cs.title,
+    category: 'Events' as const,
+    readTime: cs.clientName ? `${cs.clientName}` : 'Event Story',
+    summary: cs.summary || '',
+    image: resolvePostImage(cs),
+  }));
+
+const formattedStandardPosts: BlogPost[] = cmsPosts.map((p: any) => ({
   slug: typeof p.slug === 'string' ? p.slug : p.slug?.current || '',
   title: p.title,
   category: (p.category === 'Events' ? 'Events' : 'Blog') as any,
   readTime: p.readTime || '5 min read',
   summary: p.summary || '',
   image: resolvePostImage(p),
-  date: p.publishedAt ? new Date(p.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Recent',
-  photoCount: p.gallery ? p.gallery.length : undefined
 }));
+
+// Case studies come first or merged cleanly
+const formattedPosts: BlogPost[] = [...blogCaseStudies, ...formattedStandardPosts];
 
 const blogSchema = {
   "@type": "CollectionPage",
