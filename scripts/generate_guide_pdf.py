@@ -365,7 +365,7 @@ def build_pdf(filename="public/docs/QShala_Sanity_CMS_Editors_Guide.pdf"):
         "&nbsp;&nbsp;&nbsp;&nbsp;• <b>Register Now:</b> Use for public events with external registration forms or booking links.",
         "&nbsp;&nbsp;&nbsp;&nbsp;• <b>Learn More:</b> For general informational events linking to service pages.",
         "&nbsp;&nbsp;&nbsp;&nbsp;• <b>Host Similar Event:</b> Directly prompts visitors to book a similar quiz for their own team.",
-        "&nbsp;&nbsp;&nbsp;&nbsp;• <b>No Button / Private Event:</b> Specifically designed for closed corporate sessions (like the <i>Lightspeed India Quiz</i>). It displays an elegant <code>🔒 Private Corporate Session</code> pill and renders an inquiry button: <code>Host for Your Team →</code> linking directly to the Corporate inquiry form.",
+        "&nbsp;&nbsp;&nbsp;&nbsp;• <b>No Button / Private Event:</b> Specifically designed for closed corporate sessions (like the <i>Lightspeed India Quiz</i>). Renders a clean, full-width inquiry button: <code>Host for Your Team →</code> linking directly to the Corporate inquiry form (clean design without redundant tags).",
         "<b>Display Order:</b> Use numbers (0, 1, 2) to control which event appears first on the left of the slider."
     ]
     for item in events_items:

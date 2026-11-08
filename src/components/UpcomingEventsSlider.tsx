@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Calendar, MapPin, Lock } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, MapPin } from 'lucide-react';
 import { 
   DEFAULT_EVENTS, 
   CATEGORY_BADGES, 
@@ -177,49 +177,22 @@ export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?
                     </a>
                   </div>
                 ) : (
-                  /* Redesigned Private / No-Registration Event Bottom Section */
-                  <div className="pt-5 mt-4 border-t-2 border-dashed border-slate-200 flex flex-col gap-3">
-                    
-                    {/* Status Pill & Context Badge */}
-                    <div className="flex items-center justify-between gap-2 flex-wrap">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 font-heading text-[10px] sm:text-[11px] font-black uppercase tracking-wider">
-                        <Lock className="w-3 h-3 text-slate-500 shrink-0" />
-                        <span>
-                          {isCorporate
-                            ? 'Private Corporate Session'
-                            : isSchool
-                            ? 'Campus Exclusive'
-                            : isCollege
-                            ? 'Collegiate Qualifier'
-                            : 'Closed / Invite Only'}
-                        </span>
-                      </span>
-
-                      {ev.venue && (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-400">
-                          <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
-                          <span className="truncate max-w-[120px]">{ev.venue}</span>
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Secondary Action: Turns dead-end into an inbound lead generator */}
-                    {!ev.hideHostCta ? (
+                  /* Clean CTA Button for Private / Closed / Host Sessions */
+                  !ev.hideHostCta ? (
+                    <div className="pt-6 mt-4 border-t border-slate-100">
                       <a
                         href={hostHref}
-                        className="w-full py-2.5 px-4 rounded-full font-black text-xs uppercase font-heading border-2 border-black bg-[#FFF8E1] hover:bg-[#FDB913] text-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 group/host"
+                        className="w-full py-3.5 px-6 rounded-full font-black text-xs uppercase font-heading border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] bg-[#FDB913] hover:bg-amber-400 text-slate-950 hover:-translate-y-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 group/btn"
                       >
                         <span>{hostLabel}</span>
-                        <span className="text-sm transition-transform group-hover/host:translate-x-0.5">→</span>
+                        <span className="text-sm transition-transform group-hover/btn:translate-x-0.5">→</span>
                       </a>
-                    ) : (
-                      <div className="py-1 px-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-heading">
-                          Curated by QShala Quizmasters
-                        </span>
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  ) : (
+                    <div className="pt-4 mt-auto">
+                      <div className="h-2" />
+                    </div>
+                  )
                 )}
               </div>
             );
