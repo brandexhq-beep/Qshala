@@ -19,12 +19,18 @@ interface Props {
 
 const { product } = Astro.props;
 
+const productImages = (product.images && product.images.length > 0)
+  ? product.images.map((img) => img.url.startsWith('http') ? img.url : `https://qshala.com${img.url}`)
+  : [product.imageSrc?.startsWith('http') ? product.imageSrc : `https://qshala.com${product.imageSrc || '/assets/logos/QShala%20Logo%201.svg'}`];
+
 const productSchema = {
   "@context": "https://schema.org/",
   "@type": "Product",
   "name": product.title,
-  "image": product.images.map((img) => img.url),
-  "description": product.description,
+  "image": productImages,
+  "description": product.description || product.subtitle || "Explore thinking games and books from QShala.",
+  "sku": product.variantId || product.shopifyProductId || product.id || product.handle,
+  "url": `https://qshala.com/shop/${product.handle}`,
   "brand": {
     "@type": "Brand",
     "name": "QShala"
@@ -35,6 +41,7 @@ const productSchema = {
     "priceCurrency": "INR",
     "price": product.price,
     "availability": product.availableForSale ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "itemCondition": "https://schema.org/NewCondition",
     "seller": {
       "@type": "Organization",
       "name": "QShala"

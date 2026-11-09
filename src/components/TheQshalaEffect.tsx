@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export interface MomentItem {
@@ -127,8 +126,6 @@ export default function TheQshalaEffect({
   badge = 'Live Moments',
   heading = 'The QShala Effect',
   line = 'Bringing Joy to Every Room.',
-  buttonText = 'See It Yourself',
-  buttonUrl = '#effect-gallery',
   moments,
   stats
 }: Props = {}) {
@@ -151,15 +148,7 @@ export default function TheQshalaEffect({
       })
     : DEFAULT_AUDIENCE_PHOTOS;
 
-  // Build dynamic category pill list
-  const uniqueTags = Array.from(new Set(photos.map((p) => p.tag)));
-  const categories = ['All Moments', ...uniqueTags];
-
-  const [selectedTag, setSelectedTag] = useState<string>('All Moments');
-
-  const filteredPhotos = selectedTag === 'All Moments'
-    ? photos
-    : photos.filter((p) => p.tag === selectedTag || p.category === selectedTag);
+  const filteredPhotos = photos;
 
   return (
     <section className="w-full py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#FFFDF5]">
@@ -176,15 +165,6 @@ export default function TheQshalaEffect({
           <p className="text-slate-600 font-semibold text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             {line}
           </p>
-          <div className="pt-1">
-            <a
-              href={buttonUrl}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#30B2E7] hover:bg-sky-500 text-white font-black text-xs sm:text-sm uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
-            >
-              <span>{buttonText}</span>
-              <span>&darr;</span>
-            </a>
-          </div>
         </div>
 
         {/* Optional Impact Highlights / Key Numbers */}
@@ -206,31 +186,8 @@ export default function TheQshalaEffect({
           </div>
         )}
 
-        <div id="effect-gallery" className="scroll-mt-24"></div>
-
-        {/* Category Filter Pills */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none pb-2 px-1">
-          {categories.map((cat) => {
-            const isActive = selectedTag === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setSelectedTag(cat)}
-                className={`px-4 py-1.5 rounded-full font-black text-xs font-heading transition-all whitespace-nowrap cursor-pointer min-h-[36px] ${
-                  isActive
-                    ? 'bg-slate-900 text-white shadow-xs'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
         {/* Dynamic Curated Photo Gallery - Interactive Clickable Cards */}
-        {selectedTag === 'All Moments' && filteredPhotos.length >= 6 ? (
+        {filteredPhotos.length >= 6 ? (
           <div className="space-y-6 pt-2">
             
             {/* Top Row: Large Feature (2 cols) + 2 Stacked Cards (1 col) */}

@@ -36,33 +36,45 @@ try {
 const finalProducts = shopifyProducts.length > 0 ? shopifyProducts : undefined;
 
 const shopSchema = {
+  "@context": "https://schema.org/",
   "@type": "OfferCatalog",
   "@id": "https://qshala.com/shop#catalog",
   "name": "QShala Quriosity Store & Thinking Games",
   "description": "Official socratic books, quiz books, and interactive card games from QShala.",
-  "itemListElement": (finalProducts || []).map((product, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "item": {
-      "@type": "Product",
-      "name": product.title,
-      "description": product.description,
-      "category": product.category,
-      "brand": {
-        "@type": "Brand",
-        "name": "QShala"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "INR",
-        "price": product.price,
-        "availability": product.availableForSale !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-        "seller": {
-          "@id": "https://qshala.com/#organization"
+  "itemListElement": (finalProducts || []).map((product, index) => {
+    const rawImage = product.imageSrc || (product.images && product.images[0]?.url) || '/assets/logos/QShala%20Logo%201.svg';
+    const resolvedImage = rawImage.startsWith('http') ? rawImage : `https://qshala.com${rawImage}`;
+    const productUrl = `https://qshala.com/shop/${product.handle || ''}`;
+
+    return {
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": product.title,
+        "image": [resolvedImage],
+        "description": product.description || product.subtitle || "Official QShala books and learning games.",
+        "sku": product.variantId || product.id || String(index + 1),
+        "url": productUrl,
+        "category": product.category,
+        "brand": {
+          "@type": "Brand",
+          "name": "QShala"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": productUrl,
+          "priceCurrency": "INR",
+          "price": product.price,
+          "availability": product.availableForSale !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+          "itemCondition": "https://schema.org/NewCondition",
+          "seller": {
+            "@id": "https://qshala.com/#organization"
+          }
         }
       }
-    }
-  }))
+    };
+  })
 };
 ---
 
