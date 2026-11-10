@@ -389,12 +389,14 @@ const jsonLd = {
         try {
           var isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headlesschrome/i.test(navigator.userAgent);
           var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          if (isBot || prefersReducedMotion || window.hasLoaderShown) {
+          var hasShown = window.hasLoaderShown || (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('qshala_loader_seen'));
+          if (isBot || prefersReducedMotion || hasShown) {
             document.documentElement.classList.add('skip-loader');
             window.hasLoaderShown = true;
           } else {
             document.documentElement.classList.add('loading-active');
             window.hasLoaderShown = true;
+            try { sessionStorage.setItem('qshala_loader_seen', '1'); } catch(e) {}
           }
 
           document.addEventListener('astro:before-swap', function(ev) {

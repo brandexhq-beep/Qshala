@@ -37,20 +37,20 @@ export default function LoadingScreen() {
 
     setLoading(true);
 
-    const t1 = setTimeout(() => setScene(2), 100);  // Question stroke & particle burst
-    const t2 = setTimeout(() => setScene(3), 280);  // QT Sleeping -> Awakens
-    const t3 = setTimeout(() => setScene(4), 500);  // QT Curious & Orbiting Icons
-    const t4 = setTimeout(() => setScene(5), 700);  // Icon expansion burst
+    const t1 = setTimeout(() => setScene(2), 300);   // Question stroke & particle burst
+    const t2 = setTimeout(() => setScene(3), 800);   // QT Sleeping -> Awakens
+    const t3 = setTimeout(() => setScene(4), 1400);  // QT Curious & Orbiting Icons
+    const t4 = setTimeout(() => setScene(5), 2000);  // Icon expansion burst
     const tEnd = setTimeout(() => {
       setLoading(false);
       if (typeof document !== 'undefined') {
         document.documentElement.classList.remove('loading-active');
       }
-    }, 900);
+    }, 2350);
 
     const promptInterval = setInterval(() => {
       setPromptIdx((prev) => (prev + 1) % CURIOSITY_PROMPTS.length);
-    }, 200);
+    }, 380);
 
     return () => {
       clearTimeout(t1);
@@ -204,7 +204,7 @@ export default function LoadingScreen() {
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.15 }}
-                      className="mt-2 px-4 py-1 text-xs font-black rounded-full border-2 border-black bg-[#30B2E7] text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading"
+                      className="mt-2 px-4 py-1 text-xs font-black rounded-full border-2 border-black bg-[#30B2E7] text-slate-950 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-heading"
                     >
                       Ready to Explore!
                     </motion.span>
@@ -235,7 +235,7 @@ export default function LoadingScreen() {
             <motion.div
               initial={{ width: '0%' }}
               animate={{ width: '100%' }}
-              transition={{ duration: 1.6, ease: 'easeInOut' }}
+              transition={{ duration: 2.2, ease: 'easeInOut' }}
               className="h-full bg-[#30B2E7] rounded-full"
             />
           </div>

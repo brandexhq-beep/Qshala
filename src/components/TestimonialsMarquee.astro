@@ -137,7 +137,17 @@ const testimonials = cmsTestimonials.map(t => {
 </section>
 
 <script>
+  let autoTimer: any = null;
+
+  function stopAutoScroll() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
   function setupTestimonials() {
+    stopAutoScroll();
     const track = document.getElementById('testimonialsTrack');
     const prevBtn = document.getElementById('testimonialPrevBtn');
     const nextBtn = document.getElementById('testimonialNextBtn');
@@ -145,7 +155,6 @@ const testimonials = cmsTestimonials.map(t => {
 
     if (!track) return;
 
-    let autoTimer = null;
     let isPaused = false;
 
     function getStep() {
@@ -179,13 +188,6 @@ const testimonials = cmsTestimonials.map(t => {
           scrollNext();
         }
       }, 4000);
-    }
-
-    function stopAutoScroll() {
-      if (autoTimer) {
-        clearInterval(autoTimer);
-        autoTimer = null;
-      }
     }
 
     function updateDots() {
@@ -236,8 +238,8 @@ const testimonials = cmsTestimonials.map(t => {
     startAutoScroll();
   }
 
-  setupTestimonials();
   document.addEventListener('astro:page-load', setupTestimonials);
+  document.addEventListener('astro:before-swap', stopAutoScroll);
 </script>
 
 <style>
