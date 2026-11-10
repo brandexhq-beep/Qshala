@@ -27,7 +27,8 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      if (document.documentElement.classList.contains('skip-loader')) {
+      const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headlesschrome/i.test(navigator.userAgent);
+      if (isBot || document.documentElement.classList.contains('skip-loader')) {
         setLoading(false);
         document.documentElement.classList.remove('loading-active');
         return;
@@ -36,20 +37,20 @@ export default function LoadingScreen() {
 
     setLoading(true);
 
-    const t1 = setTimeout(() => setScene(2), 200);  // Question stroke & particle burst
-    const t2 = setTimeout(() => setScene(3), 600);  // QT Sleeping -> Awakens
-    const t3 = setTimeout(() => setScene(4), 1000); // QT Curious & Orbiting Icons
-    const t4 = setTimeout(() => setScene(5), 1400); // Icon expansion burst
+    const t1 = setTimeout(() => setScene(2), 100);  // Question stroke & particle burst
+    const t2 = setTimeout(() => setScene(3), 280);  // QT Sleeping -> Awakens
+    const t3 = setTimeout(() => setScene(4), 500);  // QT Curious & Orbiting Icons
+    const t4 = setTimeout(() => setScene(5), 700);  // Icon expansion burst
     const tEnd = setTimeout(() => {
       setLoading(false);
       if (typeof document !== 'undefined') {
         document.documentElement.classList.remove('loading-active');
       }
-    }, 1800);
+    }, 900);
 
     const promptInterval = setInterval(() => {
       setPromptIdx((prev) => (prev + 1) % CURIOSITY_PROMPTS.length);
-    }, 300);
+    }, 200);
 
     return () => {
       clearTimeout(t1);

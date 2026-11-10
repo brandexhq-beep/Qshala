@@ -111,7 +111,7 @@ export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?
             if (ev.buttonType === 'register') {
               btnLabel = btnLabel || 'Register Now';
               defaultHref = '/book-a-quiz';
-              btnBgClass = 'bg-[#30B2E7] hover:bg-sky-400 text-white';
+              btnBgClass = 'bg-[#30B2E7] hover:bg-sky-400 text-slate-950 font-black';
             } else if (ev.buttonType === 'host_similar') {
               btnLabel = btnLabel || hostLabel;
               defaultHref = hostHref;
@@ -138,27 +138,27 @@ export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?
                     >
                       {ev.category}
                     </span>
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500">
-                      <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+                      <Calendar className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                       <span>{ev.date}</span>
                     </div>
                   </div>
 
                   {/* Optional Venue Display */}
                   {ev.venue && (
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500">
-                      <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+                      <MapPin className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                       <span className="truncate">{ev.venue}</span>
                     </div>
                   )}
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-heading leading-tight group-hover:text-[#30B2E7] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-heading leading-tight group-hover:text-[#0284C7] transition-colors">
                     {ev.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-600 text-sm font-medium leading-relaxed">
+                  <p className="text-slate-700 text-sm font-medium leading-relaxed">
                     {ev.desc}
                   </p>
                 </div>
@@ -169,6 +169,7 @@ export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?
                   <div className="pt-6 mt-4 border-t border-slate-100">
                     <a
                       href={safeBtnHref}
+                      aria-label={`${btnLabel}: ${ev.title}`}
                       {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       className={`w-full py-3.5 px-6 rounded-full font-black text-xs uppercase font-heading border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 group/btn ${btnBgClass}`}
                     >
@@ -182,6 +183,7 @@ export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?
                     <div className="pt-6 mt-4 border-t border-slate-100">
                       <a
                         href={hostHref}
+                        aria-label={`${hostLabel}: ${ev.title}`}
                         className="w-full py-3.5 px-6 rounded-full font-black text-xs uppercase font-heading border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] bg-[#FDB913] hover:bg-amber-400 text-slate-950 hover:-translate-y-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 group/btn"
                       >
                         <span>{hostLabel}</span>
@@ -213,7 +215,7 @@ export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?
 
       {/* Mobile-Only Navigation Controls Row (< sm) */}
       <div className="flex sm:hidden items-center justify-between px-2 pt-1">
-        <span className="text-xs font-bold text-slate-500 font-heading">
+        <span className="text-xs font-bold text-slate-700 font-heading">
           Swipe or tap &rarr;
         </span>
         <div className="flex items-center gap-2">

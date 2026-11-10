@@ -11,11 +11,11 @@
 - **Year Founded**: 2014
 - **Headquarters Address**: 1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078, India
 - **Operating Regions**: Bengaluru, Mumbai, Delhi NCR, Hyderabad, Chennai, Kolkata, Pune, and pan-India; hybrid & global online reach.
-- **Official Website**: https://qshala.com
+- **Official Website**: [QShala Home](https://qshala.com)
 - **Official Contact**:
-  - Email: qshala@walnuts.co.in
+  - Email: [qshala@walnuts.co.in](mailto:qshala@walnuts.co.in)
   - Phone: +91 89716 76100
-  - Careers: work@walnuts.co.in
+  - Careers: [work@walnuts.co.in](mailto:work@walnuts.co.in)
 - **Angel Backers & Advisors**:
   - Nithin Kamath (Co-Founder & CEO, Zerodha)
   - Kalyan Banerjee (Co-Founder, Mindtree)
@@ -36,7 +36,7 @@
 ## 3. Services & Program Directory (WHAT & WHO FOR)
 
 ### A. K-12 Schools & Timetabled Curriculum
-- **URL**: https://qshala.com/schools
+- **Program Link**: [QShala for Schools](https://qshala.com/schools)
 - **Audience**: Principals, Academic Coordinators, Trustees, and Students (Grades 1 to 12).
 - **Delivery Format**: 40 to 60-minute weekly timetabled modules replacing or complementing General Knowledge / Life Skills periods.
 - **4 Year-Long Programs**:
@@ -47,41 +47,41 @@
 - **Championships**: Inter-school buzzer championships with stage setups and live quizmasters.
 
 ### B. Corporates & Hybrid Teams
-- **URL**: https://qshala.com/companies
+- **Program Link**: [QShala for Corporates](https://qshala.com/companies)
 - **Audience**: HR Heads, Chief People Officers, L&D Directors, Culture Leads.
 - **Clients**: Google, Flipkart, Wipro, TCS, Infosys, Amazon, Microsoft, HDFC Bank, Netflix, Apple.
 - **Formats**: High-octane Friday trivia nights, gamified new hire onboarding, leadership offsites, and company milestone trivia.
 - **Measured Outcomes**: 90%+ employee engagement scores and 10% average reduction in workplace attrition through psychological safety.
 
 ### C. Colleges & Campus Fests
-- **URL**: https://qshala.com/colleges
+- **Program Link**: [QShala for Colleges](https://qshala.com/colleges)
 - **Audience**: College Fest Committees, Student Councils, Academic Departments.
 - **Formats**: Law moot trivia, Finance leagues, STEM hackathon quizzes, and packed auditorium festival championships.
 
 ### D. Communities & Families
-- **URL**: https://qshala.com/communities
+- **Program Link**: [QShala for Communities](https://qshala.com/communities)
 - **Audience**: Housing societies, apartment complexes, alumni reunions, family gatherings.
 - **Formats**: Screen-free weekend family game nights, inter-apartment quiz leagues, milestone birthday trivia.
 
 ### E. Custom Experiences & Bespoke Quests
-- **URL**: https://qshala.com/custom
+- **Program Link**: [Custom Experiences](https://qshala.com/custom)
 - **Formats**: Museum scavenger trails, brand activation challenges, podcast trivia experiences.
 
 ---
 
 ## 4. Key Links & Sitemaps
-- **Homepage**: https://qshala.com
-- **About Us**: https://qshala.com/about
-- **All Services**: https://qshala.com/services
-- **Schools**: https://qshala.com/schools
-- **Corporates**: https://qshala.com/companies
-- **Colleges**: https://qshala.com/colleges
-- **Communities**: https://qshala.com/communities
-- **Custom Quests**: https://qshala.com/custom
-- **Case Studies**: https://qshala.com/case-studies
-- **Magazine & Blog**: https://qshala.com/blog
-- **Store**: https://qshala.com/shop
-- **Learn Hub**: https://qshala.com/learn
-- **FAQ**: https://qshala.com/faq
-- **Contact**: https://qshala.com/contact
-- **XML Sitemap**: https://qshala.com/sitemap-index.xml
+- [QShala Homepage](https://qshala.com): India's premier Quriosity company replacing rote learning with Socratic questioning and inquiry.
+- [About QShala](https://qshala.com/about): Mission, story, founders Sachin Ravi & Raghav Chakravarthy, and advisory board.
+- [All Services & Offerings](https://qshala.com/services): Overview of programs for schools, corporates, colleges, and communities.
+- [Schools Programs](https://qshala.com/schools): Weekly timetabled Quriosity clubs, financial literacy, and inter-school championships for K-12.
+- [Corporate Quizzing & Engagement](https://qshala.com/companies): High-energy trivia, team offsites, and onboarding programs for 80+ top companies.
+- [Colleges & Universities](https://qshala.com/colleges): High-octane campus fest championships and inter-collegiate quiz arenas.
+- [Communities & Families](https://qshala.com/communities): Screen-free weekend family game nights and apartment quiz leagues.
+- [Custom Quests](https://qshala.com/custom): Bespoke quests, brand activations, and museum scavenger trails.
+- [Case Studies & Impact](https://qshala.com/case-studies): Real-world impact stories with Delhi Public School, Flipkart, TCS, and IIMB.
+- [Magazine & Blog](https://qshala.com/blog): Quriosity essays, event recaps, quiz questions, and parenting guides.
+- [Curiosity Store & Quest Games](https://qshala.com/shop): Physical curiosity card decks, thinking kits, and merchandise.
+- [Learn Hub & Quests](https://qshala.com/learn): Interactive learning hub with Socratic questions and challenges.
+- [Frequently Asked Questions (FAQ)](https://qshala.com/faq): Common questions regarding curricula, corporate booking, and school partnerships.
+- [Contact & Bookings](https://qshala.com/contact): Get in touch to bring QShala to your school, office, or campus.
+- [XML Sitemap Index](https://qshala.com/sitemap-index.xml): Machine-readable XML sitemap index.

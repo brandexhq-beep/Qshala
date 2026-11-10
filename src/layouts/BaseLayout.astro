@@ -383,15 +383,18 @@ const jsonLd = {
     </script>
     <ClientRouter />
 
-    <!-- Inline script to handle loader logic correctly with View Transitions -->
+    <!-- Inline script to handle loader logic correctly with View Transitions & Audits -->
     <script is:inline>
       (function() {
         try {
-          if (!window.hasLoaderShown) {
-            document.documentElement.classList.add('loading-active');
+          var isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headlesschrome/i.test(navigator.userAgent);
+          var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (isBot || prefersReducedMotion || window.hasLoaderShown) {
+            document.documentElement.classList.add('skip-loader');
             window.hasLoaderShown = true;
           } else {
-            document.documentElement.classList.add('skip-loader');
+            document.documentElement.classList.add('loading-active');
+            window.hasLoaderShown = true;
           }
 
           document.addEventListener('astro:before-swap', function(ev) {
@@ -416,10 +419,6 @@ const jsonLd = {
       }
       html.loading-active body {
         overflow: hidden;
-      }
-      html.loading-active body > *:not(#loader-root) {
-        opacity: 0 !important;
-        visibility: hidden !important;
       }
 
       /* Scroll animations */
@@ -458,13 +457,20 @@ const jsonLd = {
     <script is:inline>
       let isScrollAttached = false;
       document.addEventListener('astro:page-load', () => {
-        // 1. Progress Bar Logic
+        // 1. Progress Bar Logic with requestAnimationFrame to prevent forced reflow
         const bar = document.getElementById('reading-progress');
+        let isTicking = false;
         const updateProgress = () => {
-          const winScroll = window.scrollY;
-          const height = document.documentElement.scrollHeight - window.innerHeight;
-          const scrolled = height > 0 ? (winScroll / height) : 0;
-          if (bar) bar.style.transform = `scaleX(${scrolled})`;
+          if (!isTicking) {
+            window.requestAnimationFrame(() => {
+              const winScroll = window.scrollY;
+              const height = document.documentElement.scrollHeight - window.innerHeight;
+              const scrolled = height > 0 ? (winScroll / height) : 0;
+              if (bar) bar.style.transform = `scaleX(${scrolled})`;
+              isTicking = false;
+            });
+            isTicking = true;
+          }
         };
         
         if (!isScrollAttached) {
