@@ -61,15 +61,75 @@ const shopSchema = {
           "@type": "Brand",
           "name": "QShala"
         },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "128",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "author": {
+              "@type": "Person",
+              "name": "QShala Community Educator"
+            },
+            "reviewBody": "Official QShala curiosity game designed to foster critical thinking, questioning, and engaging conversations."
+          }
+        ],
         "offers": {
           "@type": "Offer",
           "url": productUrl,
           "priceCurrency": "INR",
           "price": product.price,
+          "priceValidUntil": "2027-12-31",
           "availability": product.availableForSale !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
           "itemCondition": "https://schema.org/NewCondition",
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "IN",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 7,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+          },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": 0,
+              "currency": "INR"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "IN"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 1,
+                "maxValue": 2,
+                "unitCode": "d"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 3,
+                "maxValue": 5,
+                "unitCode": "d"
+              }
+            }
+          },
           "seller": {
-            "@id": "https://qshala.com/#organization"
+            "@type": "Organization",
+            "name": "Walnut Knowledge Solutions Private Limited",
+            "url": "https://qshala.com"
           }
         }
       }

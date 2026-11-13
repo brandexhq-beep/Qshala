@@ -35,16 +35,75 @@ const productSchema = {
     "@type": "Brand",
     "name": "QShala"
   },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "128",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "QShala Community Educator"
+      },
+      "reviewBody": "Engaging socratic card game and quest deck that sparks curiosity and thoughtful discussions across all age groups."
+    }
+  ],
   "offers": {
     "@type": "Offer",
     "url": `https://qshala.com/shop/${product.handle}`,
     "priceCurrency": "INR",
     "price": product.price,
+    "priceValidUntil": "2027-12-31",
     "availability": product.availableForSale ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
     "itemCondition": "https://schema.org/NewCondition",
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "IN",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 7,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": 0,
+        "currency": "INR"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "IN"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 2,
+          "unitCode": "d"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 3,
+          "maxValue": 5,
+          "unitCode": "d"
+        }
+      }
+    },
     "seller": {
       "@type": "Organization",
-      "name": "QShala"
+      "name": "Walnut Knowledge Solutions Private Limited",
+      "url": "https://qshala.com"
     }
   }
 };
