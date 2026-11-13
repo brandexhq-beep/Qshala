@@ -16,7 +16,8 @@ const phone = siteSettings.contactPhone || '+91 89716 76100';
 const email = siteSettings.contactEmail || 'qshala@walnuts.co.in';
 const address = siteSettings.officeAddress || '1st Floor, 680, Fortuna 1, 8th Main Road, 14th Cross Road, Near Delmia Circle, 3rd Phase, J.P. Nagar, Bengaluru, Karnataka - 560078';
 const mapsUrl = siteSettings.googleMapsUrl || 'https://maps.google.com/?q=Walnut+Knowledge+Solutions+JP+Nagar+Bengaluru';
-const copyright = footerData.copyrightText || `© ${new Date().getFullYear()} Walnut Knowledge Solutions (QShala). All rights reserved.`;
+const rawCopyright = footerData.copyrightText || `© ${new Date().getFullYear()} Walnut Knowledge Solutions Private Limited. All rights reserved.`;
+const copyright = rawCopyright.replace(/Curiosita Educational Services( Pvt\. Ltd\.)?/gi, 'Walnut Knowledge Solutions Private Limited');
 ---
 
 <footer 

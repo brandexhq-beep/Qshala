@@ -60,7 +60,7 @@ export default defineType({
       name: 'copyrightText',
       title: 'Copyright Line',
       type: 'string',
-      initialValue: '© 2026 QShala • Curiosita Educational Services Pvt. Ltd. All rights reserved.',
+      initialValue: '© 2026 QShala • Walnut Knowledge Solutions Private Limited. All rights reserved.',
     }),
     defineField({
       name: 'quickLinks',

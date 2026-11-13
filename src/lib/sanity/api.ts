@@ -142,7 +142,7 @@ export const DEFAULT_FOOTER: SanityFooter = {
   companyDescription:
     "QShala is India's premier quriosity learning platform built by Walnut Knowledge Solutions.",
   copyrightText:
-    '© 2026 QShala • Curiosita Educational Services Pvt. Ltd. All rights reserved.',
+    '© 2026 QShala • Walnut Knowledge Solutions Private Limited. All rights reserved.',
   quickLinks: [
     { name: 'About Us', href: '/about' },
     { name: 'Case Studies', href: '/case-studies' },
