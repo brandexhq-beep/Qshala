@@ -85,12 +85,16 @@ const shopSchema = {
         ],
         "offers": {
           "@type": "Offer",
+          "name": product.title,
+          "sku": product.variantId || product.id || String(index + 1),
           "url": productUrl,
           "priceCurrency": "INR",
           "price": product.price,
+          "validFrom": "2024-01-01",
           "priceValidUntil": "2027-12-31",
           "availability": product.availableForSale !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
           "itemCondition": "https://schema.org/NewCondition",
+          "description": product.description || product.subtitle || "Official QShala books and learning games.",
           "hasMerchantReturnPolicy": {
             "@type": "MerchantReturnPolicy",
             "applicableCountry": "IN",

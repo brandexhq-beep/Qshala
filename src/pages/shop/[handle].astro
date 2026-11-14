@@ -23,12 +23,91 @@ const productImages = (product.images && product.images.length > 0)
   ? product.images.map((img) => img.url.startsWith('http') ? img.url : `https://qshala.com${img.url}`)
   : [product.imageSrc?.startsWith('http') ? product.imageSrc : `https://qshala.com${product.imageSrc || '/assets/logos/QShala%20Logo%201.svg'}`];
 
+const merchantReturnPolicy = {
+  "@type": "MerchantReturnPolicy",
+  "applicableCountry": "IN",
+  "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+  "merchantReturnDays": 7,
+  "returnMethod": "https://schema.org/ReturnByMail",
+  "returnFees": "https://schema.org/FreeReturn"
+};
+
+const shippingDetails = {
+  "@type": "OfferShippingDetails",
+  "shippingRate": {
+    "@type": "MonetaryAmount",
+    "value": 0,
+    "currency": "INR"
+  },
+  "shippingDestination": {
+    "@type": "DefinedRegion",
+    "addressCountry": "IN"
+  },
+  "deliveryTime": {
+    "@type": "ShippingDeliveryTime",
+    "handlingTime": {
+      "@type": "QuantitativeValue",
+      "minValue": 1,
+      "maxValue": 2,
+      "unitCode": "d"
+    },
+    "transitTime": {
+      "@type": "QuantitativeValue",
+      "minValue": 3,
+      "maxValue": 5,
+      "unitCode": "d"
+    }
+  }
+};
+
+const sellerOrg = {
+  "@type": "Organization",
+  "name": "Walnut Knowledge Solutions Private Limited",
+  "url": "https://qshala.com"
+};
+
+const productDescription = product.description || product.subtitle || "Explore thinking games and books from QShala.";
+
+const productOffers = (product.variants && product.variants.length > 1)
+  ? product.variants.map((v) => ({
+      "@type": "Offer",
+      "name": v.title && v.title !== 'Default Title' ? `${product.title} - ${v.title}` : product.title,
+      "sku": v.id || product.handle,
+      "url": `https://qshala.com/shop/${product.handle}`,
+      "priceCurrency": "INR",
+      "price": v.price || product.price,
+      "validFrom": "2024-01-01",
+      "priceValidUntil": "2027-12-31",
+      "availability": v.availableForSale !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "itemCondition": "https://schema.org/NewCondition",
+      "description": productDescription,
+      "hasMerchantReturnPolicy": merchantReturnPolicy,
+      "shippingDetails": shippingDetails,
+      "seller": sellerOrg
+    }))
+  : {
+      "@type": "Offer",
+      "name": product.title,
+      "sku": product.variantId || product.shopifyProductId || product.id || product.handle,
+      "url": `https://qshala.com/shop/${product.handle}`,
+      "priceCurrency": "INR",
+      "price": product.price,
+      "validFrom": "2024-01-01",
+      "priceValidUntil": "2027-12-31",
+      "availability": product.availableForSale ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "itemCondition": "https://schema.org/NewCondition",
+      "description": productDescription,
+      "hasMerchantReturnPolicy": merchantReturnPolicy,
+      "shippingDetails": shippingDetails,
+      "seller": sellerOrg
+    };
+
 const productSchema = {
   "@context": "https://schema.org/",
   "@type": "Product",
   "name": product.title,
   "image": productImages,
-  "description": product.description || product.subtitle || "Explore thinking games and books from QShala.",
+  "description": productDescription,
   "sku": product.variantId || product.shopifyProductId || product.id || product.handle,
   "url": `https://qshala.com/shop/${product.handle}`,
   "brand": {
@@ -57,55 +136,7 @@ const productSchema = {
       "reviewBody": "Engaging socratic card game and quest deck that sparks curiosity and thoughtful discussions across all age groups."
     }
   ],
-  "offers": {
-    "@type": "Offer",
-    "url": `https://qshala.com/shop/${product.handle}`,
-    "priceCurrency": "INR",
-    "price": product.price,
-    "priceValidUntil": "2027-12-31",
-    "availability": product.availableForSale ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-    "itemCondition": "https://schema.org/NewCondition",
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "IN",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-      "merchantReturnDays": 7,
-      "returnMethod": "https://schema.org/ReturnByMail",
-      "returnFees": "https://schema.org/FreeReturn"
-    },
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingRate": {
-        "@type": "MonetaryAmount",
-        "value": 0,
-        "currency": "INR"
-      },
-      "shippingDestination": {
-        "@type": "DefinedRegion",
-        "addressCountry": "IN"
-      },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 1,
-          "maxValue": 2,
-          "unitCode": "d"
-        },
-        "transitTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 3,
-          "maxValue": 5,
-          "unitCode": "d"
-        }
-      }
-    },
-    "seller": {
-      "@type": "Organization",
-      "name": "Walnut Knowledge Solutions Private Limited",
-      "url": "https://qshala.com"
-    }
-  }
+  "offers": productOffers
 };
 ---
 
