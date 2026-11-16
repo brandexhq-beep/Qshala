@@ -225,27 +225,6 @@ export default defineType({
       ],
       group: 'effect',
     }),
-    defineField({
-      name: 'effectHeading',
-      title: 'Effect Heading',
-      type: 'string',
-      initialValue: 'The QShala Effect',
-      group: 'effect',
-    }),
-    defineField({
-      name: 'effectLine',
-      title: 'Effect Tagline',
-      type: 'string',
-      initialValue: 'Bringing Joy to Every Room.',
-      group: 'effect',
-    }),
-    defineField({
-      name: 'effectButtonText',
-      title: 'Effect Button Label',
-      type: 'string',
-      initialValue: 'See It Yourself',
-      group: 'effect',
-    }),
 
     // DAILY GAME
     defineField({
