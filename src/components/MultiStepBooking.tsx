@@ -1,142 +1,142 @@
-import { useState, type SyntheticEvent, useEffect } from 'react';
-import { saveLead, generateWhatsAppBookingUrl } from '../lib/leadsStore';
-
-type BookingStep = 1 | 2 | 3 | 4;
-
-const AUDIENCE_MAPPING: Record<string, string> = {
-  school: 'School & Students (K-12)',
-  college: 'College Campus Fest',
-  company: 'Corporate Offsite / Team',
-  corporate: 'Corporate Offsite / Team',
-  community: 'Neighborhood Community',
-  custom: 'Custom / Unconventional Venue'
-};
-
-const TEAM_CONTACT_NOTE: Record<string, string> = {
-  'School & Students (K-12)': 'School Academic & Quriosity Club Sales Team',
-  'College Campus Fest': 'Higher Education & Inter-College Quizmasters',
-  'Corporate Offsite / Team': 'Corporate L&D & Employee Engagement Team',
-  'Neighborhood Community': 'Community, Weddings & Convention Specialists',
-  'Custom / Unconventional Venue': 'Special Experience & Custom Quiz Team'
-};
+import { useState, type SyntheticEvent } from 'react';
+import { saveLead, generateWhatsAppInquiryUrl } from '../lib/leadsStore';
 
 export default function MultiStepBooking() {
-  const [step, setStep] = useState<BookingStep>(1);
   const [formData, setFormData] = useState({
-    audienceType: 'School & Students (K-12)',
     name: '',
-    email: '',
     phone: '',
-    organization: '',
-    eventDate: '',
-    expectedAudience: '50-100 Participants',
-    preferredTopic: 'General Quriosity & Science',
-    additionalNotes: ''
+    email: '',
+    message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const typeParam = params.get('type') || params.get('segment') || params.get('audience');
-      if (typeParam && AUDIENCE_MAPPING[typeParam.toLowerCase()]) {
-        setFormData(prev => ({
-          ...prev,
-          audienceType: AUDIENCE_MAPPING[typeParam.toLowerCase()]
-        }));
-      }
-    }
-  }, []);
+  const [validationError, setValidationError] = useState('');
 
   const updateField = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    if (validationError) setValidationError('');
   };
-
-  const handleNext = () => setStep((prev) => (prev < 4 ? ((prev + 1) as BookingStep) : prev));
-  const handlePrev = () => setStep((prev) => (prev > 1 ? ((prev - 1) as BookingStep) : prev));
 
   const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setValidationError('');
+
+    const trimmedName = formData.name.trim();
+    const trimmedPhone = formData.phone.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    // 1. Full Name is mandatory
+    if (!trimmedName) {
+      setValidationError('Please enter your full name.');
+      return;
+    }
+
+    // 2. Either Phone OR Email is mandatory
+    if (!trimmedPhone && !trimmedEmail) {
+      setValidationError('Please provide either a phone number or an email address so we can reach you.');
+      return;
+    }
+
+    // 3. Email syntax validation if email provided
+    if (trimmedEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      setValidationError('Please enter a valid email address (or leave it blank if you provided a phone number).');
+      return;
+    }
+
+    setIsSubmitting(true);
 
     const accessKey =
       (typeof import.meta !== 'undefined' && (import.meta as any).env?.PUBLIC_WEB3FORMS_ACCESS_KEY) ||
       'ebcc3a75-bd60-4c56-ad57-75fc47f37925';
 
-    await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        access_key: accessKey,
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone || 'N/A',
-        organization: formData.organization,
-        audience_type: formData.audienceType,
-        event_date: formData.eventDate || 'Flexible / To be confirmed',
-        expected_audience: formData.expectedAudience,
-        preferred_topic: formData.preferredTopic,
-        notes: formData.additionalNotes,
-        from_name: 'QShala Experience Booking Flow',
-        subject: `New Quiz Booking Inquiry from ${formData.name} (${formData.organization})`,
-      }),
-    }).catch((err) => console.warn('Web3Forms dispatch warning:', err));
+    // Dispatch to Web3Forms API ensuring all fields pass through cleanly
+    const web3Payload = {
+      access_key: accessKey,
+      name: trimmedName,
+      phone: trimmedPhone || 'Not provided (email given)',
+      email: trimmedEmail || 'no-email-provided@qshala.com',
+      message: trimmedMessage || 'General Inquiry',
+      inquiry_topic: 'General Inquiry',
+      from_name: 'QShala Website Inquiry',
+      subject: `New Quiz Inquiry from ${trimmedName}`,
+    };
 
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(web3Payload),
+      });
+
+      const result = await response.json().catch(() => null);
+      if (!response.ok || (result && !result.success)) {
+        console.warn('Web3Forms response notification:', result);
+      }
+    } catch (err) {
+      console.warn('Web3Forms dispatch warning:', err);
+    }
+
+    // Save lead in local store
     saveLead({
       type: 'quiz_booking',
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      organization: formData.organization,
-      audienceType: formData.audienceType,
-      eventDate: formData.eventDate,
-      message: `Expected: ${formData.expectedAudience} | Topic: ${formData.preferredTopic} | Notes: ${formData.additionalNotes}`
+      name: trimmedName,
+      email: trimmedEmail || undefined,
+      phone: trimmedPhone || undefined,
+      organization: 'General Inquiry',
+      audienceType: 'General Inquiry',
+      eventDate: 'To be discussed',
+      message: trimmedMessage || 'General Inquiry'
     });
+
+    setIsSubmitting(false);
     setIsSubmitted(true);
   };
 
-  const salesTeamName = TEAM_CONTACT_NOTE[formData.audienceType] || 'QShala Quriosity Team';
-  const whatsappUrl = generateWhatsAppBookingUrl({
+  const whatsappUrl = generateWhatsAppInquiryUrl({
     name: formData.name,
-    organization: formData.organization,
-    audienceType: formData.audienceType,
-    eventDate: formData.eventDate,
-    email: formData.email,
     phone: formData.phone,
-    notes: formData.additionalNotes
+    email: formData.email,
+    message: formData.message
   });
 
   if (isSubmitted) {
     return (
-      <div className="bg-white rounded-3xl p-5 sm:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center space-y-5">
-        <span className="px-4 py-1.5 rounded-full bg-[#75B543] text-white font-black text-xs uppercase border border-black font-heading inline-block">
-          Request Routed to {salesTeamName}
-        </span>
-        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">You&apos;re All Set for Quriosity!</h2>
-        <p className="text-slate-700 text-sm font-semibold max-w-md mx-auto leading-relaxed">
-          Thank you <span className="font-black text-slate-900">{formData.name}</span>! Your inquiry for <span className="font-black text-[#30B2E7]">{formData.audienceType}</span> has been logged and routed directly to our <strong>{salesTeamName}</strong>. We will contact you at <span className="font-black break-all">{formData.email}</span> within 24 hours.
-        </p>
+      <div className="bg-white rounded-3xl p-6 sm:p-10 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center space-y-6 max-w-2xl mx-auto">
+        <div className="w-16 h-16 mx-auto rounded-full bg-[#75B543] text-white flex items-center justify-center text-2xl font-black shadow-xs">
+          ✓
+        </div>
+        <div className="space-y-3">
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
+            Thank you, {formData.name.trim()}!
+          </h2>
+          <p className="text-slate-700 text-sm sm:text-base font-semibold max-w-lg mx-auto leading-relaxed">
+            We have your details and will be in touch within a day. If you&apos;d like to talk sooner, drop us a message on WhatsApp.
+          </p>
+        </div>
 
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-black text-xs uppercase tracking-wider font-heading shadow-sm hover:shadow-md inline-flex items-center justify-center gap-2 transition-all min-h-[44px]"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider font-heading shadow-sm hover:shadow-md hover:-translate-y-0.5 inline-flex items-center justify-center gap-2 transition-all min-h-[48px]"
           >
-            <span>💬 Instant Connect via WhatsApp</span>
+            <span>💬 Message Us on WhatsApp</span>
             <span>&rarr;</span>
           </a>
           <button
+            type="button"
             onClick={() => {
+              setFormData({ name: '', phone: '', email: '', message: '' });
               setIsSubmitted(false);
-              setStep(1);
             }}
-            className="w-full sm:w-auto px-6 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-xs uppercase tracking-wider font-heading transition-all min-h-[44px]"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-black text-xs sm:text-sm uppercase tracking-wider font-heading transition-all min-h-[48px] cursor-pointer"
           >
-            Book Another Experience
+            Send Another Inquiry
           </button>
         </div>
       </div>
@@ -144,209 +144,111 @@ export default function MultiStepBooking() {
   }
 
   return (
-    <div className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-3xl mx-auto">
-      
-      {/* Route Badge */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#FFFDF5] p-3.5 rounded-2xl border border-slate-200">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#30B2E7] animate-ping shrink-0"></span>
-          <span className="text-xs font-black uppercase text-slate-700 font-heading">
-            Sales Pipeline: <span className="text-[#30B2E7]">{salesTeamName}</span>
-          </span>
-        </div>
-        <span className="text-[10px] font-black uppercase tracking-wider text-slate-500 font-heading self-start sm:self-auto">
-          {formData.audienceType}
-        </span>
-      </div>
-
-      <div className="mb-8">
-        <div className="flex items-center justify-between text-xs font-black uppercase text-slate-500 mb-2 font-heading">
-          <span>Step {step} of 4</span>
-          <span>{step === 1 ? 'Audience Segment' : step === 2 ? 'Contact Information' : step === 3 ? 'Event Details' : 'Confirmation'}</span>
-        </div>
-        <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden border border-black">
-          <div
-            className="h-full bg-[#FDB913] transition-all duration-300"
-            style={{ width: `${(step / 4) * 100}%` }}
+    <div className="bg-white rounded-3xl p-6 sm:p-10 md:p-12 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-2xl mx-auto">
+      <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+        {/* Full Name */}
+        <div>
+          <label htmlFor="inquiry-name" className="block text-xs font-black uppercase tracking-wider text-slate-800 mb-2 font-heading">
+            Full Name <span className="text-rose-500">*</span>
+          </label>
+          <input
+            id="inquiry-name"
+            type="text"
+            required
+            value={formData.name}
+            onChange={(e) => updateField('name', e.target.value)}
+            placeholder="Sunita Sharma"
+            className="w-full px-4 py-3.5 rounded-2xl border-2 border-black bg-[#FFFDF5] text-slate-900 font-semibold text-sm sm:text-base focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#30B2E7] transition-all"
           />
         </div>
-      </div>
 
-      <form onSubmit={handleSubmit}>
-        {step === 1 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-black text-slate-900 font-heading">Who is this quiz experience for?</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                'School & Students (K-12)', 
-                'College Campus Fest', 
-                'Corporate Offsite / Team', 
-                'Neighborhood Community',
-                'Custom / Unconventional Venue'
-              ].map((type) => (
-                <button
-                  type="button"
-                  key={type}
-                  onClick={() => updateField('audienceType', type)}
-                  className={`p-4 rounded-2xl border-2 text-left font-bold text-sm transition-all ${
-                    formData.audienceType === type
-                      ? 'border-black bg-[#30B2E7] text-white shadow-md'
-                      : 'border-black bg-[#FFFDF5] text-slate-800 hover:bg-slate-50'
-                  }`}
-                >
-                  {type}
-                </button>
-              ))}
+        {/* Contact Details (Phone & Email side-by-side on desktop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {/* Phone Number */}
+          <div>
+            <div className="flex items-center justify-between gap-1 mb-2">
+              <label htmlFor="inquiry-phone" className="block text-xs font-black uppercase tracking-wider text-slate-800 font-heading">
+                Phone Number
+              </label>
+              <span className="text-[10px] font-bold text-slate-700 font-heading">
+                * if no email
+              </span>
             </div>
+            <input
+              id="inquiry-phone"
+              type="tel"
+              value={formData.phone}
+              onChange={(e) => updateField('phone', e.target.value)}
+              placeholder="+91 98765 43210"
+              className="w-full px-4 py-3.5 rounded-2xl border-2 border-black bg-[#FFFDF5] text-slate-900 font-semibold text-sm sm:text-base focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#30B2E7] transition-all"
+            />
           </div>
-        )}
 
-        {step === 2 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-black text-slate-900 font-heading">Your Contact Details</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-black uppercase text-slate-700 mb-1 font-heading">Full Name</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => updateField('name', e.target.value)}
-                  placeholder="Sunita Sharma"
-                  className="w-full px-4 py-3 rounded-2xl border-2 border-black bg-[#FFFDF5] text-sm font-semibold"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-black uppercase text-slate-700 mb-1 font-heading">Work Email</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => updateField('email', e.target.value)}
-                  placeholder="sunita@dpsbangalore.edu.in"
-                  className="w-full px-4 py-3 rounded-2xl border-2 border-black bg-[#FFFDF5] text-sm font-semibold"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-black uppercase text-slate-700 mb-1 font-heading">Phone Number</label>
-                <input
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => updateField('phone', e.target.value)}
-                  placeholder="+91 98765 43210"
-                  className="w-full px-4 py-3 rounded-2xl border-2 border-black bg-[#FFFDF5] text-sm font-semibold"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-black uppercase text-slate-700 mb-1 font-heading">Institution / Company / Organization</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.organization}
-                  onChange={(e) => updateField('organization', e.target.value)}
-                  placeholder="DPS Bangalore / Flipkart / Community Club"
-                  className="w-full px-4 py-3 rounded-2xl border-2 border-black bg-[#FFFDF5] text-sm font-semibold"
-                />
-              </div>
+          {/* Email Address */}
+          <div>
+            <div className="flex items-center justify-between gap-1 mb-2">
+              <label htmlFor="inquiry-email" className="block text-xs font-black uppercase tracking-wider text-slate-800 font-heading">
+                Email Address
+              </label>
+              <span className="text-[10px] font-bold text-slate-700 font-heading">
+                * if no phone
+              </span>
             </div>
+            <input
+              id="inquiry-email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => updateField('email', e.target.value)}
+              placeholder="sunita@example.com"
+              className="w-full px-4 py-3.5 rounded-2xl border-2 border-black bg-[#FFFDF5] text-slate-900 font-semibold text-sm sm:text-base focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#30B2E7] transition-all"
+            />
           </div>
-        )}
-
-        {step === 3 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-black text-slate-900 font-heading">Event &amp; Audience Specifications</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-black uppercase text-slate-700 mb-1 font-heading">Expected Audience Size</label>
-                <select
-                  value={formData.expectedAudience}
-                  onChange={(e) => updateField('expectedAudience', e.target.value)}
-                  className="w-full px-4 py-3 rounded-2xl border-2 border-black bg-[#FFFDF5] text-sm font-semibold"
-                >
-                  <option value="Under 50 Participants">Under 50 Participants</option>
-                  <option value="50-100 Participants">50-100 Participants</option>
-                  <option value="100-500 Participants">100-500 Participants</option>
-                  <option value="500+ Large Convention / Campus">500+ Large Convention / Campus</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-black uppercase text-slate-700 mb-1 font-heading">Target Date (Approximate)</label>
-                <input
-                  type="date"
-                  value={formData.eventDate}
-                  onChange={(e) => updateField('eventDate', e.target.value)}
-                  className="w-full px-4 py-3 rounded-2xl border-2 border-black bg-[#FFFDF5] text-sm font-semibold"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-black uppercase text-slate-700 mb-1 font-heading">Preferred Quiz Theme / Topic Focus</label>
-              <input
-                type="text"
-                value={formData.preferredTopic}
-                onChange={(e) => updateField('preferredTopic', e.target.value)}
-                placeholder="e.g. Science & Socratic Storytelling, Law/Finance, Brand Trivia, Public Policy"
-                className="w-full px-4 py-3 rounded-2xl border-2 border-black bg-[#FFFDF5] text-sm font-semibold"
-              />
-            </div>
-          </div>
-        )}
-
-        {step === 4 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-black text-slate-900 font-heading">Review &amp; Submit Inquiry</h3>
-            <div className="p-4 rounded-2xl bg-[#FFFDF5] border-2 border-black space-y-2 text-sm font-semibold">
-              <div><span className="font-black text-slate-500 text-xs uppercase font-heading">Segment:</span> {formData.audienceType}</div>
-              <div><span className="font-black text-slate-500 text-xs uppercase font-heading">Handling Team:</span> {salesTeamName}</div>
-              <div><span className="font-black text-slate-500 text-xs uppercase font-heading">Contact:</span> {formData.name} ({formData.email}, {formData.phone})</div>
-              <div><span className="font-black text-slate-500 text-xs uppercase font-heading">Organization:</span> {formData.organization}</div>
-              <div><span className="font-black text-slate-500 text-xs uppercase font-heading">Theme:</span> {formData.preferredTopic}</div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-black uppercase text-slate-700 mb-1 font-heading">Special Requests / Specific Questions</label>
-              <textarea
-                rows={3}
-                value={formData.additionalNotes}
-                onChange={(e) => updateField('additionalNotes', e.target.value)}
-                placeholder="Tell us any specific requirements (e.g. wedding quiz, annual convention, campus fest)..."
-                className="w-full px-4 py-3 rounded-2xl border-2 border-black bg-[#FFFDF5] text-sm font-semibold"
-              />
-            </div>
-          </div>
-        )}
-
-        <div className="mt-8 pt-4 border-t border-slate-200 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
-          {step > 1 ? (
-            <button
-              type="button"
-              onClick={handlePrev}
-              className="px-6 py-3 rounded-full bg-white text-slate-800 font-black text-xs border-2 border-black font-heading hover:bg-slate-100 cursor-pointer active:scale-95 transition-transform w-full sm:w-auto text-center min-h-[44px]"
-            >
-              &larr; Back
-            </button>
-          ) : <div className="hidden sm:block" />}
-
-          {step < 4 ? (
-            <button
-              type="button"
-              onClick={handleNext}
-              className="px-8 py-3.5 rounded-full bg-[#FDB913] hover:bg-amber-400 text-black font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading cursor-pointer active:scale-95 transition-transform w-full sm:w-auto text-center min-h-[44px]"
-            >
-              Continue &rarr;
-            </button>
-          ) : (
-            <button
-              type="submit"
-              className="px-8 py-3.5 rounded-full bg-[#75B543] hover:bg-emerald-600 text-white font-black text-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-heading cursor-pointer active:scale-95 transition-transform w-full sm:w-auto text-center min-h-[44px]"
-            >
-              Submit to {salesTeamName} &rarr;
-            </button>
-          )}
         </div>
+
+        {/* Optional Message Field */}
+        <div>
+          <label htmlFor="inquiry-message" className="block text-xs font-black uppercase tracking-wider text-slate-800 mb-2 font-heading">
+            What would you like to tell us? <span className="text-slate-600 font-bold normal-case text-[11px]">(Optional)</span>
+          </label>
+          <textarea
+            id="inquiry-message"
+            rows={3}
+            value={formData.message}
+            onChange={(e) => updateField('message', e.target.value)}
+            placeholder="A rough idea is plenty: who it's for, roughly when, or just a question."
+            className="w-full px-4 py-3.5 rounded-2xl border-2 border-black bg-[#FFFDF5] text-slate-900 font-semibold text-sm sm:text-base focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#30B2E7] transition-all resize-y"
+          />
+        </div>
+
+        {/* Validation Error Message */}
+        {validationError && (
+          <div className="p-3.5 rounded-2xl bg-rose-50 border-2 border-rose-300 text-rose-800 text-xs sm:text-sm font-bold flex items-center gap-2">
+            <span className="text-base">⚠️</span>
+            <span>{validationError}</span>
+          </div>
+        )}
+
+        {/* Action Button */}
+        <div className="pt-2">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-4 px-8 rounded-full bg-[#FDB913] hover:bg-amber-400 active:scale-[0.99] disabled:opacity-70 text-slate-950 font-black text-sm sm:text-base border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-heading cursor-pointer transition-all flex items-center justify-center gap-2 min-h-[52px]"
+          >
+            {isSubmitting ? (
+              <span>Sending Details...</span>
+            ) : (
+              <>
+                <span>Get in Touch</span>
+                <span>&rarr;</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        <p className="text-center text-xs text-slate-600 font-semibold">
+          🔒 No spam, ever. We only reach out regarding your inquiry.
+        </p>
       </form>
     </div>
   );

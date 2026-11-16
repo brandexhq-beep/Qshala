@@ -31,7 +31,7 @@ globalThis.CustomEvent = class {
   }
 };
 
-const { saveLead, getStoredLeads, generateWhatsAppBookingUrl } = await import('../src/lib/leadsStore.ts');
+const { saveLead, getStoredLeads, generateWhatsAppBookingUrl, generateWhatsAppInquiryUrl } = await import('../src/lib/leadsStore.ts');
 
 describe('LeadsStore & Booking Inquiries Handler', () => {
   beforeEach(() => {
@@ -77,5 +77,18 @@ describe('LeadsStore & Booking Inquiries Handler', () => {
     assert.ok(url.includes('Pooja%20Verma'));
     assert.ok(url.includes('DPS%20Bengaluru'));
     assert.ok(url.includes('2026-12-15'));
+  });
+
+  test('should format a valid WhatsApp quick inquiry link', () => {
+    const url = generateWhatsAppInquiryUrl({
+      name: 'Sunita Sharma',
+      phone: '+91 98765 43210',
+      email: 'sunita@example.com',
+      message: 'Looking for a school quiz'
+    });
+
+    assert.ok(url.startsWith('https://wa.me/918971676100?text='));
+    assert.ok(url.includes('Sunita%20Sharma'));
+    assert.ok(url.includes('Looking%20for%20a%20school%20quiz'));
   });
 });

@@ -119,3 +119,21 @@ _Sent via QShala Web Platform_`;
 
   return `https://wa.me/918971676100?text=${encodeURIComponent(text)}`;
 }
+
+export function generateWhatsAppInquiryUrl(lead: {
+  name: string;
+  phone?: string;
+  email?: string;
+  message?: string;
+}): string {
+  const parts = [
+    '*New QShala Inquiry* 🐾',
+    `*Name:* ${lead.name.trim() || 'N/A'}`
+  ];
+  if (lead.phone?.trim()) parts.push(`*Phone:* ${lead.phone.trim()}`);
+  if (lead.email?.trim()) parts.push(`*Email:* ${lead.email.trim()}`);
+  if (lead.message?.trim()) parts.push(`*Message:* ${lead.message.trim()}`);
+  parts.push('', '_Sent via QShala Web Platform_');
+
+  return `https://wa.me/918971676100?text=${encodeURIComponent(parts.join('\n'))}`;
+}
