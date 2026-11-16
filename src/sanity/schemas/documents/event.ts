@@ -36,15 +36,17 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'date',
-      title: 'Event Date (Display String e.g. Nov 11, 2026)',
-      type: 'string',
+      name: 'isoDate',
+      title: 'Event Date & Time',
+      type: 'datetime',
+      description: 'Select the event date and start time from the calendar.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'isoDate',
-      title: 'ISO Event Date (for chronological sorting)',
-      type: 'datetime',
+      name: 'date',
+      title: 'Event Date (Legacy Display String)',
+      type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'desc',

@@ -157,7 +157,7 @@ export interface SanityEvent {
   title: string;
   slug?: { current: string };
   category: 'School' | 'Corporate' | 'College' | 'Community';
-  date: string;
+  date?: string;
   isoDate?: string;
   desc: string;
   venue?: string;

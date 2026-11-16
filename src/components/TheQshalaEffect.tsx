@@ -209,26 +209,12 @@ export default function TheQshalaEffect({
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                
-                <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-xs text-slate-900 text-xs font-black uppercase font-heading px-3.5 py-1.5 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-1">
-                  <span>Explore Programs</span>
-                  <span>&rarr;</span>
-                </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
                 <div className="relative z-10 p-6 md:p-8 space-y-2">
                   <p className="text-white text-sm sm:text-base font-bold drop-shadow-sm max-w-lg">
                     {filteredPhotos[0].title}
                   </p>
-                  <span 
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105 ${
-                      filteredPhotos[0].tagColor === '#FDB913' ? 'text-slate-950' : 'text-white'
-                    }`}
-                    style={{ backgroundColor: filteredPhotos[0].tagColor }}
-                  >
-                    <span>{filteredPhotos[0].tag}</span>
-                    <span className={filteredPhotos[0].tagColor === '#FDB913' ? 'text-slate-950/80 font-black' : 'text-white/90 font-bold'}>&rarr;</span>
-                  </span>
                 </div>
               </motion.a>
 
@@ -251,26 +237,12 @@ export default function TheQshalaEffect({
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                    
-                    <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-xs text-slate-900 text-[10px] font-black uppercase font-heading px-3 py-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-1">
-                      <span>Explore</span>
-                      <span>&rarr;</span>
-                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
                     <div className="relative z-10 p-5 space-y-1.5">
-                      <p className="text-white text-xs sm:text-sm font-bold line-clamp-1 drop-shadow-sm">
+                      <p className="text-white text-xs sm:text-sm font-bold line-clamp-2 drop-shadow-sm">
                         {photo.title}
                       </p>
-                      <span 
-                        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105 ${
-                          photo.tagColor === '#FDB913' ? 'text-slate-950' : 'text-white'
-                        }`}
-                        style={{ backgroundColor: photo.tagColor }}
-                      >
-                        <span>{photo.tag}</span>
-                        <span className={photo.tagColor === '#FDB913' ? 'text-slate-950/80 font-black' : 'text-white/90 font-bold'}>&rarr;</span>
-                      </span>
                     </div>
                   </motion.a>
                 ))}
@@ -296,26 +268,12 @@ export default function TheQshalaEffect({
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                  
-                  <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-xs text-slate-900 text-[10px] font-black uppercase font-heading px-3 py-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-1">
-                    <span>Explore</span>
-                    <span>&rarr;</span>
-                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
                   <div className="relative z-10 p-5 md:p-6 space-y-1.5">
-                    <p className="text-white text-xs sm:text-sm font-bold line-clamp-1 drop-shadow-sm">
+                    <p className="text-white text-xs sm:text-sm font-bold line-clamp-2 drop-shadow-sm">
                       {photo.title}
                     </p>
-                    <span 
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105 ${
-                        photo.tagColor === '#FDB913' ? 'text-slate-950' : 'text-white'
-                      }`}
-                      style={{ backgroundColor: photo.tagColor }}
-                    >
-                      <span>{photo.tag}</span>
-                      <span className={photo.tagColor === '#FDB913' ? 'text-slate-950/80 font-black' : 'text-white/90 font-bold'}>&rarr;</span>
-                    </span>
                   </div>
                 </motion.a>
               ))}
@@ -341,26 +299,12 @@ export default function TheQshalaEffect({
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                
-                <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-xs text-slate-900 text-[10px] font-black uppercase font-heading px-3 py-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-1">
-                  <span>Explore</span>
-                  <span>&rarr;</span>
-                </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
                 <div className="relative z-10 p-5 md:p-6 space-y-1.5">
-                  <p className="text-white text-xs sm:text-sm font-bold line-clamp-1 drop-shadow-sm">
+                  <p className="text-white text-xs sm:text-sm font-bold line-clamp-2 drop-shadow-sm">
                     {photo.title}
                   </p>
-                  <span 
-                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black uppercase font-heading shadow-md group-hover:shadow-lg transition-transform group-hover:scale-105 ${
-                      photo.tagColor === '#FDB913' ? 'text-slate-950' : 'text-white'
-                    }`}
-                    style={{ backgroundColor: photo.tagColor }}
-                  >
-                    <span>{photo.tag}</span>
-                    <span className={photo.tagColor === '#FDB913' ? 'text-slate-950/80 font-black' : 'text-white/90 font-bold'}>&rarr;</span>
-                  </span>
                 </div>
               </motion.a>
             ))}
