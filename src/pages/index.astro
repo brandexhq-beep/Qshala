@@ -13,6 +13,7 @@ import FAQSection from '../components/FAQSection';
 import TestimonialsMarquee from '../components/TestimonialsMarquee.astro';
 import UpcomingEventsSlider from '../components/UpcomingEventsSlider';
 import NewsletterSubscription from '../components/NewsletterSubscription';
+import { isEventUpcoming } from '../lib/eventsStore';
 import { getImageUrl } from '../lib/sanity/image';
 import { getShopifyProducts, type ShopifyProductItem } from '../lib/shopify/client';
 import { 
@@ -48,30 +49,33 @@ try {
 }
 const curatedStoreProducts = shopifyProducts.slice(0, 3);
 
-const formattedEvents = cmsEvents.map((ev, idx) => {
-  let displayDate = ev.date;
-  if (!displayDate && ev.isoDate) {
-    try {
-      const d = new Date(ev.isoDate);
-      displayDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    } catch {
-      displayDate = ev.isoDate;
+const formattedEvents = cmsEvents
+  .map((ev, idx) => {
+    let displayDate = ev.date;
+    if (!displayDate && ev.isoDate) {
+      try {
+        const d = new Date(ev.isoDate);
+        displayDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      } catch {
+        displayDate = ev.isoDate;
+      }
     }
-  }
-  return {
-    id: ev._id || ev.id || `event-${idx}`,
-    title: ev.title,
-    category: ev.category,
-    date: displayDate || 'Upcoming',
-    desc: ev.desc || '',
-    venue: ev.venue || '',
-    isPrivate: Boolean(ev.isPrivate),
-    hideHostCta: Boolean(ev.hideHostCta),
-    buttonType: ev.buttonType || 'none',
-    buttonText: ev.buttonText || '',
-    buttonUrl: ev.buttonUrl || ''
-  };
-});
+    return {
+      id: ev._id || ev.id || `event-${idx}`,
+      title: ev.title,
+      category: ev.category,
+      date: displayDate || 'Upcoming',
+      isoDate: ev.isoDate,
+      desc: ev.desc || '',
+      venue: ev.venue || '',
+      isPrivate: Boolean(ev.isPrivate),
+      hideHostCta: Boolean(ev.hideHostCta),
+      buttonType: ev.buttonType || 'none',
+      buttonText: ev.buttonText || '',
+      buttonUrl: ev.buttonUrl || ''
+    };
+  })
+  .filter(isEventUpcoming);
 
 const resolvedEffectMoments = (homeData.effectMoments || []).map((m: any) => {
   const resolvedImg = m.imageUrl || (m.image ? getImageUrl(m.image, 800, 600) : '');

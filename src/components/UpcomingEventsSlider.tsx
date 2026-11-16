@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, Calendar, MapPin } from 'lucide-react';
 import { 
   DEFAULT_EVENTS, 
   CATEGORY_BADGES, 
+  isEventUpcoming,
   type UpcomingEvent 
 } from '../lib/eventsStore';
 
@@ -19,7 +20,8 @@ function getSafeHref(url?: string, fallback: string = '/services'): string {
 
 export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?: UpcomingEvent[] } = {}) {
   const [events, setEvents] = useState<UpcomingEvent[]>(() => {
-    return initialEvents && initialEvents.length > 0 ? initialEvents : DEFAULT_EVENTS;
+    const raw = initialEvents && initialEvents.length > 0 ? initialEvents : DEFAULT_EVENTS;
+    return raw.filter(isEventUpcoming);
   });
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -27,7 +29,7 @@ export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?
 
   useEffect(() => {
     if (initialEvents && initialEvents.length > 0) {
-      setEvents(initialEvents);
+      setEvents(initialEvents.filter(isEventUpcoming));
     }
   }, [initialEvents]);
 
@@ -52,6 +54,31 @@ export default function UpcomingEventsSlider({ initialEvents }: { initialEvents?
     el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     setTimeout(checkScroll, 350);
   };
+
+  if (events.length === 0) {
+    return (
+      <div className="w-full max-w-xl mx-auto bg-white rounded-3xl p-8 sm:p-10 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center space-y-4">
+        <div className="w-12 h-12 mx-auto rounded-2xl bg-[#FFFDF5] border border-black flex items-center justify-center text-2xl shadow-xs">
+          📅
+        </div>
+        <h3 className="text-2xl font-black text-slate-900 font-heading">
+          More Quizzes Coming Soon!
+        </h3>
+        <p className="text-slate-600 text-sm font-semibold max-w-md mx-auto leading-relaxed">
+          We are currently scheduling our next wave of live school championships and corporate quiz offsites. Want to bring a custom quiz to your organization?
+        </p>
+        <div className="pt-2">
+          <a
+            href="/book-a-quiz"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FDB913] hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm font-heading shadow-sm hover:shadow-md transition-all"
+          >
+            <span>Host a Quiz for Your Team</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col gap-4">

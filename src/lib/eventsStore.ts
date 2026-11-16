@@ -6,6 +6,7 @@ export interface UpcomingEvent {
   title: string;
   category: EventCategory;
   date: string;
+  isoDate?: string;
   desc: string;
   venue?: string;
   isPrivate?: boolean;
@@ -13,6 +14,36 @@ export interface UpcomingEvent {
   buttonType: EventButtonType;
   buttonText?: string;
   buttonUrl?: string;
+}
+
+/**
+ * Filter out events whose dates have passed.
+ * An event stays visible throughout the event day until midnight of that day.
+ */
+export function isEventUpcoming(ev: UpcomingEvent): boolean {
+  try {
+    const now = new Date();
+    // Start of current day (00:00:00) - events occurring today remain visible
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+
+    if (ev.isoDate) {
+      const parsedIso = new Date(ev.isoDate).getTime();
+      if (!isNaN(parsedIso)) {
+        return parsedIso >= todayStart;
+      }
+    }
+
+    if (ev.date) {
+      const parsedDate = new Date(ev.date).getTime();
+      if (!isNaN(parsedDate)) {
+        return parsedDate >= todayStart;
+      }
+    }
+
+    return true;
+  } catch {
+    return true;
+  }
 }
 
 export const CATEGORY_OPTIONS: EventCategory[] = [
