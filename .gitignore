@@ -56,3 +56,4 @@ scripts/*.py
 # Documentation & guide PDFs
 public/docs/
 *.pdf
+/White/
