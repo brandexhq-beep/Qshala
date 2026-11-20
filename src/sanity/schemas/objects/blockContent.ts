@@ -69,5 +69,11 @@ export default defineType({
         },
       ],
     }),
+    defineArrayMember({
+      type: 'videoEmbed',
+    }),
+    defineArrayMember({
+      type: 'postButton',
+    }),
   ],
 });

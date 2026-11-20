@@ -13,15 +13,21 @@ export function getImageUrl(
   if (!source) return fallback;
   if (typeof source === 'string') return source;
 
-  // Direct string URL on object
+  // Direct string URL on object or dereferenced asset url
   if (source.url && typeof source.url === 'string' && (source.url.startsWith('http') || source.url.startsWith('/'))) {
     return source.url;
+  }
+  if (source.asset?.url && typeof source.asset.url === 'string' && (source.asset.url.startsWith('http') || source.asset.url.startsWith('/'))) {
+    return source.asset.url;
   }
 
   // Handle nested gallery image wrapper { image: { asset: ... } }
   const target = source.image ? source.image : source;
   if (target?.url && typeof target.url === 'string' && (target.url.startsWith('http') || target.url.startsWith('/'))) {
     return target.url;
+  }
+  if (target?.asset?.url && typeof target.asset.url === 'string' && (target.asset.url.startsWith('http') || target.asset.url.startsWith('/'))) {
+    return target.asset.url;
   }
 
   // Target must have asset reference for Sanity image builder

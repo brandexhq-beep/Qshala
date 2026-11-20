@@ -223,6 +223,7 @@ export interface SanityTeamMember {
   mascotVariant?: string;
   accentColor?: string;
   linkedInUrl?: string;
+  twitterUrl?: string;
   instagramUrl?: string;
 }
 
@@ -265,6 +266,7 @@ export interface SanityTestimonial {
 
 export interface SanityPost {
   _id?: string;
+  _createdAt?: string;
   slug: string | { current: string };
   title: string;
   category: string;
@@ -280,6 +282,7 @@ export interface SanityPost {
   bg?: string;
   mainImage?: SanityImageReference;
   mainImageUrl?: string;
+  imageUrl?: string;
   body?: any;
   rawHtmlContent?: string;
   gallery?: SanityGalleryItem[];

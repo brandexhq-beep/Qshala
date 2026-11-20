@@ -314,8 +314,8 @@ export default function InteractiveTeamShowcase({
         </p>
       </div>
 
-      {/* Single Alphabetical Grid (Department groupings removed per client feedback) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full pt-2">
+      {/* Compact 4-Column Desktop Grid (Steps down on tablet and mobile) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 w-full pt-2">
         {sortedCrew.map((member) => {
           const imgSrc = member.imageUrl || (typeof member.image === 'string' ? member.image : member.image?.asset?.url) || '/assets/team/gauri-kashyap.webp';
           const mascot = (member.variant || member.mascotVariant || 'curious') as any;
@@ -323,17 +323,17 @@ export default function InteractiveTeamShowcase({
           return (
             <div 
               key={member.id || member.name}
-              className="p-6 sm:p-7 rounded-3xl shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group border border-slate-200/90 bg-white"
+              className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group border border-slate-200/90 bg-white"
             >
-              <div className="space-y-4 flex-grow flex flex-col">
-                <div className="flex items-center justify-end">
-                  <div className="group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300">
+              <div className="space-y-2.5 flex-grow flex flex-col">
+                <div className="flex items-center justify-end -mb-2">
+                  <div className="group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 opacity-90 group-hover:opacity-100">
                     <QTMascot variant={mascot} size="sm" />
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-center pt-1">
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl md:rounded-3xl overflow-hidden aspect-square border-2 border-slate-100 shadow-md mb-4 bg-slate-50 group-hover:scale-105 transition-transform duration-300">
+                <div className="flex flex-col items-center justify-center pt-0">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden aspect-square border-2 border-slate-100 shadow-sm mb-2.5 bg-slate-50 group-hover:scale-105 transition-transform duration-300 shrink-0">
                     <img 
                       src={imgSrc} 
                       alt={member.name} 
@@ -341,16 +341,16 @@ export default function InteractiveTeamShowcase({
                       loading="lazy"
                     />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-heading leading-tight group-hover:text-[#30B2E7] transition-colors text-center">
+                  <h3 className="text-base sm:text-lg font-black text-slate-900 font-heading leading-snug group-hover:text-[#30B2E7] transition-colors text-center">
                     {member.name}
                   </h3>
-                  <div className="text-xs font-bold text-slate-600 mt-1 font-heading text-center">
+                  <div className="text-[11px] sm:text-xs font-bold text-slate-600 mt-0.5 font-heading text-center leading-tight">
                     {member.role}
                   </div>
                 </div>
 
                 {member.bio && (
-                  <p className="text-slate-700 text-xs sm:text-sm font-semibold leading-relaxed text-center pt-3 border-t border-slate-100">
+                  <p className="text-slate-700 text-xs font-semibold leading-relaxed text-center pt-2.5 border-t border-slate-100 mt-auto">
                     {member.bio}
                   </p>
                 )}

@@ -67,19 +67,6 @@ export const DEFAULT_CAREERS: SanityCareer[] = [
     applyEmail: 'mailto:work@walnuts.co.in',
     isActive: true,
   },
-  {
-    id: 'career-video-editor',
-    slug: 'careers-video-editor',
-    title: 'Video Editor & Visual Storyteller',
-    department: 'Creative & Video Production',
-    location: 'Bengaluru, Karnataka (On-site / Hybrid)',
-    employmentType: 'Full-time',
-    shortSummary: 'Craft exciting video highlight reels, QShots clips, and animated stories.',
-    color: '#EDF7E5',
-    imageSrc: '/assets/media/crowd/dsc07629.webp',
-    applyEmail: 'mailto:work@walnuts.co.in',
-    isActive: true,
-  },
 ];
 
 export const DEFAULT_SITE_SETTINGS: SanitySiteSettings = {
@@ -240,7 +227,8 @@ export const DEFAULT_CO_FOUNDERS: SanityTeamMember[] = [
     imageUrl: '/assets/team/sachin-ravi.webp',
     isCoFounder: true,
     coFounderBadge: 'Culture · Film · Sports · Tech · Music',
-    linkedInUrl: 'https://www.linkedin.com/in/sachin-ravi-qshala/',
+    linkedInUrl: 'https://www.linkedin.com/in/sachinravi/',
+    twitterUrl: 'https://x.com/thesachinravi',
     instagramUrl: 'https://www.instagram.com/thesachinravi/',
   },
   {
@@ -252,7 +240,8 @@ export const DEFAULT_CO_FOUNDERS: SanityTeamMember[] = [
     imageUrl: '/assets/team/raghav-chakravarthy.webp',
     isCoFounder: true,
     coFounderBadge: 'History · Law · Policy · Society',
-    linkedInUrl: 'https://www.linkedin.com/in/raghav-chakravarthy-qshala/',
+    linkedInUrl: 'https://www.linkedin.com/in/raghavchakravarthy/',
+    twitterUrl: 'https://x.com/RaghavNC',
     instagramUrl: 'https://www.instagram.com/raghavnc/',
   },
 ];
@@ -1039,11 +1028,72 @@ export const getProducts = (): Promise<SanityProduct[]> =>
     }))
   );
 
+export const DEFAULT_POSTS: SanityPost[] = [
+  {
+    _id: 'post-state-of-play-anniversary',
+    slug: 'a-sports-business-quiz-night-for-the-state-of-plays-first-anniversary',
+    title: "A sports business quiz night for The State of Play's first anniversary",
+    category: 'Events',
+    readTime: '5 min read',
+    date: 'Nov 14, 2026',
+    isoDate: '2026-11-14T19:00:00+05:30',
+    publishedAt: '2026-11-14T19:00:00+05:30',
+    author: 'Sachin Ravi',
+    authorRole: 'Co-Founder, National Quizmaster',
+    summary: "Sports journalists, athlete managers, agents, founders and fans quiz together at The State of Play's first birthday in Bengaluru.",
+    color: '#FDB913',
+    bg: 'bg-[#FFF8E1]',
+    imageUrl: '/assets/media/corporate/photo-2026-10-09-16-30-40.webp',
+    content: `
+      <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+        On Saturday, 14 November, we hosted the quiz at The State of Play's first anniversary party at Communiti on Residency Road, Bengaluru.
+      </p>
+      <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+        The State of Play is an independent sports business newsletter founded by journalist Venkat Ananth. It publishes deeply reported stories on the business of Indian sport, from sponsorship deals and media rights to team ownership. For their birthday, they wanted a party that played like a game, and asked us to bring the questions.
+      </p>
+      <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Who was in the room</h2>
+      <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+        The guest list read like a cross-section of Indian sport. There were senior sports journalists, managers of prominent athletes, founders of sports startups, and dedicated readers who had flown in for the evening.
+      </p>
+    `,
+    gallery: [
+      { url: "/assets/media/corporate/photo-2026-10-09-16-30-40.webp", caption: "All attendees gathered for The State of Play anniversary group picture" },
+      { url: "/assets/media/corporate/qe3.webp", caption: "Teams huddled and conferring on sports business trivia rounds" },
+      { url: "/assets/media/crowd/dsc07829.webp", caption: "High energy audience reactions during rapid-fire buzzer heats" },
+      { url: "/assets/media/corporate/qe5.webp", caption: "Sports founders and journalists reacting to live leaderboard results" },
+      { url: "/assets/media/crowd/dsc07629.webp", caption: "Interactive table discussions and celebratory cheers" },
+      { url: "/assets/media/corporate/corp_hertie.webp", caption: "Final round showdown between top contender tables" },
+      { url: "/assets/media/banners/team_photo.webp", caption: "The QShala team celebrating a memorable evening of inquiry and sport lore" }
+    ]
+  },
+  {
+    _id: 'post-why-rote-learning-kills-quriosity',
+    slug: 'why-rote-learning-kills-quriosity',
+    title: 'Why Rote Learning Kills Quriosity (And How to Fix It)',
+    category: 'Blog',
+    readTime: '5 min read',
+    date: 'Aug 1, 2026',
+    isoDate: '2026-08-01T10:00:00+05:30',
+    publishedAt: '2026-08-01T10:00:00+05:30',
+    author: 'Sachin Ravi',
+    authorRole: 'Co-Founder, National Quizmaster',
+    summary: 'Standard GK worksheets ask children to memorize facts without asking why. We explore socratic dialogue methods that unlock original thinking.',
+    color: '#30B2E7',
+    bg: 'bg-[#E8F6FD]',
+    imageUrl: '/assets/media/schools/qe1.webp',
+  }
+];
+
 export const getPosts = (): Promise<SanityPost[]> =>
-  fetchWithFallback(queries.allPostsQuery, []);
+  fetchWithFallback(queries.allPostsQuery, DEFAULT_POSTS);
 
 export const getPostBySlug = (slug: string): Promise<SanityPost | null> =>
-  fetchWithFallback(queries.postBySlugQuery, null as unknown as SanityPost, (d) => Boolean(d?.title), { slug });
+  fetchWithFallback(
+    queries.postBySlugQuery, 
+    DEFAULT_POSTS.find((p) => (typeof p.slug === 'string' ? p.slug : p.slug?.current) === slug) || null, 
+    (d) => Boolean(d?.title), 
+    { slug }
+  );
 
 export const getPartners = (): Promise<SanityPartner[]> =>
   fetchWithFallback(queries.allPartnersQuery, []);

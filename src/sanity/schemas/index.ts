@@ -7,6 +7,8 @@ import quote from './objects/quote';
 import galleryImage from './objects/galleryImage';
 import serviceOffering from './objects/serviceOffering';
 import flagshipQuiz from './objects/flagshipQuiz';
+import videoEmbed from './objects/videoEmbed';
+import postButton from './objects/postButton';
 
 // Document Schemas (Singletons & Collections)
 import siteSettings from './documents/siteSettings';
@@ -36,6 +38,8 @@ export const schemaTypes = [
   galleryImage,
   serviceOffering,
   flagshipQuiz,
+  videoEmbed,
+  postButton,
 
   // Documents
   siteSettings,

@@ -42,8 +42,15 @@ function resolvePostImage(p: any): string {
   return DEFAULT_POST_IMAGE;
 }
 
+function getPostTimestamp(item: any): number {
+  const dateStr = item.isoDate || item.publishedDate || item.publishedAt || item.date || item._createdAt;
+  if (!dateStr) return 0;
+  const t = new Date(dateStr).getTime();
+  return isNaN(t) ? 0 : t;
+}
+
 // Convert case studies with showInBlogFeed enabled into Blog/Events feed items
-const blogCaseStudies: BlogPost[] = caseStudies
+const blogCaseStudies = caseStudies
   .filter((cs: any) => cs.showInBlogFeed !== false)
   .map((cs: any) => ({
     slug: typeof cs.slug === 'string' ? cs.slug : cs.slug?.current || '',
@@ -52,19 +59,23 @@ const blogCaseStudies: BlogPost[] = caseStudies
     readTime: cs.clientName ? `${cs.clientName}` : 'Event Story',
     summary: cs.summary || '',
     image: resolvePostImage(cs),
+    sortDate: getPostTimestamp(cs),
   }));
 
-const formattedStandardPosts: BlogPost[] = cmsPosts.map((p: any) => ({
+const formattedStandardPosts = cmsPosts.map((p: any) => ({
   slug: typeof p.slug === 'string' ? p.slug : p.slug?.current || '',
   title: p.title,
   category: (p.category === 'Events' ? 'Events' : 'Blog') as any,
   readTime: p.readTime || '5 min read',
   summary: p.summary || '',
   image: resolvePostImage(p),
+  sortDate: getPostTimestamp(p),
 }));
 
-// Case studies come first or merged cleanly
-const formattedPosts: BlogPost[] = [...blogCaseStudies, ...formattedStandardPosts];
+// Reverse chronological order: latest first. Sort by publication date, falling back to creation date.
+const formattedPosts: BlogPost[] = [...blogCaseStudies, ...formattedStandardPosts]
+  .sort((a, b) => b.sortDate - a.sortDate)
+  .map(({ sortDate, ...post }) => post);
 
 const blogSchema = {
   "@type": "CollectionPage",

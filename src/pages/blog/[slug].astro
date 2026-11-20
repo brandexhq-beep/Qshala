@@ -13,6 +13,41 @@ export async function getStaticPaths() {
   const [cmsPosts, caseStudies] = await Promise.all([getPosts(), getAllCaseStudies()]);
   const posts = [
     {
+      slug: 'a-sports-business-quiz-night-for-the-state-of-plays-first-anniversary',
+      title: "A sports business quiz night for The State of Play's first anniversary",
+      category: 'Events',
+      readTime: '5 min read',
+      date: 'Nov 14, 2026',
+      isoDate: '2026-11-14T19:00:00+05:30',
+      author: 'Sachin Ravi',
+      authorRole: 'Co-Founder, National Quizmaster',
+      summary: "Sports journalists, athlete managers, agents, founders and fans quiz together at The State of Play's first birthday in Bengaluru.",
+      color: '#FDB913',
+      bg: 'bg-[#FFF8E1]',
+      coverImage: '/assets/media/corporate/photo-2026-10-09-16-30-40.webp',
+      content: `
+        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
+          On Saturday, 14 November, we hosted the quiz at The State of Play's first anniversary party at Communiti on Residency Road, Bengaluru.
+        </p>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          The State of Play is an independent sports business newsletter founded by journalist Venkat Ananth. It publishes deeply reported stories on the business of Indian sport, from sponsorship deals and media rights to team ownership. For their birthday, they wanted a party that played like a game, and asked us to bring the questions.
+        </p>
+        <h2 class="text-2xl font-black font-heading text-slate-900 mt-8 mb-4">Who was in the room</h2>
+        <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+          The guest list read like a cross-section of Indian sport. There were senior sports journalists, managers of prominent athletes, founders of sports startups, and dedicated readers who had flown in for the evening.
+        </p>
+      `,
+      gallery: [
+        { url: "/assets/media/corporate/photo-2026-10-09-16-30-40.webp", caption: "All attendees gathered for The State of Play anniversary group picture" },
+        { url: "/assets/media/corporate/qe3.webp", caption: "Teams huddled and conferring on sports business trivia rounds" },
+        { url: "/assets/media/crowd/dsc07829.webp", caption: "High energy audience reactions during rapid-fire buzzer heats" },
+        { url: "/assets/media/corporate/qe5.webp", caption: "Sports founders and journalists reacting to live leaderboard results" },
+        { url: "/assets/media/crowd/dsc07629.webp", caption: "Interactive table discussions and celebratory cheers" },
+        { url: "/assets/media/corporate/corp_hertie.webp", caption: "Final round showdown between top contender tables" },
+        { url: "/assets/media/banners/team_photo.webp", caption: "The QShala team celebrating a memorable evening of inquiry and sport lore" }
+      ]
+    },
+    {
       slug: 'bangalore-inter-school-quriosity-cup-2026',
       title: 'Bangalore Inter-School Quriosity Cup 2026',
       category: 'Events',
@@ -489,36 +524,6 @@ export async function getStaticPaths() {
         </div>
       `
     },
-    {
-      slug: 'careers-video-editor',
-      title: 'Careers at QShala: Video Editor & Visual Storyteller',
-      category: 'Careers',
-      readTime: 'Full Job Description',
-      date: 'Open Position',
-      isoDate: '2026-10-01T10:00:00+05:30',
-      author: 'QShala People Team',
-      authorRole: 'Talent & Culture',
-      summary: 'Craft exciting video highlight reels, QShots clips, motion graphics, and animated brand stories.',
-      color: '#75B543',
-      bg: 'bg-[#EDF7E5]',
-      content: `
-        <p class="text-lg text-slate-800 leading-relaxed font-semibold mb-6">
-          Bring the magic of curiosity to video. We are looking for a skilled <strong>Video Editor & Motion Designer</strong> to turn live quiz events into dynamic, viral micro-learning content and highlight reels.
-        </p>
-        <h3 class="text-xl font-black font-heading text-slate-900 mt-6 mb-3">Key Responsibilities:</h3>
-        <ul class="list-disc pl-6 space-y-2 text-slate-700 font-medium mb-6">
-          <li>Produce high-energy event recap reels and social-first QShots daily trivia clips.</li>
-          <li>Animate QT mascot assets and create branded visual assets for presentations and web experiences.</li>
-        </ul>
-        <div class="p-6 rounded-3xl bg-[#EDF7E5] border border-emerald-200 space-y-3">
-          <h4 class="text-lg font-black text-slate-900 font-heading">How to Apply</h4>
-          <p class="text-slate-700 text-sm font-semibold">Share links to your video reel or portfolio at <a href="mailto:work@walnuts.co.in?subject=Application for Video Editor" class="text-emerald-900 hover:text-emerald-700 font-black underline">work@walnuts.co.in</a>.</p>
-          <a href="mailto:work@walnuts.co.in?subject=Application for Video Editor" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#75B543] hover:bg-emerald-600 !text-white !no-underline font-black text-xs uppercase tracking-wider font-heading shadow-sm transition-all min-h-[44px]">
-            <span class="!text-white font-black">Apply via Email &rarr;</span>
-          </a>
-        </div>
-      `
-    },
 
     // --- STANDARD BLOG PERSPECTIVES ---
     {
@@ -649,12 +654,21 @@ export async function getStaticPaths() {
   function formatCmsPost(cp: any, slugStr: string) {
     const formattedDate = cp.publishedAt 
       ? new Date(cp.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) 
-      : 'Recent';
+      : (cp.date || 'Recent');
 
-    const gallery = (cp.gallery || []).map((g: any) => ({
-      url: g.url || (g.asset ? getImageUrl(g, 1200, 800) : ''),
-      caption: g.caption || ''
-    }));
+    const gallery = (cp.gallery || []).map((g: any) => {
+      const resolvedUrl = g.url || (g.asset?.url) || (g.image?.url) || (g.asset ? getImageUrl(g, 1200, 800) : '') || (g.image ? getImageUrl(g.image, 1200, 800) : '');
+      return {
+        url: resolvedUrl,
+        caption: g.caption || ''
+      };
+    }).filter((g: any) => Boolean(g.url));
+
+    const coverUrl = cp.imageUrl || 
+      (cp.mainImage ? getImageUrl(cp.mainImage, 1200, 675) : null) || 
+      cp.mainImageUrl || 
+      (cp.image ? getImageUrl(cp.image, 1200, 675) : null) || 
+      (gallery[0]?.url || null);
 
     return {
       slug: slugStr,
@@ -662,15 +676,17 @@ export async function getStaticPaths() {
       category: cp.category || 'Blog',
       readTime: cp.readTime || '5 min read',
       date: formattedDate,
-      isoDate: cp.publishedAt || '2026-10-14T10:00:00+05:30',
+      isoDate: cp.isoDate || cp.publishedAt || cp._createdAt || '2026-10-14T10:00:00+05:30',
       author: cp.author || 'Sachin Ravi',
-      authorRole: 'QShala Team',
+      authorRole: cp.authorRole || 'QShala Team',
       summary: cp.summary || '',
-      color: '#30B2E7',
-      bg: 'bg-[#E8F6FD]',
+      color: cp.color || '#30B2E7',
+      bg: cp.bg || 'bg-[#E8F6FD]',
       body: cp.body || null,
-      content: typeof cp.content === 'string' ? cp.content : `<p>${cp.summary || ''}</p>`,
-      gallery
+      rawHtmlContent: cp.rawHtmlContent || null,
+      content: cp.rawHtmlContent || (typeof cp.content === 'string' ? cp.content : (cp.summary ? `<p>${cp.summary}</p>` : '')),
+      gallery,
+      coverImage: coverUrl
     };
   }
 
@@ -820,7 +836,7 @@ const articleSchema = {
         )}
 
         <!-- Article Body -->
-        <SanityPortableText value={post.body || post.content} class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" />
+        <SanityPortableText value={post.body || post.rawHtmlContent || post.content} class="prose prose-lg max-w-none text-slate-800 font-sans leading-relaxed" />
 
         <!-- Interactive Event Photo Gallery (Clickable, Openable in Full-Screen Lightbox & Downloadable) -->
         {post.gallery && post.gallery.length > 0 && (

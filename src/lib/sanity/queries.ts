@@ -352,6 +352,7 @@ export const coFoundersQuery = `*[_type == "teamMember" && isCoFounder == true] 
   mascotVariant,
   accentColor,
   linkedInUrl,
+  twitterUrl,
   instagramUrl
 }`;
 
@@ -369,6 +370,7 @@ export const curiosityCrewQuery = `*[_type == "teamMember" && isCoFounder != tru
   mascotVariant,
   accentColor,
   linkedInUrl,
+  twitterUrl,
   instagramUrl
 }`;
 
@@ -411,52 +413,90 @@ export const allTestimonialsQuery = `*[_type == "testimonial"] | order(order asc
   rating
 }`;
 
-export const allPostsQuery = `*[_type == "post"] | order(isoDate desc, _createdAt desc){
+export const allPostsQuery = `*[_type == "post"] | order(coalesce(isoDate, publishedAt, _createdAt) desc){
   _id,
+  _createdAt,
   "slug": slug.current,
   title,
   category,
   readTime,
   date,
   isoDate,
+  publishedAt,
   author,
   authorRole,
   summary,
   color,
   bg,
-  mainImage,
+  mainImage{
+    ...,
+    "url": asset->url,
+    asset->
+  },
   mainImageUrl,
   "imageUrl": coalesce(mainImage.asset->url, mainImageUrl),
+  body[]{
+    ...,
+    _type == "image" => {
+      ...,
+      "url": coalesce(asset->url, url),
+      asset->
+    }
+  },
+  rawHtmlContent,
   gallery[]{
-    url,
     caption,
-    image
+    "url": coalesce(url, asset->url, image.asset->url),
+    image{
+      ...,
+      "url": asset->url,
+      asset->
+    },
+    asset->
   },
   seo
 }`;
 
 export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0]{
   _id,
+  _createdAt,
   "slug": slug.current,
   title,
   category,
   readTime,
   date,
   isoDate,
+  publishedAt,
   author,
   authorRole,
   summary,
   color,
   bg,
-  mainImage,
+  mainImage{
+    ...,
+    "url": asset->url,
+    asset->
+  },
   mainImageUrl,
   "imageUrl": coalesce(mainImage.asset->url, mainImageUrl),
-  body,
+  body[]{
+    ...,
+    _type == "image" => {
+      ...,
+      "url": coalesce(asset->url, url),
+      asset->
+    }
+  },
   rawHtmlContent,
   gallery[]{
-    url,
     caption,
-    image
+    "url": coalesce(url, asset->url, image.asset->url),
+    image{
+      ...,
+      "url": asset->url,
+      asset->
+    },
+    asset->
   },
   seo
 }`;

@@ -103,6 +103,11 @@ export default defineType({
       type: 'url',
     }),
     defineField({
+      name: 'twitterUrl',
+      title: 'Twitter / X Profile URL',
+      type: 'url',
+    }),
+    defineField({
       name: 'instagramUrl',
       title: 'Instagram Profile URL',
       type: 'url',
